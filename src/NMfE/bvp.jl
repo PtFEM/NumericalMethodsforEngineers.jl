@@ -23,7 +23,8 @@ function f(x::Float64, y::Vector{Float64})
 end
 ```
 "
-function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64}, steps::Int64, tol::Float64=0.00001, limit::Int64=25)
+function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64}, 
+  steps::Int64, tol::Float64=0.00001, limit::Int64=25)
   println("\n--- Shooting method for Second Order ODEs ---\n")
   @assert size(bvs, 1) == 4
   @assert size(initg, 1) == 2
@@ -51,7 +52,8 @@ function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64
   end
   if (y0[nsteps,1]-yb)*(y0[nsteps,2]-yb) > 0.0
     println("Try new gradients ... ?")
-    return(res)
+    converged = abs((ystar[nsteps]-yb)/yb) < tol
+    return((0, nsteps, converged, res))
   end
   iter = 0
   while iter <= limit
@@ -62,7 +64,9 @@ function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64
       for i in 1:nsteps
         res[i,:] = [xa+(i-1)*h ystar[i]]
       end
-      return(res)
+      println("Try new gradients ... ?")
+      converged = abs((ystar[nsteps]-yb)/yb) < tol
+      return((iter, nsteps, converged, res))
     end
     astar = a0[1] + (yb-y0[nsteps, 1])*(a0[2]-a0[1])/(y0[nsteps,2])
     x = xa
@@ -92,5 +96,6 @@ function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64
       a0[2] = astar
     end
   end
-  res
+  converged = abs((ystar[nsteps]-yb)/yb) < tol
+  (iter, nsteps, converged, res)
 end
