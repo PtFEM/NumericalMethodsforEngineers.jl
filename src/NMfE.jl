@@ -43,6 +43,7 @@ export
   modified_euler,
   mid_point_euler,
   runga_kutta_4,
+  shootingmethod,
   bigcstab,
   bicgstabl!,
   bicgstab_left_precond!,
