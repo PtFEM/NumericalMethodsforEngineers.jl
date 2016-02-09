@@ -22,6 +22,8 @@ println()
 println()
 @time NMfE.bicgstab(a, b, x0, limit=1000)
 println()
-@time NMfE.bicgstab(a, b, x0, limit=1000, trace=true)
+@time NMfE.bicgstab(a, b, x0, tol=1.0e-8, limit=1000, trace=true)
 
+println()
+@show a \ b
 
