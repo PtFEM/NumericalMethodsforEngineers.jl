@@ -51,7 +51,7 @@ function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64
   end
   if (y0[nsteps,1]-yb)*(y0[nsteps,2]-yb) > 0.0
     println("Try new gradients ... ?")
-    return
+    return(res)
   end
   iter = 0
   while iter <= limit
