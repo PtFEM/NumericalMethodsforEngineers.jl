@@ -27,9 +27,6 @@ include(Pkg.dir("NMfE", "src", "NMfE", "ldlt.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "ivp.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "bvp.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "bicgstab.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "bicgstabl.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "bicgstab_left_precond.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "bicgstab_right_precond.jl"))
 
 ### Exports ###
 
@@ -44,10 +41,7 @@ export
   mid_point_euler,
   runga_kutta_4,
   shootingmethod,
-  bigcstab,
-  bicgstabl!,
-  bicgstab_left_precond!,
-  bicgstab_right_precond!
+  bigcstab
 
 ### Deprecated ###
   
