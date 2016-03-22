@@ -5,8 +5,8 @@ ProjDir = Pkg.dir("NMfE", "examples", "NMfE", "Ch07", "IVP")
 cd(ProjDir)
 
 f(x::Float64, y::Vector{Float64}) = (x + y[1])/x
-steps = 10
-h = 0.1
+steps = 3
+h = 0.333
 
 x = 2.0
 y = [2.0]
@@ -20,10 +20,11 @@ push!(r, mid_point_euler(f, x, y, steps, h))
 push!(r, runga_kutta_4(f, x, y, steps, h))
 println(r)
 
-xs = Float64[(i-1)*h for i in 1:steps+1]
+xs = x + Float64[(i-1)*h for i in 1:steps+1]
 titles = ["Euler", "Modified_Euler", "Mid_Point_Euler", "Runga_Kutta_4"]
 
-p = plot(
+
+p1 = plot(
   layer(x=xs, y=r[1][:, 2], Geom.line,
     color=repeat([symbol(titles[1])], inner=[1])),
   layer(x=xs, y=r[2][:, 2], Geom.line,
@@ -32,13 +33,27 @@ p = plot(
     color=repeat([symbol(titles[3])], inner=[3])),
   layer(x=xs, y=r[4][:, 2], Geom.line,
     color=repeat([symbol(titles[4])], inner=[4])),
-  Scale.color_discrete_manual("darkred", "red", "darkblue","darkgreen"),
+  Scale.color_discrete_manual(colorant"darkred", colorant"red", colorant"darkblue", colorant"darkgreen"),
   Guide.colorkey("Legend"),
   Guide.xlabel("x", orientation=:horizontal),
   Guide.ylabel("y", orientation=:vertical),
   Guide.title("Four ODE one-step methods on y'=(x + y)/x"))
 
-draw(SVG("Ex7.1.svg", 8inch, 9.5inch), p)
+p2 = plot(
+  layer(x=xs, y=r[1][:, 2], Geom.line,
+    Theme(default_color=colorant"darkred")),
+  layer(x=xs, y=r[2][:, 2], Geom.line,
+    Theme(default_color=colorant"red")),
+  layer(x=xs, y=r[3][:, 2], Geom.line,
+    Theme(default_color=colorant"darkblue")),
+  layer(x=xs, y=r[4][:, 2], Geom.line,
+    Theme(default_color=colorant"darkgreen")),
+  Guide.xlabel("x", orientation=:horizontal),
+  Guide.ylabel("y", orientation=:vertical),
+  Guide.title("Four ODE one-step methods on y'=(x + y)/x"))
+
+  
+draw(SVG("Ex7.1.svg", 8inch, 9.5inch), p2)
 # Below will only work on OSX, please adjust for your environment.
 # JULIA_SVG_BROWSER is set from environment variable JULIA_SVG_BROWSER
 @osx ? if isdefined(Main, :JULIA_SVG_BROWSER) && length(JULIA_SVG_BROWSER) > 0
