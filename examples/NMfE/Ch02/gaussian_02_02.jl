@@ -25,6 +25,11 @@ println(upper)
 println()
 
 subfor!(lower, b)
+println("Updated RHS:")
+println(b)
+println()
+
 subbac!(upper, b)
+println("Solution vector:")
 println(b)
 println()
