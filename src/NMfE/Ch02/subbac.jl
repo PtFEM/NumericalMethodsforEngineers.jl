@@ -7,7 +7,7 @@ function subbac!(u::Matrix{Float64}, b::Vector{Float64})
       for j in (i+1):n
         total -= u[i, j] * b[j]
       end
-      b[i] = total / u[i, i]
     end
+    b[i] = total / u[i, i]
   end
 end
