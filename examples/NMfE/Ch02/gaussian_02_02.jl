@@ -23,6 +23,8 @@ println()
 println("NMfE lufac(a) - upper:")
 println(upper)
 println()
+@show lower * upper
+println()
 
 subfor!(lower, b)
 println("Updated RHS:")
