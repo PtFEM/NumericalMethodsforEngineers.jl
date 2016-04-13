@@ -8,5 +8,5 @@ x0 = ones(N)
 
 (iters, converged, r2) = NMfE.bicgstab(a, b, x0, limit=100)
 
-@assert round(a \ b, 2) == round(r2, 2)
+@assert round(a \ b, 1) == round(r2, 1)
 
