@@ -1,0 +1,36 @@
+using NMfE
+
+a = [16.; 4.; 5.; 8.; -4.; 22.]
+kdiag = [1; 3; 6]
+
+amat = fromSkyline(a, kdiag)
+
+b = [4., 2., 5.]
+
+nfix = 1
+no = [2;]
+val = [5.0;]
+penalty = 1.0e20
+
+a[kdiag[no]] .+= penalty
+b[no] = a[kdiag[no]] .* val
+
+sparin!(a, kdiag)
+spabac!(a, b, kdiag)
+d = copy(b)
+#------------------------------------
+
+a = amat
+b = [4., 2., 5.]
+
+a[2, 2] += 1.0e20
+b[2] = a[2, 2] * 5.0
+
+a = sparse(a)
+
+F = cholfact(a)
+y = F[:L] \ b
+c = F[:U] \ y
+
+@assert c == a \ b
+@assert c == d

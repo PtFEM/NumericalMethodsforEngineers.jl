@@ -10,15 +10,18 @@ code_tests = [
   "ch02_lufac.jl",
   "ch02_ldlt.jl",
   "ch02_gaussian.jl",
-  "test_bicgstab.jl",         # Initial version of bicgstab
+  "ch02_penalized.jl",
+  "ch02_jacobi.jl",
+  "ch02_bicgstab.jl",         # Initial version of bicgstab
   # Ch03 tests
   # Ch04 tests
   # Ch05 tests
   # Ch06 tests
-  "test_ivp_ex7.3.jl",        # Four direct methods
-  "test_bvp_ex7.4a.jl",       # Shooting method example 7.4a
-  "test_bvp_ex7.4b.jl"        # Shooting method example 7.4b
   # Ch07 tests
+  "ch07_ivp_ex7.3.jl",        # Four direct methods
+  "ch07_bvp_ex7.4a.jl",       # Shooting method example 7.4a
+  "ch07_bvp_ex7.4b.jl"        # Shooting method example 7.4b
+  # Ch08 tests
 ]
 
 println("Running tests:")

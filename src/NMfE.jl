@@ -3,19 +3,6 @@ module NMfE
 #using Docile, Lexicon
 using IterativeSolvers
 
-if !isdefined(Main, :JULIA_SVG_BROWSER)
-  JULIA_SVG_BROWSER = ""
-  try
-    JULIA_SVG_BROWSER = ENV["JULIA_SVG_BROWSER"]
-  catch e
-    println("Environment variable JULIA_SVG_BROWSER not found.")
-    JULIA_SVG_BROWSER = ""
-  end
-end
-
-export
-  JULIA_SVG_BROWSER
-       
 # package code goes here
 ### Imports ###
 
@@ -23,9 +10,9 @@ export
 include(Pkg.dir("NMfE", "src", "NMfE", "fromSkyline.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "skyline2sparse.jl"))
 # Illustration in ch01 (based on ch04)
+include(Pkg.dir("NMfE", "src", "NMfE", "ch01", "checkit.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "ch01", "nmex.jl"))
 # Direct methods in ch02
-include(Pkg.dir("NMfE", "src", "NMfE", "ch01", "checkit.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "lufac.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "subbac.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "subfor.jl"))
