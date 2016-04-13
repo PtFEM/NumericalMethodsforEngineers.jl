@@ -1,5 +1,5 @@
 function bicgstab(a::Matrix{Float64}, b::Vector{Float64}, x0::Vector{Float64}; 
-    tol=1.0e-5, limit=1000, trace=false)
+    tol=1.0e-15, limit=1000, trace=false)
   n = size(a, 2)
   if length(b) != n || length(x0) != n
     println("Non-conformant sizes of inputs.")

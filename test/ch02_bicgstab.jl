@@ -1,12 +1,14 @@
 using NMfE
 
-N = 10
+N = 8
+tol = 1.0e-10
+limit = 1000
+
 a = float(rand(1:10 * N, N, N))
 x = float(rand(1:10, N))
 b = a * x
 x0 = ones(N)
+(iters, converged, r2) = NMfE.bicgstab(a, b, x0; tol=tol, limit=limit)
 
-(iters, converged, r2) = NMfE.bicgstab(a, b, x0, limit=100)
-
-@assert round(a \ b, 1) == round(r2, 1)
+@assert round(a\b, 5) == round(r2, 5)
 
