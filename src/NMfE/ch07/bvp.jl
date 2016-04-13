@@ -25,7 +25,7 @@ end
 "
 function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64}, 
   steps::Int64, tol::Float64=0.00001, limit::Int64=25)
-  println("\n--- Shooting method for Second Order ODEs ---\n")
+  #println("\n--- Shooting method for Second Order ODEs ---\n")
   @assert size(bvs, 1) == 4
   @assert size(initg, 1) == 2
   nsteps = steps + 1
@@ -82,7 +82,7 @@ function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64
       x = x + h
     end
     if abs((ystar[nsteps]-yb)/yb) < tol
-      println("Iterations to convergence: $iter")
+      #println("Iterations to convergence: $iter")
       for i in 1:nsteps
         res[i,:] = [xa+(i-1)*h ystar[i]]
       end

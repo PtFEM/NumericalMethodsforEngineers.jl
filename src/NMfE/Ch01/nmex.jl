@@ -1,4 +1,4 @@
-function nmex(a::Matrix{Float64}, x::Vector{Float64}, tol::Float64, limit::Int64)
+function nmex(a::Matrix{Float64}, x::Vector{Float64}, tol::Float64, limit::Int64; show=0)
   iters = 0
   n = size(a, 1)
   converged = false
@@ -14,9 +14,8 @@ function nmex(a::Matrix{Float64}, x::Vector{Float64}, tol::Float64, limit::Int64
     x1 = x1 / big
     (checkit(x1, x, tol) || (iters == limit)) && break
     x = x1
-    iters < 5 && println("$iters $i $big $x")
+    iters <= show && println("$iters $i $big $x")
   end
-  println()
   l2 = norm(x1)
   x1 = x1 / l2
   (iters, big, x1)

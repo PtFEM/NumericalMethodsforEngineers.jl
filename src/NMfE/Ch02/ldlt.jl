@@ -1,5 +1,4 @@
-function ldlt(ain::Matrix{Float64})
-  a = copy(ain)
+function ldlt!(a::Matrix{Float64})
   n = size(a,1)
   d = zeros(n)
   for k in 1:n-1

@@ -5,15 +5,20 @@ using Base.Test
 
 code_tests = [
   # Ch01 tests
-  "test_nmex.jl",
+  "ch01_nmex.jl",
   # Ch02 tests
-  "test_lufac.jl",
-  "test_ldlt.jl",
-  # Ch03 tests
+  "ch02_lufac.jl",
+  "ch02_ldlt.jl",
+  "ch02_gaussian.jl",
   "test_bicgstab.jl",         # Initial version of bicgstab
+  # Ch03 tests
+  # Ch04 tests
+  # Ch05 tests
+  # Ch06 tests
   "test_ivp_ex7.3.jl",        # Four direct methods
   "test_bvp_ex7.4a.jl",       # Shooting method example 7.4a
   "test_bvp_ex7.4b.jl"        # Shooting method example 7.4b
+  # Ch07 tests
 ]
 
 println("Running tests:")

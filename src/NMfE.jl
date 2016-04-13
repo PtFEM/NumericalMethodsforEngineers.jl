@@ -22,16 +22,23 @@ export
 ### Includes ###
 include(Pkg.dir("NMfE", "src", "NMfE", "fromSkyline.jl"))
 include(Pkg.dir("NMfE", "src", "NMfE", "skyline2sparse.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "Ch01", "nmex.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "Ch01", "checkit.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "Ch02", "lufac.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "Ch02", "subbac.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "Ch02", "subfor.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "Ch02", "ldltfac.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "Ch02", "ldlt.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "ivp.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "bvp.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "bicgstab.jl"))
+# Illustration in ch01 (based on ch04)
+include(Pkg.dir("NMfE", "src", "NMfE", "ch01", "nmex.jl"))
+# Direct methods in ch02
+include(Pkg.dir("NMfE", "src", "NMfE", "ch01", "checkit.jl"))
+include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "lufac.jl"))
+include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "subbac.jl"))
+include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "subfor.jl"))
+include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "ldlfor.jl"))
+include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "ldlt.jl"))
+include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "sparin.jl"))
+include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "spabac.jl"))
+# Iterative methods in ch02
+include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "bicgstab.jl"))
+# Initial Value methods
+include(Pkg.dir("NMfE", "src", "NMfE", "ch07", "ivp.jl"))
+# Boundary Value methods
+include(Pkg.dir("NMfE", "src", "NMfE", "ch07", "bvp.jl"))
 
 ### Exports ###
 
@@ -39,15 +46,19 @@ export
   # From NMfE
   fromSkyline,
   skyline2sparse,
-  # Ch01
+  # ch01
   nmex,
   checkit,
-  # Ch02
+  # ch02
   lufac,
   subbac!,
   subfor!,
-  ldlt,
-  #Ch 0?
+  ldlt!,
+  ldltfac!,
+  ldlfor!,
+  sparin!,
+  spabac!,
+  # ch0?
   euler,
   modified_euler,
   mid_point_euler,
