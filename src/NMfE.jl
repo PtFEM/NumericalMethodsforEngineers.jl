@@ -7,25 +7,25 @@ using IterativeSolvers
 ### Imports ###
 
 ### Includes ###
-include(Pkg.dir("NMfE", "src", "NMfE", "fromSkyline.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "skyline2sparse.jl"))
+include(Pkg.dir("NMfE", "src", "fromSkyline.jl"))
+include(Pkg.dir("NMfE", "src", "skyline2sparse.jl"))
 # Illustration in ch01 (based on ch04)
-include(Pkg.dir("NMfE", "src", "NMfE", "ch01", "checkit.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "ch01", "nmex.jl"))
+include(Pkg.dir("NMfE", "src", "ch01", "checkit.jl"))
+include(Pkg.dir("NMfE", "src", "ch01", "nmex.jl"))
 # Direct methods in ch02
-include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "lufac.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "subbac.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "subfor.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "ldlfor.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "ldlt.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "sparin.jl"))
-include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "spabac.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "lufac.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "subbac.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "subfor.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "ldlfor.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "ldlt.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "sparin.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "spabac.jl"))
 # Iterative methods in ch02
-include(Pkg.dir("NMfE", "src", "NMfE", "ch02", "bicgstab.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "bicgstab.jl"))
 # Initial Value methods
-include(Pkg.dir("NMfE", "src", "NMfE", "ch07", "ivp.jl"))
+include(Pkg.dir("NMfE", "src", "ch07", "ivp.jl"))
 # Boundary Value methods
-include(Pkg.dir("NMfE", "src", "NMfE", "ch07", "bvp.jl"))
+include(Pkg.dir("NMfE", "src", "ch07", "bvp.jl"))
 
 ### Exports ###
 
