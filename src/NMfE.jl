@@ -45,6 +45,7 @@ export
   ldlfor!,
   sparin!,
   spabac!,
+  bicgstab,
   # ch0?
   euler,
   modified_euler,
