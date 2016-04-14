@@ -1,32 +1,25 @@
 using NMfE
 
-println("\n'Fortran' version:\n")
-a = [16.; 4.; 5.; 8.; -4.; 22.]
-kdiag = [1; 3; 6]
-
-amat = fromSkyline(a, kdiag)
-amat |> display
-println()
-
+a = [16. 4. 8.; 4. 5. -4.; 8. -4. 22.]
 b = [4., 2., 5.]
 
-nfix = 1
-no = [2;]
-val = [5.0;]
-penalty = 1.0e20
+a = sparse(a)
 
-a[kdiag[no]] .+= penalty
-b[no] = a[kdiag[no]] .* val
+F = cholfact(a)
+upper = F[:U]
+upper |> display
 
-sparin!(a, kdiag)
-spabac!(a, b, kdiag)
-d = copy(b)
-println("Solution Vector: \n $d")
+lower = F[:L]
+lower |> display
 
-#------------------------------------
+y = lower \ b
 
-println("\n'Julia' version:\n")
-a = amat
+c = upper \ y
+println("Solution Vector: \n $c")
+
+@assert c == a \ b
+
+a = [16. 4. 8.; 4. 5. -4.; 8. -4. 22.]
 b = [4., 2., 5.]
 
 a[2, 2] += 1.0e20
@@ -47,4 +40,3 @@ c = upper \ y
 println("Solution Vector: \n $c")
 
 @assert c == a \ b
-@assert c == d

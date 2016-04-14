@@ -1,4 +1,4 @@
-using NMfE
+using NMfE, IterativeSolvers
 
 a = [16. 4. 8.; 4. 5. -4.; 8. -4. 22.]
 b = [4., 2., 5.]
@@ -8,7 +8,9 @@ lower = upper'
 y = lower \ b
 c = upper \ y
 
-x,ch = cg(a, b;tol=tol,maxiter=2*10);
+tol = 1.0e-10
+iters = 20
+x,ch = cg(a, b;tol=tol,maxiter=iters);
 
 println("\nSolution Vector: $x")
 println("Converged: $(ch.isconverged)")
