@@ -1,4 +1,6 @@
-function nmex(a::Matrix{Float64}, x::Vector{Float64}, tol::Float64, limit::Int64; show=0)
+function nmex(a::Matrix{Float64}, x::Vector{Float64};
+    tol::Float64=1.0e-10, limit::Int64=1000, show=0)
+    
   iters = 0
   n = size(a, 1)
   converged = false
