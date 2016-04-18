@@ -1,0 +1,60 @@
+How to create and/or modify a library:
+
+1) To create *.o modules:
+
+g95 -c sub1.f95
+g95 -c sub2.f95    or do them all with
+g95 -c *.f95
+
+
+2) To create the whole library nm_lib.a:
+
+ar -r nm_lib.a *.o
+
+2a) To add modules to the library (assume library is called nm_lib.a):
+
+ar -r nm_lib.a sub1.o
+
+2b) To remove modules from the library (assume library is called nm_lib.a):
+
+ar -d nm_lib.a sub1.o
+
+
+3) Creation of the *.mod file.
+A typical interface module (called nm_lib.f95) looks like:
+
+MODULE nm_lib
+!
+INTERFACE
+!
+FUNCTION check(x1,x0,tol)
+ USE precision
+ REAL(iwp),INTENT(IN)::x0,x1,tol
+ LOGICAL::check
+END FUNCTION check
+!
+FUNCTION checkit(loads,oldlds,tol)
+ USE precision
+ REAL(iwp),INTENT(IN)::loads(:),oldlds(:),tol
+ LOGICAL::checkit
+END FUNCTION checkit
+!
+SUBROUTINE chobac(kb,loads)
+ USE precision
+ REAL(iwp),INTENT(IN)::kb(:,:)
+ REAL(iwp),INTENT(IN OUT)::loads(:)
+END SUBROUTINE chobac!
+.
+.
+.
+!
+END INTERFACE
+!
+END MODULE nm_lib
+
+
+
+4) Compile modified interface file:
+g95 -c nm_lib.f95
+
+This command creates nm_lib.mod
