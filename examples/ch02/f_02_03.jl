@@ -1,24 +1,25 @@
 using NMfE
 
-a = [3. -2. 1.; -2. 3. 2.; 1. 2. 2.]
-b = [3., -3., 2.]
-n = size(a, 1)
+A = Float64[16 4 8;4 5 -4;8 -4 22]
+b = Float64[4, 2, 5]
+n = size(A, 1)
+d = zeros(n)
 
-d = ldlt!(a)
+ldlt!(A, d)
 lower = zeros(3, 3)
 for i in 1:n
   for j in 1:i
-    lower[i, j] = a[i, j] / d[j]
+    lower[i, j] = A[i, j] / d[j]
   end
 end
 
 println("\nLower Triangular Factors: \n $lower")
 println("\nDiagonal Terms: \n $d")
 
-ldlfor!(a, b)
+ldlfor!(A, b)
 for i in 1:n
-  a[i, :] = a[i, :] / d[i]
+  A[i, :] = A[i, :] / d[i]
 end
 
-subbac!(a, b)
+subbac!(A, b)
 println("\nSolution Vector: \n $b")
