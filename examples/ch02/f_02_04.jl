@@ -1,28 +1,21 @@
 using NMfE
 
-a = [1. 2. -2.; 2. 5. -4.; -2. -4. 5.]
+A = Float64[0 0 16; 0 4 5; 8 -4 22]
+b = Float64[4, 2, 5]
 
-println("\n|a[1, 1]| = $(det(a[1, 1]))\n")
-println("|a[1:2, 1:2]| = $(det(a[1:2, 1:2])))\n")
-println("|a| = $(det(a))")
-println("\nchol(a):")
-chol(a) |> display
+println("\nCholesky factorization using banded storage\n")
+println("\nBanded Coefficient Matrix:\n$A\n")
+println("\nRight Hand side:\n$b\n")
 
-a = [16. 4. 8.; 4. 5. -4.; 8. -4. 22.]
+cholin!(A)
+println("\nL in Band Form:\n$A\n")
 
-println("\n|a[1, 1]| = $(det(a[1, 1]))\n")
-println("|a[1:2, 1:2]| = $(det(a[1:2, 1:2])))\n")
-println("|a| = $(det(a))")
+chobac!(A, b)
+println("\nSolution Vector:\n$b")
 
-println("\nchol(a) - upper:")
-upper = chol(a)
-upper |> display
+A = Float64[0 0 16; 0 4 5; 8 -4 22]
+b = Float64[4, 2, 5]
 
-println("\nchol(a) - lower:")
-lower = chol(a)'
-lower |> display
+c = A \ b
 
-println("\nlower * upper:")
-lower * upper |> display
-
-@assert a == lower * upper
+@assert round(c, 14) == b

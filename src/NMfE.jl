@@ -13,13 +13,17 @@ include(Pkg.dir("NMfE", "src", "skyline2sparse.jl"))
 include(Pkg.dir("NMfE", "src", "ch01", "checkit.jl"))
 include(Pkg.dir("NMfE", "src", "ch01", "nmex.jl"))
 # Direct methods in ch02
-include(Pkg.dir("NMfE", "src", "ch02", "lufac.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "subbac.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "subfor.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "chobac.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "cholin.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "frombandedmatrix.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "tobandedmatrix.jl"))
 include(Pkg.dir("NMfE", "src", "ch02", "ldlfor.jl"))
 include(Pkg.dir("NMfE", "src", "ch02", "ldlt.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "lufac.jl"))
 include(Pkg.dir("NMfE", "src", "ch02", "sparin.jl"))
 include(Pkg.dir("NMfE", "src", "ch02", "spabac.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "subbac.jl"))
+include(Pkg.dir("NMfE", "src", "ch02", "subfor.jl"))
 # Iterative methods in ch02
 include(Pkg.dir("NMfE", "src", "ch02", "bicgstab.jl"))
 # Initial Value methods
@@ -37,15 +41,19 @@ export
   nmex,
   checkit,
   # ch02
-  lufac,
-  subbac!,
-  subfor!,
+  bicgstab,
+  chobac!,
+  cholin!,
+  frombandedmatrix,
+  tobandedmatrix,
   ldlt!,
   ldltfac!,
   ldlfor!,
+  lufac,
   sparin!,
   spabac!,
-  bicgstab,
+  subbac!,
+  subfor!,
   # ch0?
   euler,
   modified_euler,
