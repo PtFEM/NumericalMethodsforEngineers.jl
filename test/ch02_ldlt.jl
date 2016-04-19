@@ -12,8 +12,9 @@ s = copy(b)
 a = Float64[16 4 8;4 5 -4;8 -4 22]
 b = Float64[4, 2, 5]
 n = size(a, 1)
+d = zeros(n)
 
-d = ldlt!(a)
+ldlt!(a, d)
 lower = zeros(3, 3)
 for i in 1:n
   for j in 1:i
