@@ -1,18 +1,3 @@
-#=
-type BandedMatrix{Tv,Ti<:Integer} <: AbstractSparseMatrix{Tv,Ti}
-    m::Int                      # Number of rows
-    n::Int                      # Number of columns
-    bw::Int                     [1.0;zeros(N-1)]# Bandwidth
-    mat::Matrix{Tv, m, }        # Banded matrix
-    function BandedMatrix(mat::Matrix{Tv}, bw::Integer)
-      m = size(mat, 1)
-      n = size(mat, 2)
-      hbw = (bw-1)÷2
-      matb = tobandedmatrix(mat, hbw)
-      new(m, n, bw, matb)
-end
-=#
-
 type SkylineMatrix{Tv,Ti<:Integer} <: AbstractSparseMatrix{Tv,Ti}
     m::Int                  # Number of rows
     n::Int                  # Number of columns
