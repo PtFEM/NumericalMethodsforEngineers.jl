@@ -22,8 +22,9 @@ include(Pkg.dir("NMfE", "src", "nmlib", "sparin.jl"))
 include(Pkg.dir("NMfE", "src", "nmlib", "spabac.jl"))
 include(Pkg.dir("NMfE", "src", "nmlib", "subbac.jl"))
 include(Pkg.dir("NMfE", "src", "nmlib", "subfor.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "bicgstab.jl"))
 # Iterative methods in ch02
-include(Pkg.dir("NMfE", "src", "ch02", "bicgstab.jl"))
+#include(Pkg.dir("NMfE", "src", "ch02", "bicgstabl.jl"))
 # Initial Value methods
 include(Pkg.dir("NMfE", "src", "ch07", "ivp.jl"))
 # Boundary Value methods
