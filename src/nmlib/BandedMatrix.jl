@@ -1,22 +1,20 @@
-using NMfE
-
-type BandedMatrix{Tv,Ti<:Integer} <: AbstractSparseMatrix{Tv,Ti}
+type BandedMatrix{Tv}
     m::Int                      # Number of rows
     n::Int                      # Number of columns
     bw::Int                     # Bandwidth bw = 1 + 2*hbw
-    mat::Matrix{Tv, 2}        # Banded matrix
-    function BandedMatrix(mat::Matrix{Tv}, bw::Integer)
-      m = size(mat, 1)
-      n = size(mat, 2)
-      hbw = (bw-1)÷2
-      matb = tobandedmatrix(mat, hbw)
-      new(m, n, bw, matb)
-    end
+    mat::Matrix{Tv}             # Banded matrix
 end
 
-function frombandedmatrix(a::Matrix{Float64})
+function BandedMatrix(mat::Matrix, bw::Int)
+  n = m = size(mat, 1)
+  iw = bw - 1
+  mat = tobandedmatrix(mat, iw)
+  BandedMatrix{eltype(mat)}(m, n, iw, mat)
+end
+
+function frombandedmatrix(a::Matrix)
   n = size(a, 1)
-  b = zeros(n, n)
+  b = zeros(eltype(a), n, n)
   iw = size(a, 2)
   for i in n:-1:1
     b[i, i] = a[i, iw]
@@ -30,9 +28,9 @@ function frombandedmatrix(a::Matrix{Float64})
   b
 end
 
-function tobandedmatrix(a::Matrix{Float64}, iw::Int64)
+function tobandedmatrix(a::Matrix, iw::Int64)
   n = size(a, 1)
-  b = zeros(n, iw+1)
+  b = zeros(eltype(a), n, iw+1)
   for i in 1:n
     b[i, iw+1] = a[i, i]
     for j in 1:iw
@@ -44,21 +42,20 @@ function tobandedmatrix(a::Matrix{Float64}, iw::Int64)
   b
 end
 
-eb = Float64[0 0 0 16; 0 0 4 5; 0 8 -4 22; 0 1 2 3; 0 0 7 6; 0 11 0 15; 0 0 0 20]
+eb = Float64[0 0 0 16; 0 0 4 5; 0 8 -4 22; 1 2 3 4; 0 0 7 6; 0 11 0 15; 0 0 0 20]
+ebi = [0 0 0 16; 0 0 4 5; 0 8 -4 22; 1 2 3 4; 0 0 7 6; 0 11 0 15; 0 0 0 20]
 
 e = frombandedmatrix(eb)
+ei = frombandedmatrix(ebi)
 
-es = sparse(e)
+ebb = tobandedmatrix(e, 3) |> display
+println()
 
-g0 = [1, 2, 3, 4, 5]
-g1 = [10, 11, 12, 13, 14]
-g2 = [0, 20, 21, 22]
-d = (0, 1, -1, 2, -2)
+ebbi = tobandedmatrix(ei, 3) |> display
+println()
 
-#spdiagm(B, d[, m, n])
+BandedMatrix(e, 4) |> display
+println()
 
-spdiagm(g0)
+BandedMatrix(ei, 4) |> display
 
-spd = spdiagm((g0, g1, g1, g2, g2), d)
-
-full(spd)
