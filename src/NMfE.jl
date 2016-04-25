@@ -7,23 +7,21 @@ using IterativeSolvers
 ### Imports ###
 
 ### Includes ###
-include(Pkg.dir("NMfE", "src", "fromSkyline.jl"))
-include(Pkg.dir("NMfE", "src", "skyline2sparse.jl"))
-# Illustration in ch01 (based on ch04)
-include(Pkg.dir("NMfE", "src", "ch01", "checkit.jl"))
-include(Pkg.dir("NMfE", "src", "ch01", "nmex.jl"))
-# Direct methods in ch02
-include(Pkg.dir("NMfE", "src", "ch02", "chobac.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "cholin.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "frombandedmatrix.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "tobandedmatrix.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "ldlfor.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "ldlt.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "lufac.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "sparin.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "spabac.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "subbac.jl"))
-include(Pkg.dir("NMfE", "src", "ch02", "subfor.jl"))
+# Type definitions in nmlib
+include(Pkg.dir("NMfE", "src", "nmlib", "SkylineMatrix.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "BandedMatrix.jl"))
+# Direct methods in nmlib
+include(Pkg.dir("NMfE", "src", "nmlib", "checkit.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "nmex.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "chobac.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "cholin.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "ldlfor.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "ldlt.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "lufac.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "sparin.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "spabac.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "subbac.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "subfor.jl"))
 # Iterative methods in ch02
 include(Pkg.dir("NMfE", "src", "ch02", "bicgstab.jl"))
 # Initial Value methods
@@ -34,18 +32,19 @@ include(Pkg.dir("NMfE", "src", "ch07", "bvp.jl"))
 ### Exports ###
 
 export
-  # From NMfE
+  # nmlib (types)
+  SkylinMatrix,
   fromSkyline,
   skyline2sparse,
-  # ch01
+  BandedMatrix,
+  frombandedmatrix,
+  tobandedmatrix,
+  # nmlib (functions)
   nmex,
   checkit,
-  # ch02
   bicgstab,
   chobac!,
   cholin!,
-  frombandedmatrix,
-  tobandedmatrix,
   ldlt!,
   ldltfac!,
   ldlfor!,
@@ -54,7 +53,7 @@ export
   spabac!,
   subbac!,
   subfor!,
-  # ch0?
+  # ch07
   euler,
   modified_euler,
   mid_point_euler,
