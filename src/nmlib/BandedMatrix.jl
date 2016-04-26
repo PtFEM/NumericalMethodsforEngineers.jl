@@ -1,14 +1,23 @@
-import Base: full, ==, copy
+import Base: full, ==, copy, size, convert
 
 type BandedMatrix{Tv}
-    m::Int                      # Number of rows
-    n::Int                      # Number of columns
     hbw::Int                    # Bandwidth bw = 1 + 2*hbw
     mat::Matrix{Tv}             # Banded matrix
 end
 
-==(a::BandedMatrix, b::BandedMatrix) = (a.n==b.n && a.m==b.m && a.hbw==b.hbw && a.mat==b.mat)
-copy(a::BandedMatrix) = BandedMatrix(a.m, a.n, a.hbw, a.mat)
+size(a::BandedMatrix) = (size(a.mat, 1), size(a.mat, 1))
+
+==(a::BandedMatrix, b::BandedMatrix) = (a.hbw==b.hbw && a.mat==b.mat)
+
+function copy(a::BandedMatrix) 
+  Tv = eltype(a.mat)
+  BandedMatrix{Tv}(a.hbw, copy(a.mat))
+end
+
+function convert(::Type{NMfE.BandedMatrix}, hbw::Int, a::Matrix)
+  Tv = eltype(a)
+  BandedMatrix{Tv}(hbw, a)
+end
 
 function BandedMatrix(mat::Matrix, hbw::Int)
   # hbw = (bw - 1)÷2
@@ -23,7 +32,7 @@ function BandedMatrix(mat::Matrix, hbw::Int)
       end
     end
   end
-  BandedMatrix{Tv}(m, n, hbw, b)
+  BandedMatrix{Tv}(hbw, b)
 end
 
 function full(bmat::BandedMatrix)
