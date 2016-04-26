@@ -34,12 +34,10 @@ include(Pkg.dir("NMfE", "src", "ch07", "bvp.jl"))
 
 export
   # nmlib (types)
-  SkylinMatrix,
+  SkylineMatrix,
   fromSkyline,
   skyline2sparse,
   BandedMatrix,
-  frombandedmatrix,
-  tobandedmatrix,
   # nmlib (functions)
   nmex,
   checkit,

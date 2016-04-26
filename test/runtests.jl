@@ -10,6 +10,7 @@ code_tests = [
   "ch02_lufac.jl",
   "ch02_ldlt.jl",
   "ch02_BandedMatrix.jl",
+  "ch02_SkylineMatrix.jl",
   "ch02_gaussian.jl",
   "ch02_penalized.jl",
   "ch02_jacobi.jl",
