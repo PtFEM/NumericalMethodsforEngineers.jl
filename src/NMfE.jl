@@ -1,6 +1,7 @@
 module NMfE
 
-#using Docile, Lexicon
+using Docile
+#using Lexicon
 using IterativeSolvers
 
 # package code goes here
@@ -38,6 +39,7 @@ export
   fromSkyline,
   skyline2sparse,
   BandedMatrix,
+  tobandedmatrix,
   # nmlib (functions)
   nmex,
   checkit,
