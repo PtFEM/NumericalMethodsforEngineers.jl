@@ -18,9 +18,8 @@ Type to hold banded matrices with element types Tv
 
 - bm:         BandedMatrix
 - bmat:       Banded matrix (the field in a BandedMatrix object)
-- m:          Regular matix
-- sbm:        Semi-banded matrix, e.g.
--               sbm = [0 0 1; 0 2 3; 4 5 6]
+- am:         Subtype of AbstractMatrix
+- sbm:        Semi-banded matrix
 - hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol)
 
 ### Constructor
@@ -43,11 +42,11 @@ bm = BandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
 * `sparse(bm)`      : Convert to a SparseMatrixCSC.
 * `full(bm)`        : Convert to a full matrix.
 
-* `convert(::Type{NMfE.BandedMatrix}, hbw::Int, bmat::AbstractMatrix)`
-* `convert(::Type{NMfE.BandedMatrix}, m::AbstractMatrix)`
+* `convert(::Type{NMfE.BandedMatrix}, hbw::Int, bmat::AbstractMatrix)` (Default constructor)
+* `convert(::Type{NMfE.BandedMatrix}, am::AbstractMatrix)`
 
-* `tobandedmatrix(m::AbstractMatrix)`           : Convert to BandedMatrix, compute hbw.
-* `tobandedmatrix(hbw::Int, m::AbstractMatrix)` : Convert to BandedMatrix.
+* `tobandedmatrix(am::AbstractMatrix)`           : Convert to BandedMatrix, compute hbw.
+* `tobandedmatrix(hbw::Int, am::AbstractMatrix)` : Convert to BandedMatrix.
 ```
 """
 type BandedMatrix{Tv}
@@ -71,14 +70,35 @@ function convert(::Type{NMfE.BandedMatrix}, hbw::Int, bmat::AbstractMatrix)
 end
 
 # Conversion routine to turn a symmetric matrix into a BandedMatrix
-function convert(::Type{NMfE.BandedMatrix}, m::AbstractMatrix)
-  tobandedmatrix(m)
+function convert(::Type{NMfE.BandedMatrix}, am::AbstractMatrix)
+  tobandedmatrix(am)
 end
 
 function sparse(bm::BandedMatrix)
   sparse(full(bm))
 end
 
+Docile.@comment """
+# Convert symmetric AbstractMatrix to a BandedMatrix
+"""
+
+"""
+
+### Function
+```julia
+bm = tobandedmatrix{Tv}(hbw::Int, am::AbstractMatrix{Tv})
+
+or
+
+bm = tobandedmatrix{Tv}(am::AbstractMatrix{Tv})
+```
+### Arguments
+```julia
+* `hbw`             : Half bandwidth. 
+* `am`              : Symmetric AbstractMatrix
+                      (if no hbw is specified, hbw will be derived from the matrix)
+```
+"""
 function tobandedmatrix(am::AbstractMatrix)
   m = copy(am)
   typeof(m) <: SparseMatrixCSC && (m = full(m))
