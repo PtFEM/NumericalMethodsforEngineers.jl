@@ -68,4 +68,9 @@ ffs=ff.+ff'
 bm = tobandedmatrix(ffs)
 @assert full(bm) == ffs
 
+ms = sprand(5, 5, 0.1)
+# Make sure it is symmetric
+sms = issym(ms) ? ms : ms .+ ms'
+bms = issym(sms) ? convert(BandedMatrix, sms) : convert(BandedMatrix, round(sms, 8))
+@assert full(bms) == sms
 
