@@ -10,17 +10,18 @@ import Base: full, ==, copy, size, convert, sparse
 #
 
 Docile.@comment """
-# BandedMatrix type for symmetric full matrices
+# BandedMatrix type for symmetric matrices
 """
 
 """
 Type to hold banded matrices with element types Tv
 
-- bm:         BandedMatrix
-- bmat:       Banded matrix (the field in a BandedMatrix object)
-- am:         Subtype of AbstractMatrix
-- sbm:        Semi-banded matrix
-- hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol)
+- am:         Subtype of AbstractMatrix.
+- hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol).
+- bmat:       Banded matrix (the field in a BandedMatrix object), e.g.
+                bmat = [0 0 1; 0 2 3; 4 5 6]
+                (for a hbw of 2 and 1, 3, 6 as diagonal elements).
+- bm:         BandedMatrix.
 
 ### Constructor
 ```julia
@@ -30,9 +31,7 @@ bm = BandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
 ### Arguments
 ```julia
 * `hbw`             : Half bandwidth. 
-* `bmat`            : Banded matrix, e.g.
-                      bmat = [0 0 1; 0 2 3; 4 5 6]
-                      (for a hbw of 2 and 1, 3, 6 as diagonal elements).
+* `bmat`            : Banded matrix.
 ```
 ### Additional methods
 ```julia

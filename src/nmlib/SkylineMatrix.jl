@@ -1,61 +1,78 @@
-import Base: full, ==, copy, size, convert
+import Base: full, ==, copy, size, convert, sparse
 
+Docile.@comment """
+# SkylineMatrix type for symmetric matrices
+"""
+
+"""
+Type to hold skyline matrices with element types Tv
+
+- sv:         Skyline vector
+- kdiag:      Diagonal elements in sv.
+- sm:         SkylineMatrix.
+
+### Constructor
+```julia
+sm = SkylineMatrix{Tv}(kdiag::Vector{Int}, sv::Vector{Tv})
+
+```
+### Arguments
+```julia
+* `kdiag`            : Vector specifying location of diagonal element in sv. 
+* `sv`               : Non-zero values in upper triangular matrix.
+```
+### Additional methods
+```julia
+* `size(sm)`        : Return size of full matrix => (n, n).
+* `==(sm1, sm2)`    : Compare 2 SkylineMatrices for equality.
+* `copy(sm)`        : Create a copy.
+* `sparse(sm)`      : Convert to a SparseMatrixCSC.
+* `full(sm)`        : Convert to a full matrix.
+
+* `convert(::Type{NMfE.SkylineMatrix}, kdiag::Vector{Int}, sv::Vector{Tv})`
+                    : Default constructor
+
+* `fromskyline(kdiag::Vector{Int}, sv::Vector{Tv})`
+                    : Convert kdiag,sv to full matrix.
+```
+"""
 type SkylineMatrix{Tv}
     kdiag::Vector{Int}        # Diagonal elements
-    nzval::Vector{Tv}       # Nonzero values
-    function SkylineMatrix(kdiag::Vector{Int}, nzval::Vector{Tv})
-      new(kdiag, nzval)
-    end
+    sv::Vector{Tv}         # Nonzero values
 end
 
-size(a::SkylineMatrix) = (length(a.kdiag), length(a.kdiag))
+size(sm::SkylineMatrix) = (length(sm.kdiag), length(sm.kdiag))
 
-==(a::SkylineMatrix, b::SkylineMatrix) = (a.kdiag==b.kdiag && a.nzval==b.nzval)
+==(sm1::SkylineMatrix, sm2::SkylineMatrix) = (sm1.kdiag==sm2.kdiag && sm1.sv==sm2.sv)
     
-function copy(a::SkylineMatrix)
-  Tv = eltype(a.nzval)
-  SkylineMatrix{Tv}(copy(a.kdiag), copy(a.nzval))
+function copy(sm::SkylineMatrix)
+  Tv = eltype(sm.sv)
+  SkylineMatrix{Tv}(copy(sm.kdiag), copy(sm.sv))
 end
 
-function convert(::Type{NMfE.SkylineMatrix}, kdiag::Vector{Int}, a::Matrix)
-  Tv = eltype(a)
-  SkylineMatrix{Tv}(kdiag, a)
+function convert(::Type{NMfE.SkylineMatrix}, kdiag::Vector{Int}, sv::Vector)
+  Tv = eltype(sv)
+  SkylineMatrix{Tv}(kdiag, sv)
 end
 
-function SkylineMatrix(nzval::Vector, kdiag::Vector{Int})
-  Tv = eltype(nzval)
-  m = n = size(kdiag, 1)
-  SkylineMatrix{Tv}(kdiag, nzval)
+function full(sm::SkylineMatrix)
+  fromskyline(sm.kdiag, sm.sv)
 end
 
-function full(a::SkylineMatrix)
-  fromSkyline(a.nzval, a.kdiag)
+function sparse(sm::SkylineMatrix)
+	sparse(fromskyline(sm.kdiag, sm.sv))
 end
 
-function fromSkyline(skyline::Vector, kdiag::Vector{Int64})
+function fromskyline(kdiag::Vector{Int64}, sv::Vector)
 	neq = size(kdiag, 1)
-	km = zeros(eltype(skyline), neq, neq)
-	km[1, 1] = skyline[kdiag[1]]
+	km = zeros(eltype(sv), neq, neq)
+	km[1, 1] = sv[kdiag[1]]
 	for i in 2:neq
-		km[i, i] = skyline[kdiag[i]]
+		km[i, i] = sv[kdiag[i]]
 		for j in (kdiag[i-1] + 1):kdiag[i]
-			km[i, i - (kdiag[i]-j)] = skyline[j]
-			km[i - (kdiag[i]-j), i] = skyline[j]
+			km[i, i - (kdiag[i]-j)] = sv[j]
+			km[i - (kdiag[i]-j), i] = sv[j]
     end
   end
 	km
-end
-
-function skyline2sparse(skyline::Vector, kdiag::Vector{Int64})
-	neq = size(kdiag, 1)
-	km = zeros(eltype(skyline), neq, neq)
-	km[1, 1] = skyline[kdiag[1]]
-	for i in 2:neq
-		km[i, i] = skyline[kdiag[i]]
-		for j in (kdiag[i-1] + 1):kdiag[i]
-			km[i, i - (kdiag[i]-j)] = skyline[j]
-			km[i - (kdiag[i]-j), i] = skyline[j]
-    end
-  end
-	sparse(km)
 end

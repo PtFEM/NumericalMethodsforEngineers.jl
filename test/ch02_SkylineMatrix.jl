@@ -7,7 +7,7 @@ acf = [16.+2im, 4-2.im, 5+0.im, 8., -4-4im, 22.+9im]
 
 kdiag =[1, 3, 6]
 
-sres=SkylineMatrix(af, kdiag)
+sres=SkylineMatrix(kdiag, af)
 
 @assert full(sres) == [
   16.0   4.0   8.0;
@@ -15,25 +15,13 @@ sres=SkylineMatrix(af, kdiag)
    8.0  -4.0  22.0
 ]
 
-@assert full(sres) == fromSkyline(af, kdiag)
+@assert full(sres) == fromskyline(kdiag, af)
 
-sres=SkylineMatrix(ai, kdiag)
-@assert full(sres) == fromSkyline(ai, kdiag)
+sres=SkylineMatrix(kdiag, ai)
+@assert full(sres) == fromskyline(kdiag, ai)
 
-sres=SkylineMatrix(ac, kdiag)
-@assert full(sres) == fromSkyline(ac, kdiag)
+sres=SkylineMatrix(kdiag, ac)
+@assert full(sres) == fromskyline(kdiag, ac)
 
-sres=SkylineMatrix(acf, kdiag)
-@assert full(sres) == fromSkyline(acf, kdiag)
-
-sres2 = copy(sres)
-@assert sres == sres2
-@assert sres !== sres2
-
-sres2.nzval[4] = 8.1
-@assert sres != sres2
-@assert sres !== sres2
-
-sres3 = sres2
-@assert sres3 == sres2
-@assert sres3 === sres2
+sres=SkylineMatrix(kdiag, acf)
+@assert full(sres) == fromskyline(kdiag, acf)
