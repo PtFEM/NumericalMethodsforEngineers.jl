@@ -18,8 +18,8 @@ sm = SkylineMatrix{Tv}(kdiag::Vector{Int}, sv::Vector{Tv})
 ```
 ### Arguments
 ```julia
-* `kdiag`            : Vector specifying location of diagonal element in sv. 
-* `sv`               : Non-zero values in upper triangular matrix.
+* `kdiag`           : Vector specifying location of diagonal element in sv. 
+* `sv`              : Non-zero values in upper triangular matrix.
 ```
 ### Additional methods
 ```julia
@@ -63,6 +63,22 @@ function sparse(sm::SkylineMatrix)
 	sparse(fromskyline(sm.kdiag, sm.sv))
 end
 
+Docile.@comment """
+# Convert the pair kdiag, sv to a full matrix
+"""
+
+"""
+
+### Function
+```julia
+m = fromskyline{Tv}(kdiag::Vector{Int}, sv::Vector{Tv})
+```
+### Arguments
+```julia
+* `kdiag`           : Vector specifying location of diagonal element in sv. 
+* `sv`              : Non-zero values in upper triangular matrix.
+```
+"""
 function fromskyline(kdiag::Vector{Int64}, sv::Vector)
 	neq = size(kdiag, 1)
 	km = zeros(eltype(sv), neq, neq)
