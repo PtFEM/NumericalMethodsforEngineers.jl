@@ -3,7 +3,7 @@ module NMfE
 using Docile
 #using Lexicon
 using IterativeSolvers
-using BandedMatrices
+#using BandedMatrices
 
 # package code goes here
 ### Imports ###
