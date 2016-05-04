@@ -15,18 +15,15 @@ Docile.@comment """
 
 """
 Type to hold banded matrices with element types Tv
-
 - am:         Subtype of AbstractMatrix.
 - hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol).
 - bmat:       Banded matrix (the field in a SymmetricBandedMatrix object), e.g.
                 bmat = [0 0 1; 0 2 3; 4 5 6]
                 (for a hbw of 2 and 1, 3, 6 as diagonal elements).
 - bm:         SymmetricBandedMatrix.
-
 ### Constructor
 ```julia
 bm = SymmetricBandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
-
 ```
 ### Arguments
 ```julia
@@ -40,10 +37,8 @@ bm = SymmetricBandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
 * `copy(bm)`        : Create a copy.
 * `sparse(bm)`      : Convert to a SparseMatrixCSC.
 * `full(bm)`        : Convert to a full matrix.
-
 * `convert(::Type{NMfE.SymmetricBandedMatrix}, hbw::Int, bmat::AbstractMatrix)` (Default constructor)
 * `convert(::Type{NMfE.SymmetricBandedMatrix}, am::AbstractMatrix)`
-
 * `tosymmetricbandedmatrix(am::AbstractMatrix)`           : Convert to SymmetricBandedMatrix, compute hbw.
 * `tosymmetricbandedmatrix(hbw::Int, am::AbstractMatrix)` : Convert to SymmetricBandedMatrix.
 ```
@@ -82,13 +77,10 @@ Docile.@comment """
 """
 
 """
-
 ### Function
 ```julia
 bm = tosymmetricbandedmatrix{Tv}(hbw::Int, am::AbstractMatrix{Tv})
-
 or
-
 bm = tosymmetricbandedmatrix{Tv}(am::AbstractMatrix{Tv})
 ```
 ### Arguments
