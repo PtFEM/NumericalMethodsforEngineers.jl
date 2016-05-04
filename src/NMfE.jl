@@ -3,14 +3,15 @@ module NMfE
 using Docile
 #using Lexicon
 using IterativeSolvers
+using BandedMatrices
 
 # package code goes here
 ### Imports ###
 
 ### Includes ###
 # Type definitions in nmlib
-include(Pkg.dir("NMfE", "src", "nmlib", "SkylineMatrix.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "BandedMatrix.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "SkylineMatrices.jl"))
+include(Pkg.dir("NMfE", "src", "nmlib", "SymmetricBandedMatrices.jl"))
 # Direct methods in nmlib
 include(Pkg.dir("NMfE", "src", "nmlib", "checkit.jl"))
 include(Pkg.dir("NMfE", "src", "nmlib", "nmex.jl"))
@@ -37,8 +38,8 @@ export
   # nmlib (types)
   SkylineMatrix,
   fromskyline,
-  BandedMatrix,
-  tobandedmatrix,
+  SymmetricBandedMatrix,
+  tosymmetricbandedmatrix,
   # nmlib (functions)
   nmex,
   checkit,

@@ -1,8 +1,8 @@
 import Base: full, ==, copy, size, convert, sparse
 
 #
-# bm:         BandedMatrix
-# bmat:       Banded matrix (the field in a BandedMatrix object)
+# bm:         SymmetricBandedMatrix
+# bmat:       Banded matrix (the field in a SymmetricBandedMatrix object)
 # m:          Regular matix
 # sbm:        Semi-banded matrix, e.g.
 #               sbm = [0 0 1; 0 2 3; 4 5 6]
@@ -10,7 +10,7 @@ import Base: full, ==, copy, size, convert, sparse
 #
 
 Docile.@comment """
-# BandedMatrix type for symmetric matrices
+# SymmetricBandedMatrix type for symmetric matrices
 """
 
 """
@@ -18,14 +18,14 @@ Type to hold banded matrices with element types Tv
 
 - am:         Subtype of AbstractMatrix.
 - hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol).
-- bmat:       Banded matrix (the field in a BandedMatrix object), e.g.
+- bmat:       Banded matrix (the field in a SymmetricBandedMatrix object), e.g.
                 bmat = [0 0 1; 0 2 3; 4 5 6]
                 (for a hbw of 2 and 1, 3, 6 as diagonal elements).
-- bm:         BandedMatrix.
+- bm:         SymmetricBandedMatrix.
 
 ### Constructor
 ```julia
-bm = BandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
+bm = SymmetricBandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
 
 ```
 ### Arguments
@@ -41,55 +41,55 @@ bm = BandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
 * `sparse(bm)`      : Convert to a SparseMatrixCSC.
 * `full(bm)`        : Convert to a full matrix.
 
-* `convert(::Type{NMfE.BandedMatrix}, hbw::Int, bmat::AbstractMatrix)` (Default constructor)
-* `convert(::Type{NMfE.BandedMatrix}, am::AbstractMatrix)`
+* `convert(::Type{NMfE.SymmetricBandedMatrix}, hbw::Int, bmat::AbstractMatrix)` (Default constructor)
+* `convert(::Type{NMfE.SymmetricBandedMatrix}, am::AbstractMatrix)`
 
-* `tobandedmatrix(am::AbstractMatrix)`           : Convert to BandedMatrix, compute hbw.
-* `tobandedmatrix(hbw::Int, am::AbstractMatrix)` : Convert to BandedMatrix.
+* `tosymmetricbandedmatrix(am::AbstractMatrix)`           : Convert to SymmetricBandedMatrix, compute hbw.
+* `tosymmetricbandedmatrix(hbw::Int, am::AbstractMatrix)` : Convert to SymmetricBandedMatrix.
 ```
 """
-type BandedMatrix{Tv}
+type SymmetricBandedMatrix{Tv}
     hbw::Int                    # Bandwidth bw = 1 + 2*hbw
     bmat::Matrix{Tv}            # Banded matrix
 end
 
-size(bm::BandedMatrix) = (size(bm.bmat, 1), size(bm.bmat, 1))
+size(bm::SymmetricBandedMatrix) = (size(bm.bmat, 1), size(bm.bmat, 1))
 
-==(bm1::BandedMatrix, bm2::BandedMatrix) = (bm1.hbw==bm2.hbw && bm1.bmat==bm2.bmat)
+==(bm1::SymmetricBandedMatrix, bm2::SymmetricBandedMatrix) = (bm1.hbw==bm2.hbw && bm1.bmat==bm2.bmat)
 
-function copy(bm::BandedMatrix) 
+function copy(bm::SymmetricBandedMatrix) 
   Tv = eltype(bm.bmat)
-  BandedMatrix{Tv}(bm.hbw, copy(bm.bmat))
+  SymmetricBandedMatrix{Tv}(bm.hbw, copy(bm.bmat))
 end
 
 # Conversion routine similar to default constructor
-function convert(::Type{NMfE.BandedMatrix}, hbw::Int, bmat::AbstractMatrix)
+function convert(::Type{NMfE.SymmetricBandedMatrix}, hbw::Int, bmat::AbstractMatrix)
   Tv = eltype(a)
-  BandedMatrix{Tv}(hbw, a)
+  SymmetricBandedMatrix{Tv}(hbw, a)
 end
 
-# Conversion routine to turn a symmetric matrix into a BandedMatrix
-function convert(::Type{NMfE.BandedMatrix}, am::AbstractMatrix)
-  tobandedmatrix(am)
+# Conversion routine to turn a symmetric matrix into a SymmetricBandedMatrix
+function convert(::Type{NMfE.SymmetricBandedMatrix}, am::AbstractMatrix)
+  tosymmetricbandedmatrix(am)
 end
 
-function sparse(bm::BandedMatrix)
+function sparse(bm::SymmetricBandedMatrix)
   sparse(full(bm))
 end
 
 Docile.@comment """
-# Convert symmetric AbstractMatrix to a BandedMatrix
+# Convert symmetric AbstractMatrix to a SymmetricBandedMatrix
 """
 
 """
 
 ### Function
 ```julia
-bm = tobandedmatrix{Tv}(hbw::Int, am::AbstractMatrix{Tv})
+bm = tosymmetricbandedmatrix{Tv}(hbw::Int, am::AbstractMatrix{Tv})
 
 or
 
-bm = tobandedmatrix{Tv}(am::AbstractMatrix{Tv})
+bm = tosymmetricbandedmatrix{Tv}(am::AbstractMatrix{Tv})
 ```
 ### Arguments
 ```julia
@@ -98,7 +98,7 @@ bm = tobandedmatrix{Tv}(am::AbstractMatrix{Tv})
                       (if no hbw is specified, hbw will be derived from the matrix)
 ```
 """
-function tobandedmatrix(am::AbstractMatrix)
+function tosymmetricbandedmatrix(am::AbstractMatrix)
   m = copy(am)
   typeof(m) <: SparseMatrixCSC && (m = full(m))
   (!issym(m)) && throw(ArgumentError("Matrix not symmetric"))
@@ -107,10 +107,10 @@ function tobandedmatrix(am::AbstractMatrix)
   for i in 1:n, j in 1:n
       abs(m[i, j]) > eps() && abs(i-j) > hbw && (hbw = abs(i-j))
   end
-  tobandedmatrix(hbw, m)
+  tosymmetricbandedmatrix(hbw, m)
 end
 
-function tobandedmatrix(hbw::Int, am::AbstractMatrix)
+function tosymmetricbandedmatrix(hbw::Int, am::AbstractMatrix)
   m = copy(am)
   typeof(m) <: SparseMatrixCSC && (m = full(m))
   (!issym(m)) && throw(ArgumentError("Matrix not symmetric"))
@@ -123,10 +123,10 @@ function tobandedmatrix(hbw::Int, am::AbstractMatrix)
       i - hbw + j > 1 && (b[i, j] = m[i, i - hbw + j - 1])
     end
   end
-  BandedMatrix{Tv}(hbw, b)
+  SymmetricBandedMatrix{Tv}(hbw, b)
 end
 
-function full(bm::BandedMatrix)
+function full(bm::SymmetricBandedMatrix)
   n = size(bm.bmat, 1)
   b = zeros(eltype(bm.bmat), n, n)
   hbw = bm.hbw
