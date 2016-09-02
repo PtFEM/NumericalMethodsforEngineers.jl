@@ -93,7 +93,7 @@ bm = tosymmetricbandedmatrix{Tv}(am::AbstractMatrix{Tv})
 function tosymmetricbandedmatrix(am::AbstractMatrix)
   m = copy(am)
   typeof(m) <: SparseMatrixCSC && (m = full(m))
-  (!issym(m)) && throw(ArgumentError("Matrix not symmetric"))
+  (!issymmetric(m)) && throw(ArgumentError("Matrix not symmetric"))
   hbw = 0
   n = size(m, 1)
   for i in 1:n, j in 1:n
@@ -105,7 +105,7 @@ end
 function tosymmetricbandedmatrix(hbw::Int, am::AbstractMatrix)
   m = copy(am)
   typeof(m) <: SparseMatrixCSC && (m = full(m))
-  (!issym(m)) && throw(ArgumentError("Matrix not symmetric"))
+  (!issymmetric(m)) && throw(ArgumentError("Matrix not symmetric"))
   Tv = eltype(m)
   n = size(m, 1)
   b = zeros(eltype(m), n, hbw+1)
