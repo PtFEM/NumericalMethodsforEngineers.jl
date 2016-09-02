@@ -1,4 +1,4 @@
-julia 0.4
+julia 0.5-
 IterativeSolvers 0.2
 Docile 0.5.23
-#BandedMatrices      # Hold off until a v0.5 compatible version is available
+BandedMatrices 0.0.9
