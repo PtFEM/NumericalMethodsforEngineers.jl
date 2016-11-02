@@ -1,63 +1,37 @@
-using NMfE, Gadfly
+using NMfE, Plots
 
 old = pwd()
-ProjDir = Pkg.dir("NMfE", "examples", "NMfE", "Ch07", "IVP")
-cd(ProjDir)
+ProjDir = dirname(@__FILE__)
+cd(ProjDir) do
 
-f(x::Float64, y::Vector{Float64}) = (x + y[1])/x
-steps = 3
-h = 0.333
+  f(x::Float64, y::Vector{Float64}) = (x + y[1])/x
+  steps = 3
+  h = 0.333
 
-x = 2.0
-y = [2.0]
+  x = 2.0
+  y = [2.0]
 
-# y(3.0) = 4.2165
+  # y(3.0) = 4.2165
 
-r = Array{Float64,2}[]
-push!(r, euler(f, x, y, steps, h))
-push!(r, modified_euler(f, x, y, steps, h))
-push!(r, mid_point_euler(f, x, y, steps, h))
-push!(r, runga_kutta_4(f, x, y, steps, h))
-println(r)
+  r = Array{Float64,2}[]
+  push!(r, euler(f, x, y, steps, h))
+  push!(r, modified_euler(f, x, y, steps, h))
+  push!(r, mid_point_euler(f, x, y, steps, h))
+  push!(r, runga_kutta_4(f, x, y, steps, h))
+  println()
+  r |> display
+  println()
 
-xs = x + Float64[(i-1)*h for i in 1:steps+1]
-titles = ["Euler", "Modified_Euler", "Mid_Point_Euler", "Runga_Kutta_4"]
+  xs = x + Float64[(i-1)*h for i in 1:steps+1]
+  titles = ["Euler", "Modified_Euler", "Mid_Point_Euler", "Runga_Kutta_4"]
 
 
-p1 = plot(
-  layer(x=xs, y=r[1][:, 2], Geom.line,
-    color=repeat([symbol(titles[1])], inner=[1])),
-  layer(x=xs, y=r[2][:, 2], Geom.line,
-    color=repeat([symbol(titles[2])], inner=[2])),
-  layer(x=xs, y=r[3][:, 2], Geom.line,
-    color=repeat([symbol(titles[3])], inner=[3])),
-  layer(x=xs, y=r[4][:, 2], Geom.line,
-    color=repeat([symbol(titles[4])], inner=[4])),
-  Scale.color_discrete_manual(colorant"darkred", colorant"red", colorant"darkblue", colorant"darkgreen"),
-  Guide.colorkey("Legend"),
-  Guide.xlabel("x", orientation=:horizontal),
-  Guide.ylabel("y", orientation=:vertical),
-  Guide.title("Four ODE one-step methods on y'=(x + y)/x"))
+  p1 = plot(xs, r[1][:, 2])
+  plot!(p1, xs, r[2][:, 2])
+  plot!(p1, xs, r[3][:, 2])
+  plot!(p1, xs, r[4][:, 2])
+  show(p1)
+  savefig("Ex7.2.png")
+  gui()
 
-p2 = plot(
-  layer(x=xs, y=r[1][:, 2], Geom.line,
-    Theme(default_color=colorant"darkred")),
-  layer(x=xs, y=r[2][:, 2], Geom.line,
-    Theme(default_color=colorant"red")),
-  layer(x=xs, y=r[3][:, 2], Geom.line,
-    Theme(default_color=colorant"darkblue")),
-  layer(x=xs, y=r[4][:, 2], Geom.line,
-    Theme(default_color=colorant"darkgreen")),
-  Guide.xlabel("x", orientation=:horizontal),
-  Guide.ylabel("y", orientation=:vertical),
-  Guide.title("Four ODE one-step methods on y'=(x + y)/x"))
-
-  
-draw(SVG("Ex7.1.svg", 8inch, 9.5inch), p2)
-# Below will only work on OSX, please adjust for your environment.
-# JULIA_SVG_BROWSER is set from environment variable JULIA_SVG_BROWSER
-@osx ? if isdefined(Main, :JULIA_SVG_BROWSER) && length(JULIA_SVG_BROWSER) > 0
-  isfile("Ex7.1.svg") &&
-    run(`open -a $(JULIA_SVG_BROWSER) "Ex7.1.svg"`)
-  end : println()
-
+end
