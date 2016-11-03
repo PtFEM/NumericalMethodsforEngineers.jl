@@ -1,40 +1,37 @@
-using Sundials, Gadfly
+using Sundials, Plots
+pyplot(size=(800,800))
 
 old = pwd()
-ProjDir = Pkg.dir("NMfE", "examples", "NMfE", "Ch07")
-cd(ProjDir)
+ProjDir = dirname(@__FILE__)
+cd(ProjDir) #do
 
-## f routine. Compute function f(t,y).
+  ## f routine. Compute function f(t,y).
 
-function f(t, y, ydot)
-    ydot[1] = -0.04*y[1] + 1.0e4*y[2]*y[3]
-    ydot[3] = 3.0e7*y[2]*y[2]
-    ydot[2] = -ydot[1] - ydot[3]
-end
-#t = [0.0, 4 * logspace(-1., 7., 9)]
-t = linspace(0.0, 100.0, 150)
-res = Sundials.cvode(f, [1.0, 0.1, 0.0], t)
+  function f(t, y, ydot)
+      ydot[1] = -0.04*y[1] + 1.0e4*y[2]*y[3]
+      ydot[3] = 3.0e7*y[2]*y[2]
+      ydot[2] = -ydot[1] - ydot[3]
+  end
+  
+  #t = [0.0, 4 * logspace(-1., 7., 9)]
+  t = [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1.0e6, 1.0e7]
+  res = Sundials.cvode(f, [1.0, 0.1, 0.0], t)
+  res |> display
+  println()
 
-p = plot(
-  layer(x=t, y=res[:,1], Geom.line,
-    color=repeat([symbol("y[1]")], inner=[4])),
-  layer(x=t, y=res[:,2], Geom.line,
-    color=repeat([symbol("y[2]")], inner=[2])),
-  layer(x=t, y=res[:,3], Geom.line,
-    color=repeat([symbol("y[3]")], inner=[1])),
-  Scale.color_discrete_manual("darkred", "red", "green"),
-  Guide.colorkey("Legend"),
-  Guide.xlabel("x", orientation=:horizontal),
-  Guide.ylabel("y[1], y[2] and y[3]", orientation=:vertical),
-  Guide.title("Example 7.5 (from Sundials.jl)")
-)
+  p1 = plot(t, res[:,1], color=:darkblue,
+    xlabel="x", xscale=:log10, ylabel="y[1]",
+    title="Example 7.5 (from Sundials.jl)"
+    )
+  p2 = plot(t, res[:,2], color=:darkred,
+    xlabel="x", xscale=:log10, ylabel="y[2]"
+    )
+  p3 = plot(t, res[:,3], color=:darkgreen,
+    xlabel="x", xscale=:log10, ylabel="y[3]"
+    )
+  
+  plot(p1, p2, p3, layout=(3, 1))
+  savefig("Sundials02.png")
+  gui()
 
-draw(SVG("Sundials02.svg", 8inch, 3inch), p)
-# Below will only work on OSX, please adjust for your environment.
-# JULIA_SVG_BROWSER is set from environment variable JULIA_SVG_BROWSER
-@osx ? if isdefined(Main, :JULIA_SVG_BROWSER) && length(JULIA_SVG_BROWSER) > 0
-  isfile("Sundials02.svg") &&
-    run(`open -a $(JULIA_SVG_BROWSER) "Sundials02.svg"`)
-  end : println()
-
-cd(old)
+  #end
