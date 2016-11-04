@@ -4,8 +4,8 @@ pyplot(size=(700,700))
 ProjDir = dirname(@__FILE__)
 cd(ProjDir) #do
   
-  if !isdefined(Main, :lg)
-    function lg(Q, nx, lb, ub)
+  if !isdefined(Main, :lgt)
+    function lgt(Q, nx, lb, ub)
       z = zglj(Q)
       x = collect(linspace(lb, ub, nx))
       y = zeros(nx, Q)
@@ -24,7 +24,7 @@ cd(ProjDir) #do
   nx = 201
   lb = -1
   ub = 1
-  (x, y) = lg(Q, nx, lb, ub)
+  (x, y) = lgt(Q, nx, lb, ub)
   
   p = plot()
   for k = 1:Q
@@ -35,7 +35,11 @@ cd(ProjDir) #do
   nx = 3
   lb = -1
   ub = 1
-  (x, y) = lg(Q, nx, lb, ub)
+  (x, y) = lgt(Q, nx, lb, ub)
+  x |> display
+  println()
+  y |> display
+  println()
   
   p = plot()
   for k = 1:Q

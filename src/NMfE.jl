@@ -28,6 +28,8 @@ include(Pkg.dir("NMfE", "src", "nmlib", "bicgstab.jl"))
 # Iterative methods in ch02
 #include(Pkg.dir("NMfE", "src", "ch02", "bicgstabl.jl"))
 # Initial Value methods
+include(Pkg.dir("NMfE", "src", "ch05", "lagrangianpolynomial.jl"))
+# Initial Value methods
 include(Pkg.dir("NMfE", "src", "ch07", "ivp.jl"))
 # Boundary Value methods
 include(Pkg.dir("NMfE", "src", "ch07", "bvp.jl"))
@@ -54,6 +56,8 @@ export
   spabac!,
   subbac!,
   subfor!,
+  # ch05
+  lagrangianpolynomial,
   # ch07
   euler,
   modified_euler,
