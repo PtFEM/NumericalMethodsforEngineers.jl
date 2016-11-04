@@ -5,9 +5,9 @@ ProjDir = dirname(@__FILE__)
 cd(ProjDir) #do
   
   if !isdefined(Main, :lg)
-    function lg(Q, nx, lb, ub, )
+    function lg(Q, nx, lb, ub)
       z = zglj(Q)
-      x = linspace(lb, ub, nx)
+      x = collect(linspace(lb, ub, nx))
       y = zeros(nx, Q)
       for k = 1:Q, i=1:nx
         y[i,k]=lagrange(k,x[i],z)
@@ -16,8 +16,12 @@ cd(ProjDir) #do
     end
   end
   
+  plot(p)
+  savefig("lagrange_n3.png")
+  gui()
+  
   Q = 5
-  nx = 3
+  nx = 201
   lb = -1
   ub = 1
   (x, y) = lg(Q, nx, lb, ub)
@@ -27,12 +31,8 @@ cd(ProjDir) #do
     plot!(x, y[:, k])
   end
   
-  plot(p)
-  savefig("lagrange_n3.png")
-  gui()
-  
   Q = 5
-  nx = 201
+  nx = 3
   lb = -1
   ub = 1
   (x, y) = lg(Q, nx, lb, ub)
