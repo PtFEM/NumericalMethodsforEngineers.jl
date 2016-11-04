@@ -1,10 +1,8 @@
 import Base: full, ==, copy, size, convert, sparse
 
-Docile.@comment """
+"""
 # SkylineMatrix type for symmetric matrices
-"""
 
-"""
 Type to hold skyline matrices with element types Tv
 
 - sv:         Skyline vector
@@ -63,11 +61,8 @@ function sparse(sm::SkylineMatrix)
 	sparse(fromskyline(sm.kdiag, sm.sv))
 end
 
-Docile.@comment """
+"""
 # Convert the pair kdiag, sv to a full matrix
-"""
-
-"""
 
 ### Function
 ```julia

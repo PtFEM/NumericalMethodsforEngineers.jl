@@ -1,7 +1,6 @@
 module NMfE
 
-using Docile
-#using Lexicon
+using Documenter
 using IterativeSolvers
 #using BandedMatrices
 

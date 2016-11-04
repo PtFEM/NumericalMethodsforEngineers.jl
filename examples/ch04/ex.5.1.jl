@@ -12,6 +12,9 @@ cd(ProjDir) #do
   dfin |> display
   println()
   
+  dfxin |> display
+  println()
+  
   dfxi |> display
   println()
   

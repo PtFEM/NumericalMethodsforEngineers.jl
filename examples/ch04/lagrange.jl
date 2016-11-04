@@ -16,10 +16,6 @@ cd(ProjDir) #do
     end
   end
   
-  plot(p)
-  savefig("lagrange_n3.png")
-  gui()
-  
   Q = 5
   nx = 201
   lb = -1
@@ -28,8 +24,12 @@ cd(ProjDir) #do
   
   p = plot()
   for k = 1:Q
-    plot!(x, y[:, k])
+    plot!(x, y[:, k], label="Q = $k")
   end
+  
+  plot(p)
+  savefig("lagrange_n201.png")
+  gui()
   
   Q = 5
   nx = 3
@@ -43,11 +43,11 @@ cd(ProjDir) #do
   
   p = plot()
   for k = 1:Q
-    plot!(x, y[:, k])
+    plot!(x, y[:, k], label="Q = $k")
   end
   
   plot(p)
-  savefig("lagrange_n201.png")
+  savefig("lagrange_n3.png")
   gui()
   
 #end

@@ -9,11 +9,9 @@ import Base: full, ==, copy, size, convert, sparse
 # hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol)
 #
 
-Docile.@comment """
+"""
 # SymmetricBandedMatrix type for symmetric matrices
-"""
 
-"""
 Type to hold banded matrices with element types Tv
 - am:         Subtype of AbstractMatrix.
 - hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol).
@@ -72,11 +70,9 @@ function sparse(bm::SymmetricBandedMatrix)
   sparse(full(bm))
 end
 
-Docile.@comment """
+"""
 # Convert symmetric AbstractMatrix to a SymmetricBandedMatrix
-"""
 
-"""
 ### Function
 ```julia
 bm = tosymmetricbandedmatrix{Tv}(hbw::Int, am::AbstractMatrix{Tv})
