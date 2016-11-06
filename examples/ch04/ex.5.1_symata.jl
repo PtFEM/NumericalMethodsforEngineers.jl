@@ -60,8 +60,8 @@ cd(ProjDir) do
   dfxi |> display
   println()
   
-  dfxint |> display
-  println()
+  #dfxint |> display
+  #println()
   
   p = plot(dfxint[:xi], dfxint[:yi], line=(:path, 1), label="interpolated curve")
   scatter!(p, dfin[:x], dfin[:y], marker=(:circle, 4), label="input points", color=:blue)
@@ -69,6 +69,6 @@ cd(ProjDir) do
   
   plot(p)
   savefig("ex.5.1.png")
-  gui()
+  #gui()
   
 end
