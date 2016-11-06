@@ -27,7 +27,7 @@ function lagrangianpolynomial(np::Int, x::Vector{Float64}, y::Vector{Float64}, x
 end
 
 #=
-# Symata() to programatically insert ("\u003D") ??
+# Symata() to programmatically insert ("\u003D") ??
 
 xi = {1, 3, 6}
 yi = {1, 5, 10}
@@ -39,7 +39,7 @@ Q(x_) := Simplify(yi[1]*L0(x) + yi[2]*L1(x) + yi[3]*L2(x))
 Q(x)
 Q(4.5)
 
-# Julia() to programatically insert ("\u008") ??
+# Julia() to programmatically insert ("\u008") ??
 =#
 
 ProjDir = dirname(@__FILE__)
