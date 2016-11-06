@@ -1,7 +1,6 @@
 using DataFrames
 
 function lagrangianpolynomial(np::Int, x::Vector{Float64}, y::Vector{Float64}, xi::Vector{Float64})
-  local yin = Vector{Float64}(length(x))
   local yi = Vector{Float64}(length(xi))
   m = sort(hcat(x, y), 1)
   for l in 1:length(xi)
