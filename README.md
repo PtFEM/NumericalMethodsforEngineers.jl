@@ -10,3 +10,5 @@ This is an attempt to translate the programs as described in "Numerical Methods 
 Currently being tested on Julia v0.5.
 
 The intention is to have all functions translated from Fortran to Julia more or less directly ( to make it easier to follow the book) and have Julian versions.
+
+No timeline is set to complete this work.
