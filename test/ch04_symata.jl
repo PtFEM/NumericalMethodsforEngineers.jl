@@ -17,7 +17,8 @@ end
 @Symata.ex Print("Q(4.5) = ", Q(4.5))
 
 q3=parse(qs)
-@eval f(x) = $(q3)
+@eval f1(x) = $(q3)
 
 xint = 1:0.1:6 # FloatRange
-p = plot(xint, f.(xint), line=(:path, 1), label="interpolated curve")
+p = plot(xint, f1.(xint), line=(:path, 1), label="interpolated curve")
+gui()

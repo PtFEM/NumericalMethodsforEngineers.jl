@@ -39,13 +39,10 @@ println()
   SetJ(q, Q(x))
   SetJ(qs, ToString(Q(x)))
   Print("Q(x) = ", Q(x), "\n")
-end;
+end
 
 @Symata.ex Print("Q(4.5) = ", Q(4.5), "\n");
 println("\n")
-
-q3=parse(qs)
-@eval f(x) = $(q3)
 
 ProjDir = dirname(@__FILE__)
 cd(ProjDir) do
@@ -61,13 +58,16 @@ cd(ProjDir) do
   dfxi |> display
   println()
   
+  q3=parse(qs)
+  @eval f(x) = $(q3)
+
   xint = 1:0.1:6
   p = plot(xint, f.(xint), line=(:path, 1), label="interpolated curve")
   scatter!(p, dfin[:x], dfin[:y], marker=(:circle, 4), label="input points", color=:blue)
   scatter!(p, dfxi[:xi], dfxi[:yi], marker=(:star, 8), color=:red, label="interpolated points")
   
   plot(p)
-  savefig("ex.5.1.png")
+  savefig("ex.5.1_symata.png")
   #gui()
   
 end
