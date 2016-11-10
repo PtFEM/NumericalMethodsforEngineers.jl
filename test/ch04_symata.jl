@@ -23,3 +23,4 @@ println()
 xint = 1:0.1:6 # FloatRange
 p = plot(xint, f1.(xint), line=(:path, 1), label="interpolated curve")
 gui()
+
