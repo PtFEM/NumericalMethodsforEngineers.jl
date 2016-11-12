@@ -13,6 +13,7 @@ using Symata
           res[1, 2+i] = yder(x)
         ]
       ),
+      Println("N[res[1, 1]]: ", res[1,1]),
       # Start the loop to improve accuracy stored in subsequent rows,
       # res[i, 1] contains the Euler ratio.
       For(i=2, i<=maxiters, Increment(i),
@@ -39,6 +40,7 @@ using Symata
       Return(res)
     )
   )
-  Println(f(3, y0(x))[:, 1])
-  # Mathematica results: {0, 22.703, 19.110, 18.669, 18.589, 18.573, 18.570, 18.569}
+  Println(f(9, y0(x))[:, 1])
+  # Mathematica results (for 9 iterations): 
+  # {0, 22.703, 19.110, 18.669, 18.589, 18.573, 18.570, 18.569}
 end
