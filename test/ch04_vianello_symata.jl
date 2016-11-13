@@ -3,6 +3,8 @@ using Symata
 @sym begin
   ClearAll(f, y0, a, l, x)
   y0(x_) := (e*x)*(l^3 - 2*l*x^2 + x^3)
+  
+  # Stodola-Vianello method
   f(maxiters_, y0_) := Module([i, yder, res=Table(Table( 0.0 , [i,6]), [j,maxiters])],
     (
       # Initialize the first row of the res matrix
