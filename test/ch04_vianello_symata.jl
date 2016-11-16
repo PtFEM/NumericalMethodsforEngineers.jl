@@ -44,7 +44,7 @@ using Symata
       Return(res)
     )
   )
-  r = f(9, y0(x))
+  r = f(8, y0(x))
   Println(N(Transpose(r)[1], 4))
   # Mathematica results (for 9 iterations): 
   # {0, 22.7027, 19.1105, 18.6691, 18.5891, 18.5730, 18.5696, 18.5689}
