@@ -43,7 +43,7 @@ using Symata
     )
   )
   r = f(9, y0(x))
-  Println(r[1])
+  Println(Transpose(r))
   # Mathematica results (for 9 iterations): 
   # {0, 22.703, 19.110, 18.669, 18.589, 18.573, 18.570, 18.569}
 end
