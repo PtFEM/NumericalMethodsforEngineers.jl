@@ -25,27 +25,27 @@ using Symata
           ClearAll(K1, K11, tmpy5, tmpy4, tmp)
           tmpy5(x_) = Simplify(Integrate(res[i,6], x) + K1)
           tmpy4(x_) = Simplify(Integrate(tmpy5(x), x))
-          # First pinned constraint
+          # Use first pinned constraint at x=l to resolve K1
           K11 = Solve(-tmpy4(l), K1)
           res[i,5] = Simplify( tmpy5(x) ./ (K1 => K11[1, 1, 2]) )
           res[i,4] = Simplify( tmpy4(x) ./ (K1 => K11[1, 1, 2]) )
-          ClearAll(K1, K11, tmpy3, tmpy2, tmp)
-          tmpy3(x_) = Simplify(Integrate(res[i,4], x) + K1)
+          ClearAll(K1, K11, K2, K22, tmpy3, tmpy2, tmp)
+          tmpy3(x_) = Simplify(Integrate(res[i,4], x) + K2)
           tmpy2(x_) = Simplify(Integrate(tmpy3(x), x))
-          # Second pinned constraint
-          K11 = Solve(-tmpy2(l), K1)
-          res[i,3] = Simplify( tmpy3(x) ./ (K1 => K11[1, 1, 2]) )
-          res[i,2] = Simplify( tmpy2(x) ./ (K1 => K11[1, 1, 2]) )
+          # Use second pinned constraint at x=l to resolve K2
+          K22 = Solve(-tmpy2(l), K2)
+          res[i,3] = Simplify( tmpy3(x) ./ (K2 => K22[1, 1, 2]) )
+          res[i,2] = Simplify( tmpy2(x) ./ (K2 => K22[1, 1, 2]) )
           tmp = Simplify( (((l^3)*w)/EI)*(res[i-1,3]/res[i, 3]) )
           res[i,1] = N(Simplify(ReplaceAll(tmp, x => l)))
-          Println("N[res[",i,", 1]]: ", res[i,1])
+          Println("N[res[",i,", 1]]: ", N(res[i,1], 6))
         ]
       ),
       Return(res)
     )
   )
   r = f(9, y0(x))
-  Println(Transpose(r))
+  Println(N(Transpose(r)[1], 4))
   # Mathematica results (for 9 iterations): 
-  # {0, 22.703, 19.110, 18.669, 18.589, 18.573, 18.570, 18.569}
+  # {0, 22.7027, 19.1105, 18.6691, 18.5891, 18.5730, 18.5696, 18.5689}
 end
