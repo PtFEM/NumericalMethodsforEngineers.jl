@@ -26,14 +26,14 @@ using Symata
           tmpy5(x_) = Simplify(Integrate(res[i,6], x) + K1)
           tmpy4(x_) = Simplify(Integrate(tmpy5(x), x))
           K11 = Solve(-tmpy4(l), K1)
-          res[i,5] = Simplify(ReplaceAll( tmpy5(x), K1 => K11[1][1][2] ))
-          res[i,4] = Simplify(ReplaceAll( tmpy4(x), K1 => K11[1][1][2] ))
+          res[i,5] = Simplify( tmpy5(x) ./ (K1 => K11[1, 1, 2]) )
+          res[i,4] = Simplify( tmpy4(x) ./ (K1 => K11[1, 1, 2]) )
           ClearAll(K1, K11, tmpy3, tmpy2, tmp)
           tmpy3(x_) = Simplify(Integrate(res[i,4], x) + K1)
           tmpy2(x_) = Simplify(Integrate(tmpy3(x), x))
           K11 = Solve(-tmpy2(l), K1)
-          res[i,3] = Simplify(ReplaceAll( tmpy3(x), K1 => K11[1][1][2] ))
-          res[i,2] = Simplify(ReplaceAll( tmpy2(x), K1 => K11[1][1][2] ))
+          res[i,3] = Simplify( tmpy3(x) ./ (K1 => K11[1, 1, 2]) )
+          res[i,2] = Simplify( tmpy2(x) ./ (K1 => K11[1, 1, 2]) )
           tmp = Simplify( (((l^3)*w)/EI)*(res[i-1,3]/res[i, 3]) )
           res[i,1] = N(Simplify(ReplaceAll(tmp, x => l)))
           Println("N[res[",i,", 1]]: ", res[i,1])
@@ -42,7 +42,8 @@ using Symata
       Return(res)
     )
   )
-  Println(f(9, y0(x))[:, 1])
+  r = f(9, y0(x))
+  Println(r[1])
   # Mathematica results (for 9 iterations): 
   # {0, 22.703, 19.110, 18.669, 18.589, 18.573, 18.570, 18.569}
 end
