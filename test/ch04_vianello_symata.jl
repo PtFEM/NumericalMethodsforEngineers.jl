@@ -4,7 +4,7 @@ using Symata
   ClearAll(f, y0, a, l, x)
   y0(x_) := (e*x)*(l^3 - 2*l*x^2 + x^3)
   
-  # Stodola-Vianello method
+  # Stodola-Vianello method, e.g. see Den Hartog, Advanced Strength of Materials, pg 268
   f(maxiters_, y0_) := Module([i, yder, res=Table(Table( 0.0 , [i,6]), [j,maxiters])],
     (
       # Initialize the first row of the res matrix
@@ -25,12 +25,14 @@ using Symata
           ClearAll(K1, K11, tmpy5, tmpy4, tmp)
           tmpy5(x_) = Simplify(Integrate(res[i,6], x) + K1)
           tmpy4(x_) = Simplify(Integrate(tmpy5(x), x))
+          # First pinned constraint
           K11 = Solve(-tmpy4(l), K1)
           res[i,5] = Simplify( tmpy5(x) ./ (K1 => K11[1, 1, 2]) )
           res[i,4] = Simplify( tmpy4(x) ./ (K1 => K11[1, 1, 2]) )
           ClearAll(K1, K11, tmpy3, tmpy2, tmp)
           tmpy3(x_) = Simplify(Integrate(res[i,4], x) + K1)
           tmpy2(x_) = Simplify(Integrate(tmpy3(x), x))
+          # Second pinned constraint
           K11 = Solve(-tmpy2(l), K1)
           res[i,3] = Simplify( tmpy3(x) ./ (K1 => K11[1, 1, 2]) )
           res[i,2] = Simplify( tmpy2(x) ./ (K1 => K11[1, 1, 2]) )

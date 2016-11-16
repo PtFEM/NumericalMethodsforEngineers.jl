@@ -1,4 +1,5 @@
 using Symata
+using Base.Test
 
 println()
 @sym begin
@@ -12,20 +13,25 @@ println()
   # Can be formulated as ytile(x) = F(x) + C1(a) * Ψ(x)
   #
   F(x_) := 2*x^2 - x
-  Cone(a_) := -4*a
+  C(a_) := -4a
   Ψ(x_) := x^2 - x
-  Y(x_) := F(x)+Cone(a)*Ψ(x)
+  Y(x_) := F(x) + C(a)*Ψ(x)
   Ydot(x_) = D(Y(x), x)
   Ydotdot(x_) = D(Ydot(x), x)
-  R(x_) := Ydotdot(x) - 3*x - 4*Y(x) ./ -4a => C1
+  R(x_) := Simplify(Expand(Ydotdot(x) - 3*x - 4*Y(x)))
+  R(x_) = R(x) ./ (a => -C/4)
   SetJ(r, ToString(Simplify(R(x))))
 end
 
 @sym Print("ytilde(x) = ", Simplify(Expand(ytilde(x))))
 println()
-@sym ytilde1(x_) = Simplify(x^2*(2-4*a) - x*(1-4*a))
 @sym Print("ytilde1(x) = ", Simplify(Expand(ytilde1(x))))
 println()
+@sym Println("R(x) = ", R(x))
+println()
 
-#@eval rf(x) = $(parse(r))
+@eval rf(x) = $(parse(r))
+
+@assert r == "4 + 2C + x + 4C*x - 8(x^2) - 4C*(x^2)"
+
 
