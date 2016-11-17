@@ -5,7 +5,7 @@ using Symata
   y0(x_) := (e*x)*(l^3 - 2*l*x^2 + x^3)
   
   # Stodola-Vianello method, e.g. see Den Hartog, Advanced Strength of Materials, pg 268
-  f(maxiters_, y0_) := Module([i, yder, res=Table(Table( 0.0 , [i,6]), [j,maxiters])],
+  f(maxiters_, y0_) := Module([i, yder, res=ConstantArray(0.0,[maxiters,6])],
     (
       # Initialize the first row of the res matrix
       res[1,2] = y0(x),
@@ -19,27 +19,27 @@ using Symata
       # Start the loop to improve accuracy stored in subsequent rows,
       # res[i, 1] contains the Euler ratio.
       For(i=2, i<=maxiters, Increment(i),
-        [
+        begin
           res[i, 6] = Simplify(w/(EI)*((x-l)*res[i-1,4] + res[i-1,3]))
           # Above the basic Euler equation for a pinned-pinned flagpole
           ClearAll(K1, K11, tmpy5, tmpy4, tmp)
           tmpy5(x_) = Simplify(Integrate(res[i,6], x) + K1)
           tmpy4(x_) = Simplify(Integrate(tmpy5(x), x))
           # Use first pinned constraint at x=l to resolve K1
-          K11 = Solve(-tmpy4(l), K1)
-          res[i,5] = Simplify( tmpy5(x) ./ (K1 => K11[1, 1, 2]) )
-          res[i,4] = Simplify( tmpy4(x) ./ (K1 => K11[1, 1, 2]) )
-          ClearAll(K1, K11, K2, K22, tmpy3, tmpy2, tmp)
+          K11 = Solve(-tmpy4(l), K1)[1]
+          res[i,5] = Simplify( tmpy5(x) ./ K11 )
+          res[i,4] = Simplify( tmpy4(x) ./ K11 )
+          ClearAll(K2, K22, tmpy3, tmpy2, tmp)
           tmpy3(x_) = Simplify(Integrate(res[i,4], x) + K2)
           tmpy2(x_) = Simplify(Integrate(tmpy3(x), x))
           # Use second pinned constraint at x=l to resolve K2
-          K22 = Solve(-tmpy2(l), K2)
-          res[i,3] = Simplify( tmpy3(x) ./ (K2 => K22[1, 1, 2]) )
-          res[i,2] = Simplify( tmpy2(x) ./ (K2 => K22[1, 1, 2]) )
+          K22 = Solve(-tmpy2(l), K2)[1]
+          res[i,3] = Simplify( tmpy3(x) ./ K22 )
+          res[i,2] = Simplify( tmpy2(x) ./ K22 )
           tmp = Simplify( (((l^3)*w)/EI)*(res[i-1,3]/res[i, 3]) )
           res[i,1] = N(Simplify(ReplaceAll(tmp, x => l)))
-          Println("N[res[",i,", 1]]: ", N(res[i,1], 6))
-        ]
+          Println("N[res[$i, 1]]: ", N(res[i,1], 4))
+        end
       ),
       Return(res)
     )

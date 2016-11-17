@@ -30,7 +30,7 @@ println()
 @sym Println("R(x) = ", R(x))
 println()
 
-@eval rf(x) = $(parse(r))
+@eval rf(x, C) = $(parse(r))
 
 @assert r == "4 + 2C + x + 4C*x - 8(x^2) - 4C*(x^2)"
 
