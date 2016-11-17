@@ -2,6 +2,7 @@ module NMfE
 
 using Documenter
 using IterativeSolvers
+using Symata
 #using BandedMatrices
 
 # package code goes here
@@ -32,6 +33,8 @@ include(Pkg.dir("NMfE", "src", "ch05", "lagrangianpolynomial.jl"))
 include(Pkg.dir("NMfE", "src", "ch07", "ivp.jl"))
 # Boundary Value methods
 include(Pkg.dir("NMfE", "src", "ch07", "bvp.jl"))
+# Symata functions
+include(Pkg.dir("NMfE", "src", "ch07", "sym_fcns.jl"))
 
 ### Exports ###
 
