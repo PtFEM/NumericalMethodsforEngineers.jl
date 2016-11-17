@@ -20,6 +20,10 @@ println()
       sum = sum + yi[i] * num/den
     end
   )
+  ytilde(x_) := sum
+  #
+  # Can be formulated as ytile(x) = F(x) + C1(a) * Ψ(x)
+  #
   F(x_) := (1/2)*(9x^3 - 9x^2 + 2x)
   C1(a_) := (27/2)*(a-b)
   Ψ1(x_) := x^3 - x^2
@@ -34,11 +38,15 @@ println()
   SetJ(r, ToString(Simplify(R(x))))
 end
 
-@sym Println("ytilde(sum): ", Y(x))
+@sym Println("ytilde(x): ", ytilde(x))
+println()
+@sym Println("Y(x): ", Expand(Y(x)))
 println()
 
 @sym Println("R(x) = ", R(x))
 println()
 
 @eval rf(x, C) = $(parse(r))
+println()
 
+println(r)
