@@ -1,69 +1,38 @@
-using Symata
+using NMfE
 using Base.Test
 
-println()
 @sym begin
+  ClearAll(xi, yi, Y, R, sol, ytilde)
   xi = [0, 1//2, 1]
   yi = [0, a, 1]
-  N1 = Length(xi)
-  ClearAll(num, den, sum, Y, Ydot, Ydotdot,T)
-  sum = 0
-  For( i=1, i <= N1, Increment(i),
-    begin
-      num = 1.0
-      den = 1.0
-      For( j=1, j <= N1, Increment(j),
-        begin
-          num = If(j != i, num = num * (x-xi[j]), num)
-          den = If(j != i, den = den * (xi[i]-xi[j]), den)
-        end
-      )
-      sum = sum + yi[i] * num/den
-    end
-  )
-  Y(x_) := sum
+  Y(x_) := lagrangepolynomial(xi, yi)
   #
   # Can be formulated as ytile(x) = F(x) + C1(a) * Ψ(x)
   #
-  F(x_) := 2*x^2 - x
-  C(a_) := -4a
-  Ψ(x_) := x^2 - x
+  # F(x_) := 2*x^2 - x
+  # C(a_) := -4a
+  # Ψ(x_) := x^2 - x
   #
   #Y(x_) := F(x) + C(a)*Ψ(x)
   #
-  Ydot(x_) = D(Y(x), x)
-  Ydotdot(x_) = D(Ydot(x), x)
-  R(x_) := Simplify(Expand(Ydotdot(x) - 3*x - 4*Y(x)))
-  R(x_) = Simplify(Expand(R(x) ./ (a => -C1/4)))
-  C11 = Solve(R(xi[2]), C1)[1]
+  R(x_) = Simplify(D(Y(x), x, 2) - 3*x - 4*Y(x))
+  sol = Solve(R(xi[2]), a)
+  ytilde(x_) = Y(x) ./ Flatten(sol)
   SetJ(r, ToString(Simplify(R(x))))
-  SetJ(C1, ToString(C11[1][2]))
-  ytilde1 = Simplify(Y(x) ./ (a => -C1/4))
-  ytilde2 = Simplify(ytilde1 ./ C11)
-  SetJ(y, ToString(Simplify(Expand(ytilde2))));
+  SetJ(s, "$(sol[1][1][2])")
+  SetJ(t, ToString(Simplify(Expand(ytilde(x)))));
 end
 
 println()
-@sym Print("Y(x) = ", Y(x))
-println()
-@sym Print("Y(x) = ", Simplify(Expand(Y(x) ./ (a => -C1/4))))
-println()
+@sym Println("\nY(x) = ", Y(x))
 @sym Println("R(x) = ", R(x))
-println()
-@sym Print("C11 = ", Solve(R(xi[2]), C1)[1])
-println()
-
-@eval rf(x, C1) = $(parse(r))
+@sym Println("ytilde(x) = ", ytilde(x))
 println()
 
-C1 = parse(C1)
-rf1(x) = parse(y)
-println()
+@eval rf(x, a) = $(parse(r))
+@eval a = $(parse(s))
+@eval ytilde(x) = $(parse(t))
 
-@assert r == "4.0 + 2.0C1 + x + 4.0C1*x - 8.0(x^2) - 4.0C1*(x^2)"
-@assert rf(0.5, C1) < eps()
-@assert y == "x*(-0.16666666666666663 + 1.1666666666666665x)"
-
-@show r
-@show y
-nothing
+@assert r == "4.0 - 8.0a - 3x - 4.0x*(-1 + 2x) + 16.0a*x*(-1 + x)"
+@assert t == "x*(-0.16666666666666663 + 1.1666666666666665x)"
+@assert rf(0.5, a) < eps()
