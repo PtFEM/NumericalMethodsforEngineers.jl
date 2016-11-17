@@ -20,7 +20,7 @@ println()
       sum = sum + yi[i] * num/den
     end
   )
-  F(x_) := (1/2)*(9x^3 - 9x^2 + 2x
+  F(x_) := (1/2)*(9x^3 - 9x^2 + 2x)
   C1(a_) := (27/2)*(a-b)
   Ψ1(x_) := x^3 - x^2
   C2(a_) := -(9/2)*(2a-b)
@@ -28,10 +28,13 @@ println()
   Y(x_) := F(x) + C1(a)*Ψ1(x) + C2(a)*Ψ2(x)
   Ydot(x_) = D(Y(x), x)
   Ydotdot(x_) = D(Ydot(x), x)
-  R(x_) := Simplify(Expand(Ydotdot(x) - 3*x - 4*Y(x)))
+  ytilde1 := Ydotdot(x) - 3*x - 4*Y(x)
+  ytilde2 := ytilde1 ./ (a-b => 2*C1/27)
+  R(x_) := ytilde2 ./ (2a-b => 2*C2/9)
+  SetJ(r, ToString(Simplify(R(x))))
 end
 
-@sym Println("ytilde(sum)
+@sym Println("ytilde(sum): ", Y(x))
 println()
 
 @sym Println("R(x) = ", R(x))
