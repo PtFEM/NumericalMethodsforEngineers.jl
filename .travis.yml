@@ -10,4 +10,5 @@ notifications:
 # uncomment the following lines to override the default test script
 script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+  - julia -e 'ENV["PYTHON"]="";Pkg.build("PyCall")'
   - julia -e 'Pkg.clone(pwd()); Pkg.build("NMfE"); Pkg.test("NMfE"; coverage=true)'
