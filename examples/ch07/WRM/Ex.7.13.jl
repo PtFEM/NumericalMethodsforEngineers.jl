@@ -33,6 +33,6 @@ println()
 @eval a = $(parse(s))
 @eval ytilde(x) = $(parse(t))
 
-@assert r == "4.0 - 8.0a - 3x - 4.0x*(-1 + 2x) + 16.0a*x*(-1 + x)"
+@assert r == "4.0 - 8.0a - 3x + 4x*(1.0 - 2.0x + 4.0a*(-1 + x))"
 @assert t == "x*(-0.16666666666666663 + 1.1666666666666665x)"
 @assert rf(0.5, a) < eps()

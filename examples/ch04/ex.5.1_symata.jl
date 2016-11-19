@@ -1,20 +1,17 @@
-using Symata, NMfE, DataFrames, Plots
+using NMfE, DataFrames, Plots
 pyplot(size=(700,700))
 
 println()
 @sym begin
   xi = [1, 3, 6]
   yi = [1, 5, 10]
-  L0(x_) := Simplify( Expand( ((x-xi[2])*(x-xi[3]))/((xi[1]-xi[2])*(xi[1]-xi[3])) ) )
-  L1(x_) := Simplify( Expand( ((x-xi[1])*(x-xi[3]))/((xi[2]-xi[1])*(xi[2]-xi[3])) ) )
-  L2(x_) := Simplify( Expand( ((x-xi[1])*(x-xi[2]))/((xi[3]-xi[1])*(xi[3]-xi[2])) ) )
-  L = [L0(x), L1(x), L2(x)]
-  Q(x_) := Simplify(yi[1]*L0(x) + yi[2]*L1(x) + yi[3]*L2(x))
+  # lagrangepolynomial defined in ../../src/ch07/sym_fcns.jl
+  Q(x_) = lagrangepolynomial(xi, yi)
   SetJ(qs, ToString(Q(x)))
-  Print("Q(x) = ", Q(x), "\n")
+  Print("Q(x) = $(Q(x))\n")
 end
 
-@sym Print("Q(4.5) = ", Q(4.5), "\n");
+@sym Print("Q(4.5) = $(N(Q(4.5)))\n");
 println("\n")
 
 ProjDir = dirname(@__FILE__)

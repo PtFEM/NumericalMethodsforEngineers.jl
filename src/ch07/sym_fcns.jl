@@ -16,7 +16,7 @@
           sum = sum + yi[i] * num/den
         end
       ),
-      Return(sum)
+      Return(Simplify(sum))
     end
   )
 end
