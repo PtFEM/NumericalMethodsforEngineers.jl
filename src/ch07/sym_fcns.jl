@@ -1,13 +1,4 @@
 @sym begin
-  testfunc(xi_, yi_) := Module([res],
-    (
-      res = xi * yi,
-      SetJ(r, ToString(res))
-    )
-  )
-end
-
-@sym begin
   lagrangepolynomial(xi_, yi_) := Module([sum, num, den],
     begin
       N1 = Length(xi)
