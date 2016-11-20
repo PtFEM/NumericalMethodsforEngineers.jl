@@ -18,22 +18,13 @@ using Base.Test
   # Y(x_) := F(x) + C1(a)*Ψ1(x) + C2(a)*Ψ2(x)
   #
   R(x_) = Simplify(D(Y(x), x, 2) - 3*x - 4*Y(x))
-  sol = Solve([R(xi[2]), R(xi[3])], [a, b])
-  ytilde(x_) = Y(x) ./ Flatten(sol)
   SetJ(r, ToString(Simplify(R(x))))
-  SetJ(s, "[$(sol[1][1][2]), $(sol[1][2][2])]")
-  SetJ(t, ToString(Simplify(ytilde(x))))
 end
 
-println("\n\nExample 7.14 by Weighted Residual Method using Collocation\n")
-@sym Println("\nY(x): ", Y(x))
-@sym Println("R(x) = ", R(x))
-@sym Println("ytilde(x) = ", ytilde(x))
-println()
+println("\n\nExample 7.14: y'' = 3x + 4y, y(0)=0, y(1)=1")
+println("Residual for Weighted Residual Method using 2 point Lagragian Polynomial")
+@sym Println("\nY(x): ", Expand(Y(x)), "\n")
+println("( Example 7.14 gives: ytilde = 1/2*x^3*(27a-27b+9)-x^2*(45a-36b+9)+x*(18a-9b+2) )")
+@sym Println("\nR(x) = ", R(x), "\n")
 
-@eval rf(x, a, b) = $(parse(r))
-@eval (a, b) = $(parse(s))
-
-@assert t == "x*(0.2965260545905706 - 0.3126550868486353x + 1.016129032258065x^2)"
-@assert rf(1//3, a, b) < eps()
-@assert rf(2//3, a, b) < eps()
+@assert r == "-9.0 - 45.0a + 36.0b + 20.0x + 45.0a*x - 63.0b*x + 18.0x^2 + 90.0a*x^2 - 72.0b*x^2 - 18.0x^3 + 54.0b*x^3 - 54.0a*x^3"

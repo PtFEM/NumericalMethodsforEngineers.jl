@@ -18,25 +18,24 @@ using Base.Test
   # Y(x_) := F(x) + C1(a)*Ψ1(x) + C2(a)*Ψ2(x)
   #
   R(x_) = Simplify(D(Y(x), x, 2) - 3*x - 4*Y(x))
-  sol = Solve([Integrate(R(x), [x, 0, 0.5]), Integrate(R(x), [x, 0.5, 1])], [a, b])
-  ytilde(x_) = Simplify(Y(x) ./ Flatten(sol))
+  sol = Solve([R(xi[2]), R(xi[3])], [a, b])
+  ytilde(x_) = Y(x) ./ Flatten(sol)
   SetJ(r, ToString(Simplify(R(x))))
   SetJ(s, "[$(sol[1][1][2]), $(sol[1][2][2])]")
   SetJ(t, ToString(Simplify(ytilde(x))))
 end
 
-println("\n\nExample 7.16: y'' = 3x + 4y, y(0)=0, y(1)=1")
-println("by 2-point subdomains Weighted Residual Method")
+println("\n\nExample 7.15b: y'' = 3x + 4y, y(0)=0, y(1)=1")
+println("by 2-point collocation Weighted Residual Method")
 @sym Println("\nY(x): ", Y(x), "\n")
 @sym Println("R(x) = ", R(x), "\n")
 println("(a, b) = $(s)\n")
-@sym Println("ytilde_2pt_subdomains(x) = ", ytilde(x), "\n")
+@sym Println("ytilde_2pt_collocation_2(x) = ", Simplify(ytilde(x)), "\n")
 println()
 
-@eval rf_2pt_subdomains(x, a, b) = $(parse(r))
+@eval rf_2pt_collocation_2(x, a, b) = $(parse(r))
 @eval (a, b) = $(parse(s))
 
-rf_2pt_subdomains_1(x) = rf_2pt_subdomains(x, a, b)
-@assert t == "x*(0.22596153846153857 - 0.30288461538461586x + 1.0769230769230769x^2)"
-@assert (quadgk(rf_2pt_subdomains_1, 0, 0.5))[1] < 5*eps()
-@assert (quadgk(rf_2pt_subdomains_1, 0.5, 1.0))[1] < 5*eps()
+@assert t == "x*(0.2965260545905706 - 0.3126550868486353x + 1.016129032258065x^2)"
+@assert rf_2pt_collocation_2(1//3, a, b) < eps()
+@assert rf_2pt_collocation_2(2//3, a, b) < eps()

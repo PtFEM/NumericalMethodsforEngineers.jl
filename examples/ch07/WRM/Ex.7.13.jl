@@ -16,25 +16,14 @@ using Base.Test
   #Y(x_) := F(x) + C(a)*Ψ(x)
   #
   R(x_) = Simplify(D(Y(x), x, 2) - 3*x - 4*Y(x))
-  sol = Solve(R(xi[2]), a)
-  ytilde(x_) = Y(x) ./ Flatten(sol)
+  R(x_) = Simplify(R(x) ./ (a => -C1/4))
   SetJ(r, ToString(Simplify(R(x))))
-  SetJ(s, "$(sol[1][1][2])")
-  SetJ(t, ToString(Simplify(Expand(ytilde(x)))));
 end
 
-println("\n\nExample 7.13 by Weighted Residual Method using Collocation\n")
+println("\n\nExample 7.13: y'' = 3x + 4y, y(0)=0, y(1)=1")
+println("Residual for Weighted Residual Method using 1 point Lagragian Polynomial")
 @sym Println("\nY(x) = ", Y(x), "\n")
 @sym Println("R(x) = ", R(x), "\n")
-@sym Println("C11 = $(-4*sol[1][1][2])\n")
-@sym Println("ytilde(x) = ", Simplify(ytilde(x)), "\n")
-println("( Example 7.15 gives: ytilde = 1/6 * x * (7x - 1) )", "\n")
-println()
+println("( Example 7.14 gives: R = -4x^2*(2 + C1) + x*(1 + 4C1) + 2*(2 + C1) )", "\n")
 
-@eval rf_collocation(x, a) = $(parse(r))
-@eval a = $(parse(s))
-@eval ytilde(x) = $(parse(t))
-
-@assert r == "4.0 - 8.0a - 3x + 4x*(1.0 - 2.0x + 4.0a*(-1 + x))"
-@assert t == "x*(-0.16666666666666663 + 1.1666666666666665x)"
-@assert rf_collocation(0.5, a) < eps()
+@assert r == "4.0 + 2.0C1 - 3x - 4x*(-1.0 + 2.0x + C1*(-1 + x))"

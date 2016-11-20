@@ -16,27 +16,26 @@ using Base.Test
   #Y(x_) := F(x) + C(a)*Ψ(x)
   #
   R(x_) = Simplify(D(Y(x), x, 2) - 3*x - 4*Y(x))
-  sol = Solve(Integrate(R(x), [x, 0, 1]), a)
+  sol = Solve(R(xi[2]), a)
   ytilde(x_) = Y(x) ./ Flatten(sol)
   SetJ(r, ToString(Simplify(R(x))))
   SetJ(s, "$(sol[1][1][2])")
   SetJ(t, ToString(Simplify(Expand(ytilde(x)))));
 end
 
-println("\n\nExample 7.16: y'' = 3x + 4y, y(0)=0, y(1)=1")
-println("by 1-point subdomains Weighted Residual Method")
+println("\n\nExample 7.15: y'' = 3x + 4y, y(0)=0, y(1)=1")
+println("by 1-point collocation Weighted Residual Method")
 @sym Println("\nY(x) = ", Y(x), "\n")
 @sym Println("R(x) = ", R(x), "\n")
 @sym Println("C1 = $(-4*sol[1][1][2])\n")
-@sym Println("ytilde_1pt_subdomains(x) = ", Simplify(ytilde(x)), "\n")
-println("( Example 7.16 gives: ytilde = 1/16*x*(21x - 5) )")
+@sym Println("ytilde_1pt_collocation(x) = ", Simplify(ytilde(x)), "\n")
+println("( Example 7.15 gives: ytilde_collocation = 1/6 * x * (7x - 1) )", "\n")
 println()
 
-@eval rf_1pt_subdomains(x, a) = $(parse(r))
+@eval rf_1pt_collocation(x, a) = $(parse(r))
 @eval a = $(parse(s))
-@eval ytilde_1pt_subdomains(x) = $(parse(t))
+@eval ytilde_1pt_collocation(x) = $(parse(t))
 
-rf_1pt_subdomains_1(x) = rf_domains(x, a)
 @assert r == "4.0 - 8.0a - 3x + 4x*(1.0 - 2.0x + 4.0a*(-1 + x))"
-@assert t == "x*(-0.3125 + 1.3125x)"
-@assert (quadgk(rf_1pt_subdomains_1, 0, 1))[1] < eps()
+@assert t == "x*(-0.16666666666666663 + 1.1666666666666665x)"
+@assert rf_1pt_collocation(0.5, a) < eps()
