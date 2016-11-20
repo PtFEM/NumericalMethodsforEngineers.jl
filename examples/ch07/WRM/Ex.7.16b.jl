@@ -35,6 +35,7 @@ println()
 
 @eval rf_2pt_subdomains(x, a, b) = $(parse(r))
 @eval (a, b) = $(parse(s))
+@eval ytilde_2pt_subdomains(x) = $(parse(t))
 
 rf_2pt_subdomains_1(x) = rf_2pt_subdomains(x, a, b)
 @assert t == "x*(0.22596153846153857 - 0.30288461538461586x + 1.0769230769230769x^2)"

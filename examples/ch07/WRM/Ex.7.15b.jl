@@ -30,10 +30,11 @@ println("by 2-point collocation Weighted Residual Method")
 @sym Println("\nY(x): ", Y(x), "\n")
 @sym Println("R(x) = ", R(x), "\n")
 println("(a, b) = $(s)\n")
-@sym Println("ytilde_2pt_collocation_2(x) = ", Simplify(ytilde(x)), "\n")
+@sym Println("ytilde_2pt_collocation(x) = ", Simplify(ytilde(x)), "\n")
 println()
 
 @eval rf_2pt_collocation_2(x, a, b) = $(parse(r))
+@eval ytilde_2pt_collocation(x) = $(parse(t))
 @eval (a, b) = $(parse(s))
 
 @assert t == "x*(0.2965260545905706 - 0.3126550868486353x + 1.016129032258065x^2)"
