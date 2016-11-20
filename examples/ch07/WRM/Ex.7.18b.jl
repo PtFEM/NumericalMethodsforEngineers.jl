@@ -29,21 +29,21 @@ using Base.Test
 end
 
 println("\n\nExample 7.18: y''=3x + 4y, y(0)=0, y(1)=1")
-println("using 1-point Galerkin Weighted Residual Method")
+println("using 2-point Galerkin Weighted Residual Method (TBD!!!!)")
 @sym Println("\nY(x) = $(Y(x))\n")
 @sym Println("Y(x) = $(Simplify(Expand(Y(x) ./ (a => -C1/4))))\n")
 @sym Println("R(x) = $(R(x))\n")
 @sym Println("C1 = $(Solve(Integrate(R(x)*Ψ(x), [x, 0, 1]), C1)[1][1][2])\n")
-@sym Println("ytilde_1pt_galerkin(x) = $(ytilde2)\n")
+@sym Println("ytilde_2pt_galerkin(x) = $(ytilde2)\n")
 println("( Example 7.18 gives: ytilde = 1/4*x*(5x - 1) )\n")
-@eval ytilde_1pt_galerkin(x) = $(parse(y))
-@eval rf_1pt_galerkin(x, C1) = $(parse(r))
+@eval ytilde_2pt_galerkin(x) = $(parse(y))
+@eval rf_2pt_galerkin(x, C1) = $(parse(r))
 
 C1 = parse(C1)
-rf_1pt_galerkin1(x) = rf_leastsquares(x, C1)
+rf_2pt_galerkin_1(x) = rf_2pt_galerkin(x, C1)
 println()
 
 @assert r == "4.0 + 2.0C1 + x + 4.0C1*x - 8.0x^2 - 4.0C1*x^2"
 @assert y == "x*(-0.25 + 1.25x)"
-@assert (quadgk(rf_1pt_galerkin1, 0, 1))[1] < 5*eps()
+@assert (quadgk(rf_2pt_galerkin_1, 0, 1))[1] < 5*eps()
 

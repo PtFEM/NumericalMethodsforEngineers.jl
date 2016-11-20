@@ -20,20 +20,21 @@ using Base.Test
   SetJ(y, ToString(Simplify(Expand(ytilde2))));
 end
 
-println("\n\nExample 7.13 by Weighted Residual Method using Least Squares\n")
+println("\n\nExample 7.17: y'' = 3x + 4y, y(0)=0, y(1)=1")
+println("by 2-point least squares Weighted Residual Method  (TBD!!!!)")
 @sym Print("\nY(x) = $(Y(x))\n")
 @sym Print("Y(x) = $(Simplify(Expand(Y(x) ./ (a => -C1/4))))\n")
 @sym Println("R(x) = $(R(x))\n")
-@sym Print("C11 = $(Solve(Integrate(R(x)*Rdot(x), [x, 0, 1]), C1)[1][1][2])\n")
-@eval ytilde_leastsquares(x) = $(parse(y))
-@eval rf_leastsquares(x, C1) = $(parse(r))
+@sym Print("C1 = $(Solve(Integrate(R(x)*Rdot(x), [x, 0, 1]), C1)[1][1][2])\n")
+@eval ytilde_2pt_leastsquares(x) = $(parse(y))
+@eval rf_2pt_leastsquares(x, C1) = $(parse(r))
 println()
 
 C1 = parse(C1)
-rf_leastsquares1(x) = rf_leastsquares(x, C1)
+rf_2pt_leastsquares1(x) = rf_2pt_leastsquares(x, C1)
 println()
 
 @assert r == "4.0 + 2.0C1 + x + 4.0C1*x - 8.0x^2 - 4.0C1*x^2"
 @assert y == "x*(-0.2962962962962963 + 1.2962962962962963x)"
-@assert (quadgk(rf_leastsquares1, 0, 1))[1] < 5*eps()
+@assert (quadgk(rf_2pt_leastsquares1, 0, 1))[1] < 5*eps()
 
