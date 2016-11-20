@@ -5,45 +5,49 @@ using Base.Test
 
 @sym begin
   ClearAll(xi, yi, N1, Y, Ydotdot, C11, ytilde1, ytilde2)
-  xi = [0, 1//2, 1]
-  yi = [0, a, 1]
+  xi = [0, 1//3, 2//3, 1]
+  yi = [0, a, b, 1]
   Y(x_) := lagrangepolynomial(xi, yi)
   #
-  # Can be formulated as ytile(x) = F(x) + C1(a) * Ψ(x)
+  # Can be re-formulated as Y(x) = F(x) + C1(a) * Ψ1(x) + C2(a) * Ψ2(x)
   #
-  # F(x_) := 2*x^2 - x
-  # C(a_) := -4a
-  Ψ(x_) := x^2 - x
+  # F(x_) := (1/2)*(9x^3 - 9x^2 + 2x)
+  # C1 := (27/2)*(a-b)
+  Ψ1(x_) := x^3 - x^2
+  # C2 := -(9/2)*(2a-b)
+  Ψ2(x_) := x^2 - x
   #
-  #Y(x_) := F(x) + C(a)*Ψ(x)
+  # Y(x_) := F(x) + C1(a)*Ψ1(x) + C2(a)*Ψ2(x)
   #
   Ydotdot(x_) = D(Y(x), x, 2)
   R(x_) := Simplify(Expand(Ydotdot(x) - 3*x - 4*Y(x)))
-  R(x_) = Simplify(Expand(R(x) ./ (a => -C1/4)))
-  C11 = Solve(Integrate(R(x)*Ψ(x), [x, 0, 1]), C1)[1]
+  sol = Solve([Integrate(R(x)*Ψ1(x), [x, 0, 1]),Integrate(R(x)*Ψ2(x), [x, 0, 1])], [a,b])
   SetJ(r, ToString(Simplify(R(x))))
-  SetJ(C1, ToString(C11[1][2]))
-  ytilde1 = Simplify(Y(x) ./ (a => -C1/4))
-  ytilde2 = Simplify(ytilde1 ./ C11)
+  SetJ(a, ToString(sol[1][1][2]))
+  SetJ(b, ToString(sol[1][2][2]))
+  ytilde1 = Simplify(Y(x) ./ (a => sol[1][1][2]))
+  ytilde2 = Simplify(ytilde1 ./ (b => sol[1][2][2]))
   SetJ(y, ToString(Simplify(Expand(ytilde2))));
 end
 
-println("\n\nExample 7.18: y''=3x + 4y, y(0)=0, y(1)=1")
-println("using 2-point Galerkin Weighted Residual Method (TBD!!!!)")
-@sym Println("\nY(x) = $(Y(x))\n")
-@sym Println("Y(x) = $(Simplify(Expand(Y(x) ./ (a => -C1/4))))\n")
+println("\n\nExample 7.18b: y''=3x + 4y, y(0)=0, y(1)=1")
+println("using 2-point Galerkin Weighted Residual Method")
+@sym Println("\nY(x) = $(Simplify(Expand(Y(x))))\n")
 @sym Println("R(x) = $(R(x))\n")
-@sym Println("C1 = $(Solve(Integrate(R(x)*Ψ(x), [x, 0, 1]), C1)[1][1][2])\n")
-@sym Println("ytilde_2pt_galerkin(x) = $(ytilde2)\n")
-println("( Example 7.18 gives: ytilde = 1/4*x*(5x - 1) )\n")
+@eval a = $(parse(a))
+@eval b = $(parse(b))
+println("(a,b) = $((a, b))\n")
+println("C1 = $((27/2*(a-b)))\n")
+println("C2 = $(-(9/2*(2a-b)))\n")
 @eval ytilde_2pt_galerkin(x) = $(parse(y))
-@eval rf_2pt_galerkin(x, C1) = $(parse(r))
-
-C1 = parse(C1)
-rf_2pt_galerkin_1(x) = rf_2pt_galerkin(x, C1)
+@eval rf_2pt_galerkin(x, a, b) = $(parse(r))
 println()
 
-@assert r == "4.0 + 2.0C1 + x + 4.0C1*x - 8.0x^2 - 4.0C1*x^2"
-@assert y == "x*(-0.25 + 1.25x)"
+rf_2pt_galerkin_1(x) = rf_2pt_galerkin(x, a, b)
+println()
+
+@assert r == "-9.0 - 45.0a + 36.0b + 20.0x + 45.0a*x - 63.0b*x + 18.0x^2 + 90.0a*x^2 -"*
+  " 72.0b*x^2 - 18.0x^3 + 54.0b*x^3 - 54.0a*x^3"
+@assert y == "x*(0.2826086956521776 - 0.34782608695653305x + 1.0652173913043548x^2)"
 @assert (quadgk(rf_2pt_galerkin_1, 0, 1))[1] < 5*eps()
 
