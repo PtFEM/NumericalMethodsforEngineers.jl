@@ -24,19 +24,19 @@ using Base.Test
 end
 
 println("\n\nExample 7.16: y'' = 3x + 4y, y(0)=0, y(1)=1")
-println("by 1-point subdomains Weighted Residual Method")
+println("by 1-point subdomain Weighted Residual Method")
 @sym Println("\nY(x) = ", Y(x), "\n")
 @sym Println("R(x) = ", R(x), "\n")
 @sym Println("C1 = $(-4*sol[1][1][2])\n")
-@sym Println("ytilde_1pt_subdomains(x) = ", Simplify(ytilde(x)), "\n")
+@sym Println("ytilde_1pt_subdomain(x) = ", Simplify(ytilde(x)), "\n")
 println("( Example 7.16 gives: ytilde = 1/16*x*(21x - 5) )")
 println()
 
-@eval rf_1pt_subdomains(x, a) = $(parse(r))
+@eval rf_1pt_subdomain(x, a) = $(parse(r))
 @eval a = $(parse(s))
-@eval ytilde_1pt_subdomains(x) = $(parse(t))
+@eval ytilde_1pt_subdomain(x) = $(parse(t))
 
-rf_1pt_subdomains_1(x) = rf_1pt_subdomains(x, a)
+rf_1pt_subdomain_1(x) = rf_1pt_subdomain(x, a)
 @assert r == "4.0 - 8.0a - 3x + 4x*(1.0 - 2.0x + 4.0a*(-1 + x))"
 @assert t == "x*(-0.3125 + 1.3125x)"
-@assert (quadgk(rf_1pt_subdomains_1, 0, 1))[1] < eps()
+@assert (quadgk(rf_1pt_subdomain_1, 0, 1))[1] < eps()
