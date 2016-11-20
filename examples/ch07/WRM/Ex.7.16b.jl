@@ -25,7 +25,7 @@ using Base.Test
   SetJ(t, ToString(Simplify(ytilde(x))))
 end
 
-println()
+println("\n\nExample 7.14 by Weighted Residual Method using Domains\n")
 @sym Println("\nY(x): ", Y(x))
 @sym Println("R(x) = ", R(x))
 @sym Println("ytilde(x) = ", ytilde(x))

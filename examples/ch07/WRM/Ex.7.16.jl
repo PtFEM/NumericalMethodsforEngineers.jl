@@ -23,7 +23,7 @@ using Base.Test
   SetJ(t, ToString(Simplify(Expand(ytilde(x)))));
 end
 
-println()
+println("\n\nExample 7.13 by Weighted Residual Method using Domains\n")
 @sym Println("\nY(x) = ", Y(x))
 @sym Println("R(x) = ", R(x))
 @sym Println("ytilde(x) = ", Simplify(ytilde(x)))
