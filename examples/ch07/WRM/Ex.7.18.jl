@@ -40,10 +40,10 @@ println("( Example 7.18 gives: ytilde = 1/4*x*(5x - 1) )\n")
 @eval rf_1pt_galerkin(x, C1) = $(parse(r))
 
 C1 = parse(C1)
-rf_1pt_galerkin1(x) = rf_leastsquares(x, C1)
+rf_1pt_galerkin_1(x) = rf_1pt_galerkin(x, C1)
 println()
 
 @assert r == "4.0 + 2.0C1 + x + 4.0C1*x - 8.0x^2 - 4.0C1*x^2"
 @assert y == "x*(-0.25 + 1.25x)"
-@assert (quadgk(rf_1pt_galerkin1, 0, 1))[1] < 5*eps()
+@assert (quadgk(rf_1pt_galerkin_1, 0, 1))[1] < 5*eps()
 

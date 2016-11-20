@@ -31,10 +31,10 @@ println("by 2-point least squares Weighted Residual Method  (TBD!!!!)")
 println()
 
 C1 = parse(C1)
-rf_2pt_leastsquares1(x) = rf_2pt_leastsquares(x, C1)
+rf_2pt_leastsquares_1(x) = rf_2pt_leastsquares(x, C1)
 println()
 
 @assert r == "4.0 + 2.0C1 + x + 4.0C1*x - 8.0x^2 - 4.0C1*x^2"
 @assert y == "x*(-0.2962962962962963 + 1.2962962962962963x)"
-@assert (quadgk(rf_2pt_leastsquares1, 0, 1))[1] < 5*eps()
+@assert (quadgk(rf_2pt_leastsquares_1, 0, 1))[1] < 5*eps()
 
