@@ -1,61 +1,62 @@
-using Symata
-using Base.Test
+using NMfE
 
-@sym begin
-  testfunc(xi_, yi_) := Module([res, x=xi, y=yi],
+function symtest(n)
+    r = Symata.exfunc(parse("x^$n"))
+    #Symata.symprintln(r)
+    r
+end
+
+r = symtest(3)
+println("r = $r")     
+
+# Not quite sure how to convert r above to a Julia function.
+# Works great if I return a String that I can parse() in Julia:
+
+function symtest2(n)
+  @sym f(x_) := J(parse("(2x)^n"))
+  @sym SetJ(r1, ToString(f(x)))
+end
+
+symtest2(4)
+println("\nr1 = $r1\n")
+@eval f1(x, n) = $(parse(r1))
+
+f1(5, 3) |> display
+println()
+
+# Now I want to pass in the string in J(parse("...")):
+
+function symtest3(n, f)
+  Symata.setsymval(:fi, f)
+  Symata.exfunc(parse("ToString(Unpack(fi))"))    # ?????????
+end
+
+r2 = symtest3(4, "(3x)^n")
+@eval f2(x, n) = $(parse(r2))
+
+f2(5, 3) |> display
+println()
+
+# What I'm really looking for:
+
+fstr = """
+  Module([], 
     begin
-      res = x * y
-      SetJ(r, ToString(res))
+      (4x)^n
     end
   )
+"""
+r3 = symtest3(4, fstr)
+@eval f3(x, n) = $(parse(r3))
+
+f3(5, 3) |> display
+println()
+
+xi = [0, 1/2, 1]
+yi = [0, 6, 10]
+
+function lp(xi, yi)
+  @sym SetJ(r3, ToString(lagrangepolynomial(xi, yi)))
 end
 
-@sym SetJ(r1, testfunc([0, 1//2, 1], [0, a, 1]))
-@eval tfr1(a) = $(parse(r1))
-println("tfr1(3) = $(tfr1(3))\n")   # => Out(.) = tfr1(3) = [0.0,1.5,1.0]
-
-xi = [0, 0.5, 1]
-yi = [0, 6.0, 1]
-
-@sym SetJ(r2, testfunc(Unpack(JVar(xi)), Unpack(JVar(yi))))
-@eval tfr2(a) = $(parse(r2))
-println("tfr2(6) = $(tfr2(6))\n")   # => Out(.) = tfr2(6) = [0.0,3.0,1.0]
-
-yi1 = [0, :a, 1]    # a needs to be a symbol
-
-@sym SetJ(r3, testfunc(Unpack(JVar(xi)), Unpack(JVar(yi1))))
-@eval tfr3(a) = $(parse(r3))
-println("tfr3(9) = $(tfr3(9))\n")   # => Out(.) = tfr3(9) = [0.0,4.5,1.0]
-
-function tf1(xi, yi)
-  @sym SetJ(r4, testfunc(Unpack(JVar(xi)), Unpack(JVar(yi))))
-  @eval f1(a) = $(parse(r4))
-  f1
-end
-
-# Not correct, uses global value of xi and yi
-
-f1 = tf1(xi, yi1)
-println("f1(12) = $(f1(12))\n")   # => Out(.) = f1(12) = [0.0,3.0,1.0]
-                                  
-# All attempts below will fail.
-
-function tf2(xi, yi)
-  @sym SetJ(r5, testfunc(J(copy(xi)), J(copy(yi))))
-  @eval f2(a) = $(parse(r5))
-  f2
-end
-
-f2 = tf2(xi, yi1)
-println("f2(12) = $(f2(12))\n")   # => Out(.) = f2(12) = [0.0,3.0,1.0]
-                                  
-function tf3(xi2, yi2)
-  @sym SetJ(r6, testfunc(Unpack(JVar(xi2)), Unpack(JVar(yi2))))
-  @eval f3(a) = $(parse(r6))
-  f3
-end
-
-println("\nNow try a non-global variable:\n")
-
-f3 = tf3(xi, yi1)
-println("f3(12) = $(f3(12))\n")   # => Out(.) = f3(12) = [0.0,6.0,1.0]
+println(r3)
