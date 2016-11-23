@@ -27,30 +27,29 @@ end
 function tf1(x, y)
   Symata.setsymval(:xin, x)
   Symata.setsymval(:yin, y)
-  @sym R(x_) = lagrangepolynomial(xin, yin)
+  @sym R(x_) := lagrangepolynomial(xin, yin)
   @sym SetJ(r, ToString(R(x)))
-  nothing
 end
-
-xl1 = [0, 1/3, 2/3, 1]
-yl1 = [0, 0.3, 0.6, 1]
-
-NMfE.lagrangepoly(xl1, yl1)
-@eval lg2(x) = $(parse(r))
-
-println()
-r |> display
-lg2(0.75) |> display
-println()
 
 xl = [0, 0.5, 1]
 yl = [0, 0.6, 1]
 
-NMfE.lagrangepoly(xl, yl) |> display
+tf1(xl, yl) |> display
 @eval lg1(x) = $(parse(r))
 
 println()
 r |> display
 lg1(0.75) |> display
+println()
+
+xl1 = [0, 1/3, 2/3, 1]
+yl1 = [0, 0.3, 0.6, 1]
+
+tf1(xl1, yl1)
+@eval lg2(x) = $(parse(r))
+
+println()
+r |> display
+lg2(0.75) |> display
 println()
 
