@@ -1,4 +1,4 @@
-using NMfE
+using Symata
 
 function symtest(n)
     r = Symata.exfunc(parse("x^$n"))
@@ -51,12 +51,3 @@ r3 = symtest3(4, fstr)
 
 f3(5, 3) |> display
 println()
-
-xi = [0, 1/2, 1]
-yi = [0, 6, 10]
-
-function lp(xi, yi)
-  @sym SetJ(r3, ToString(lagrangepolynomial(xi, yi)))
-end
-
-println(r3)
