@@ -1,5 +1,5 @@
 @sym begin
-  lagrangepolynomial(xi_, yi_) := Module([N, sum, num, den],
+  LagrangePolynomial(xi_, yi_) := Module([N, sum, num, den],
     begin
       N = Length(xi)
       sum = 0

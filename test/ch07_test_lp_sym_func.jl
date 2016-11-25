@@ -2,7 +2,7 @@ using Symata
 using Base.Test
 
 @sym begin
-  lagrangepolynomial(xin_, yin_) := Module([N, sum, num, den, xi=xin, yi=yin],
+  LagrangePolynomial(xin_, yin_) := Module([N, sum, num, den, xi=xin, yi=yin],
     begin
       N = Length(xi)
       sum = 0
@@ -28,7 +28,7 @@ function tf1(x, y)
   @sym ClearAll(xin, yin, R)
   setsymata(:xin, x)
   setsymata(:yin, y)
-  @sym R(x_) := lagrangepolynomial(xin, yin)
+  @sym R(x_) := LagrangePolynomial(xin, yin)
   @sym SetJ(r, ToString(R(x)))
 end
 
@@ -37,7 +37,7 @@ yl = [0, 0.6, 1]
 
 Symata.setsymval(:xin, xl)
 Symata.setsymval(:yin, yl)
-@sym R(x_) := lagrangepolynomial(xin, yin)
+@sym R(x_) := LagrangePolynomial(xin, yin)
 @sym SetJ(r1, ToString(R(x)))
 @eval lg1(x) = $(parse(r1))
 
@@ -62,7 +62,7 @@ yl1 = [0, 0.42222, 0.75556, 1]
 
 Symata.setsymval(:xin, xl1)
 Symata.setsymval(:yin, yl1)
-@sym R(x_) := lagrangepolynomial(xin, yin)
+@sym R(x_) := LagrangePolynomial(xin, yin)
 @sym SetJ(r2, ToString(R(x)))
 @eval lg3(x) = $(parse(r2))
 

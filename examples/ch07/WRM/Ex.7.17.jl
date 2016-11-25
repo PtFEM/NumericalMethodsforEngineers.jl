@@ -7,7 +7,7 @@ using Base.Test
   ClearAll(xi, yi, N1, Y, Ydotdot, C11, ytilde1, ytilde2)
   xi = [0, 1//2, 1]
   yi = [0, a, 1]
-  Y(x_) := lagrangepolynomial(xi, yi)
+  Y(x_) := LagrangePolynomial(xi, yi)
   Ydotdot(x_) = D(Y(x), x, 2)
   R(x_) := Simplify(Expand(Ydotdot(x) - 3*x - 4*Y(x)))
   R(x_) = Simplify(Expand(R(x) ./ (a => -C1/4)))

@@ -6,8 +6,8 @@ ProjDir = dirname(@__FILE__)
 cd(ProjDir) do
 
   tests = [
-    "Ex.7.13.jl",   # 1 point lagrangepolynomial
-    "Ex.7.14.jl",   # 2 point lagrangepolynomial
+    "Ex.7.13.jl",   # 1 point LagrangePolynomial
+    "Ex.7.14.jl",   # 2 point LagrangePolynomial
     "Ex.7.15.jl",   # 1 point collocation  
     "Ex.7.15b.jl",  # 2 point collocation  
     "Ex.7.16.jl",   # 1 point subdomain

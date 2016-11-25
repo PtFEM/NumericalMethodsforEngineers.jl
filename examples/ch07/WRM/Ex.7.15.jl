@@ -5,7 +5,7 @@ using Base.Test
   ClearAll(xi, yi, Y, R, sol, ytilde)
   xi = [0, 1//2, 1]
   yi = [0, a, 1]
-  Y(x_) := lagrangepolynomial(xi, yi)
+  Y(x_) := LagrangePolynomial(xi, yi)
   #
   # Can be formulated as ytile(x) = F(x) + C1(a) * Ψ(x)
   #

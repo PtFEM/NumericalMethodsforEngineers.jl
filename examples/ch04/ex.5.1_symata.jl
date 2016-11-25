@@ -5,8 +5,8 @@ println()
 @sym begin
   xi = [1, 3, 6]
   yi = [1, 5, 10]
-  # lagrangepolynomial defined in ../../src/ch07/sym_fcns.jl
-  Q(x_) = lagrangepolynomial(xi, yi)
+  # LagrangePolynomial defined in ../../src/ch07/sym_fcns.jl
+  Q(x_) = LagrangePolynomial(xi, yi)
   SetJ(qs, ToString(Q(x)))
   Print("Q(x) = $(Q(x))\n")
 end

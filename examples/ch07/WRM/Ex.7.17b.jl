@@ -7,7 +7,7 @@ using Base.Test
   ClearAll(xi, yi, N1, Y, Ydotdot, C11, ytilde1, ytilde2)
   xi = [0, 1//3, 2//3, 1]
   yi = [0, a, b, 1]
-  Y(x_) := lagrangepolynomial(xi, yi)
+  Y(x_) := LagrangePolynomial(xi, yi)
   #
   # Can be re-formulated as Y(x) = F(x) + C1(a) * Ψ1(x) + C2(a) * Ψ2(x)
   #
