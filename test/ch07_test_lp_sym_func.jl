@@ -26,8 +26,8 @@ end
 
 function tf1(x, y)
   @sym ClearAll(xin, yin, R)
-  Symata.setsymval(:xin, x)
-  Symata.setsymval(:yin, y)
+  setsymata(:xin, x)
+  setsymata(:yin, y)
   @sym R(x_) := lagrangepolynomial(xin, yin)
   @sym SetJ(r, ToString(R(x)))
 end

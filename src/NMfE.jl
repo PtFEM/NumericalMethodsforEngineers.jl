@@ -2,7 +2,7 @@ module NMfE
 
 using Documenter
 using IterativeSolvers
-using Symata
+import Symata: @sym, setsymata, getsymata, symeval
 #using BandedMatrices
 
 # package code goes here

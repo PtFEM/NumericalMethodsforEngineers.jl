@@ -25,7 +25,7 @@ using Base.Test
   SetJ(t, ToString(Simplify(ytilde(x))))
 end
 
-println("\n\nExample 7.16: y'' = 3x + 4y, y(0)=0, y(1)=1")
+println("\n\nExample 7.16b: y'' = 3x + 4y, y(0)=0, y(1)=1")
 println("by 2-point subdomain Weighted Residual Method")
 @sym Println("\nY(x): ", Y(x), "\n")
 @sym Println("R(x) = ", R(x), "\n")
