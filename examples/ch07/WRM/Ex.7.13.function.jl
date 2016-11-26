@@ -15,11 +15,8 @@ using Base.Test
       #Y(x_) := F(x) + C(a)*Ψ(x)
       #
       R(x_) = Simplify(D(Y(x), x, 2) - 3*x - 4*Y(x))
-      Println("R(x) = $(R(x))")
       R(x_) = Simplify(R(x) ./ (a => -C1/4))
-      Println("R(x) = $(R(x))")
       SetJ(r, ToString(Simplify(R(x))))
-      Println("R(x) = $(R(x))")
       Return(R(x))
     end
   )
@@ -31,6 +28,12 @@ function wrmcollocation(x1,y1)
     symeval(parse("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin)))"))
 end
 
+#
+# A problem with this approach is that Y(x) and R(x) should really be local to
+# the Symata function and won't be available for below Println()
+#
+# For now I will continue to use the E.7.13.jl approach.
+#
 ytilde = wrmcollocation([0.0,0.5,1.0], [0.0,:a,1.0])
 
 println("\n\nExample 7.13: y'' = 3x + 4y, y(0)=0, y(1)=1")
