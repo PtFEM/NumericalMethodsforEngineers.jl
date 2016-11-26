@@ -1,6 +1,7 @@
 using NMfE
 using Base.Test
 
+
 @sym begin
   ClearAll(xi, yi, Y, R, sol, ytilde)
   xi = [0, 1//2, 1]
