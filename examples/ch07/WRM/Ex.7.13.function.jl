@@ -2,10 +2,10 @@ using NMfE
 using Base.Test
 
 @sym begin
-  CollocationWeightedResidualMethod(xi_, yi_) := Module([],
+  CollocationWeightedResidualMethod(xi_, yi_, doprint_) := Module([Y, R],
     begin
       Y(x_) := LagrangePolynomial(xi, yi)
-      Println("\nY(x) = ", Y(x), "\n")
+      If(doprint, Println("\nY(x) = ", Y(x), "\n"))
       #
       # Can be formulated as ytile(x) = F(x) + C1(a) * Ψ(x)
       #
@@ -17,36 +17,41 @@ using Base.Test
       #
       R(x_) = Simplify(D(Y(x), x, 2) - 3*x - 4*Y(x))
       R(x_) = Simplify(R(x) ./ (a => -C1/4))
-      SetJ(r, ToString(Simplify(R(x))))
-      Println("R(x) = ", R(x), "\n")
+      If(doprint, Println("R(x) = ", R(x), "\n"))
       Return(R(x))
     end
   )
 end
 
-function wrm(x1,y1)
+function wrm(x1,y1, doprint=true)
     setsymata(:xin, List(x1...))
     setsymata(:yin, List(y1...))
-    symeval(parse("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin)))"))
+    setsymata(:doprint, doprint ? true : false)
+    symeval(parse("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin,doprint)))"))
 end
 
 println("\nExample 7.13: y'' = 3x + 4y, y(0)=0, y(1)=1")
-println("Residual for Weighted Residual Method using 1 point Lagragian Polynomial")
+println("Residual for Weighted Residual Method using 1 point Lagragian Polynomial\n")
 
 #
-# A problem with this approach is that Y(x) and R(x) should really be local to
-# the Symata function and won't be available for below Println()
+# A consequence of the Julia function based approach is that Y(x) and R(x) are local
+# to the Symata function and are not available for examination, e.g. @sym R(x)
 #
 
-yt = wrm([0.0,0.5,1.0], [0.0,:a,1.0])
-
-println("( Example 7.14 gives: R = -4x^2*(2 + C1) + x*(1 + 4C1) + 2*(2 + C1) )", "\n")
-
-@assert r == "4.0 + 2.0C1 - 3x - 4x*(-1.0 + 2.0x + C1*(-1.0 + x))"
+lp_eq = @sym ToString(LagrangePolynomial([0.0,0.5,1.0], [0.0,a,1.0]))
+println(lp_eq)
+@assert lp_eq == "x*(-1.0 + 2.0x - 4.0a*(-1.0 + x))"
+wrm_eq = @sym ToString(CollocationWeightedResidualMethod([0.0,0.5,1.0], [0.0,a,1.0], false))
+println(wrm_eq)
+@assert wrm_eq == "4.0 + 2.0C1 - 3x - 4x*(-1.0 + 2.0x + C1*(-1.0 + x))"
 
 #
 # Another consideration is that below yt is yt(C1::Any, x::Any)
 #
+
+yt = wrm([0.0,0.5,1.0], [0.0,:a,1.0], true)
+
+println("( Example 7.14 gives: R = -4x^2*(2 + C1) + x*(1 + 4C1) + 2*(2 + C1) )", "\n")
 
 "
 ```
