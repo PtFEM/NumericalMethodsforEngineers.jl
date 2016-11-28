@@ -27,4 +27,4 @@ println("Residual for Weighted Residual Method using 1 point Lagragian Polynomia
 @sym Println("R(x) = ", R(x), "\n")
 println("( Example 7.14 gives: R = -4x^2*(2 + C1) + x*(1 + 4C1) + 2*(2 + C1) )", "\n")
 
-@assert r == "4.0 + 2.0C1 - 3x - 4x*(-1.0 + 2.0x + C1*(-1 + x))"
+@assert r == "4.0 + 2.0*C1 - 3x - 4x*(-1.0 + 2.0*x + C1*(-1 + x))"

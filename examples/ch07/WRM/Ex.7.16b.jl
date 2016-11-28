@@ -38,6 +38,6 @@ println()
 @eval ytilde_2pt_subdomain(x) = $(parse(t))
 
 rf_2pt_subdomain_1(x) = rf_2pt_subdomain(x, a, b)
-@assert t == "x*(0.22596153846153857 - 0.30288461538461586x + 1.0769230769230769x^2)"
+@assert t == "x*(0.22596153846153857 + (-0.30288461538461586)*x + 1.0769230769230769*x^2)"
 @assert (quadgk(rf_2pt_subdomain_1, 0, 0.5))[1] < 5*eps()
 @assert (quadgk(rf_2pt_subdomain_1, 0.5, 1.0))[1] < 5*eps()

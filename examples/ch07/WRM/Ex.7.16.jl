@@ -37,6 +37,6 @@ println()
 @eval ytilde_1pt_subdomain(x) = $(parse(t))
 
 rf_1pt_subdomain_1(x) = rf_1pt_subdomain(x, a)
-@assert r == "4.0 - 8.0a - 3x + 4x*(1.0 - 2.0x + 4.0a*(-1 + x))"
-@assert t == "x*(-0.3125 + 1.3125x)"
+@assert r == "4.0 + (-8.0)*a - 3x + 4x*(1.0 + (-2.0)*x + 4.0*a*(-1 + x))"
+@assert t == "x*(-0.3125 + 1.3125*x)"
 @assert (quadgk(rf_1pt_subdomain_1, 0, 1))[1] < eps()

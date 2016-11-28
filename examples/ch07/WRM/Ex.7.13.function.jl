@@ -40,10 +40,10 @@ println("Residual for Weighted Residual Method using 1 point Lagragian Polynomia
 
 lp_eq = @sym ToString(LagrangePolynomial([0.0,0.5,1.0], [0.0,a,1.0]))
 println(lp_eq)
-@assert lp_eq == "x*(-1.0 + 2.0x - 4.0a*(-1.0 + x))"
+@assert lp_eq == "x*(-1.0 + 2.0*x + (-4.0)*a*(-1.0 + x))"
 wrm_eq = @sym ToString(CollocationWeightedResidualMethod([0.0,0.5,1.0], [0.0,a,1.0], false))
 println(wrm_eq)
-@assert wrm_eq == "4.0 + 2.0C1 - 3x - 4x*(-1.0 + 2.0x + C1*(-1.0 + x))"
+@assert wrm_eq == "4.0 + 2.0*C1 - 3x - 4x*(-1.0 + 2.0*x + C1*(-1.0 + x))"
 
 #
 # Another consideration is that below yt is yt(C1::Any, x::Any)
