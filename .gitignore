@@ -2,5 +2,6 @@
 *.jl.*.cov
 *.jl.mem
 notebooks/SheehanOlver/*
-notebooks/NMfE/Chapter 7/.ipynb_checkpoints
+notebooks/NMfE/ch01/.ipynb_checkpoints
+notebooks/NMfE/ch07/.ipynb_checkpoints
 notebooks/Symata/.ipynb_checkpoints
