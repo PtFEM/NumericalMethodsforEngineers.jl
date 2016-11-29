@@ -27,7 +27,7 @@ function wrm(x1,y1, doprint=true)
     setsymata(:xin, List(x1...))
     setsymata(:yin, List(y1...))
     setsymata(:doprint, doprint ? true : false)
-    symeval(parse("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin,doprint)))"))
+    symparseeval("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin,doprint)))")
 end
 
 println("\nExample 7.13: y'' = 3x + 4y, y(0)=0, y(1)=1")

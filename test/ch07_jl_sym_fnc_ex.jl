@@ -33,7 +33,7 @@ println("\nf(0.75) = ", f(0.75))
 function lagrangefunc(x1,y1)
     setsymata(:xin, List(x1...))
     setsymata(:yin, List(y1...))
-    symeval(parse("Compile(Evaluate(LagrangePolynomial(xin,yin)))"))
+    symparseeval("Compile(Evaluate(LagrangePolynomial(xin,yin)))")
 end
 
 f1 = lagrangefunc([0.0,0.5,1.0], [0.0,0.6,1.0])
