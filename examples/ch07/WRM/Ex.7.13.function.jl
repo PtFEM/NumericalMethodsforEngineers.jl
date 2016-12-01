@@ -27,7 +27,6 @@ function wrm(x1,y1, doprint=true)
     setsymata(:xin, List(x1...))
     setsymata(:yin, List(y1...))
     setsymata(:doprint, doprint ? true : false)
-    #symtranseval(parse("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin,doprint)))"))
     symparseeval("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin,doprint)))")
 end
 
@@ -52,7 +51,7 @@ println(wrm_eq)
 
 yt = wrm([0.0,0.5,1.0], [0.0,:a,1.0], true)
 
-println("( Example 7.14 gives: R = -4x^2*(2 + C1) + x*(1 + 4C1) + 2*(2 + C1) )", "\n")
+println("( Example 7.13 gives: R = -4x^2*(2 + C1) + x*(1 + 4C1) + 2*(2 + C1) )", "\n")
 
 "
 ```
@@ -76,3 +75,4 @@ println("ytilde(0.0, 1.0) = $(ytilde(0.0, 1.0))")
 #
 # For now I will continue to use the E.7.13.jl approach.
 #
+
