@@ -120,4 +120,5 @@ function wrm_1(xin, xinval, C1inval)
   f(xinval, C1inval)
 end
 
-wrm_1([0.0,0.5,1.0], 1.0, 0.0)
+@assert wrm_1([0.0,0.5,1.0], 1.0, 0.0) == ytilde(1.0, 0.0)
+
