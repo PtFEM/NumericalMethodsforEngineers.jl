@@ -23,7 +23,7 @@ code_tests = [
   "ch07_ivp_ex7.3.jl",        # Four direct methods
   "ch07_bvp_ex7.4a.jl",       # Shooting method example 7.4a
   "ch07_bvp_ex7.4b.jl",       # Shooting method example 7.4b
-  "ch07_wrm.jl"               # Symata Weighted Residual Method tests
+#  "ch07_wrm.jl"               # Symata Weighted Residual Method tests
   # Ch08 tests
 ]
 
@@ -34,3 +34,7 @@ for my_test in code_tests
     include(my_test)
 end
 
+if VERSION <= v"0.6.0"
+  println("\n  * ch07_wrm.jl *")
+  include("ch07_wrm.jl")        # Symata Weighted Residual Method tests
+end  
