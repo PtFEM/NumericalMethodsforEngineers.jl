@@ -1,6 +1,6 @@
 # NMfE
 
-[![Build Status](https://travis-ci.org/goedman/NMfE.jl.svg?branch=master)](https://travis-ci.org/PtFEM/NMfE.jl.svg?branch=master)
+[![Build Status](https://api.travis-ci.org/PtFEM/NMfE.jl.svg?branch=master)
 
 
 ##Access to NMfE programs
