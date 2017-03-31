@@ -1,5 +1,8 @@
 src/*.jl linguist-language=Julia
 *.ipynb linguist-language=Julia
+notebooks/NMfE/ch01/*.ipynb linguist-language=Julia
+notebooks/NMfE/ch07/*.ipynb linguist-language=Julia
 notebooks/NMfE/ch01/* linguist-vendored
 notebooks/NMfE/ch07/* linguist-vendored
+notebooks/Symata/*.ipynb linguist-language=Julia
 notebooks/Symata/* linguist-vendored
