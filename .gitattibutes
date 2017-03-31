@@ -1,3 +1,4 @@
 src/*.jl linguist-language=Julia
+*.ipynb linguist-language=Julia
 notebooks/NMfE/* linguist-vendored
 notebooks/Symata/* linguist-vendored
