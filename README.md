@@ -5,9 +5,9 @@
 [![Travis Build Status](https://travis-ci.org/PtFEM/NMfE.jl.svg?branch=master)](https://travis-ci.org/PtFEM/NMfE.jl)
 
 
-##Access to NMfE programs
+## Julia versions of NMfE programs
 
-More or less equivalent Julia versions of the Foprtran programs described in "Numerical Methods for Engineers" by I M Smith and D V Griffiths to Julia.
+More or less equivalent Julia versions of the Fortran programs described in "Numerical Methods for Engineers" by I M Smith and D V Griffiths to Julia.
 
 Currently being tested on Julia v0.5.
 
