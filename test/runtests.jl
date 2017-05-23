@@ -19,11 +19,12 @@ code_tests = [
   # Ch04 tests
   # Ch05 tests
   # Ch06 tests
+  "ch06_p6.2.jl",
   # Ch07 tests
   "ch07_ivp_ex7.3.jl",        # Four direct methods
   "ch07_bvp_ex7.4a.jl",       # Shooting method example 7.4a
   "ch07_bvp_ex7.4b.jl",       # Shooting method example 7.4b
-#  "ch07_wrm.jl"               # Symata Weighted Residual Method tests
+  #"ch07_wrm.jl"              # Symata Weighted Residual Method tests
   # Ch08 tests
 ]
 
