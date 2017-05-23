@@ -55,5 +55,5 @@ func = sin
 nip = 7
 w, res = nc(func, lb, ub, nip)
 
-@test res ≈ QuadGK.quadgk(sin, pi/4, pi/2)[1]
+@test res[1] ≈ QuadGK.quadgk(sin, pi/4, pi/2)[1]
 
