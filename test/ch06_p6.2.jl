@@ -1,4 +1,5 @@
-using Calculus, QuadGK
+using Calculus, QuadGK, Base.Test.@test
+
 
 function psm(nip)
   @assert nip >= 1
@@ -54,5 +55,5 @@ func = sin
 nip = 7
 w, res = nc(func, lb, ub, nip)
 
-@assert res ≈ QuadGK.quadgk(sin, pi/4, pi/2)[1]
+@test res ≈ QuadGK.quadgk(sin, pi/4, pi/2)[1]
 
