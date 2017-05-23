@@ -1,4 +1,4 @@
-using Calculus, QuadGK, Base.Test.@test
+using Compat, Calculus, QuadGK, Base.Test.@test
 
 
 function psm(nip)
