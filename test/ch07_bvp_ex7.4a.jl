@@ -15,7 +15,7 @@ if !converged
 elseif iters > 50
   println("Iter limit reached.")
 else
-  @assert round(res[:, 2], 4)' == [0.0  0.0813  0.1815  0.3313  0.5794  1.0]
+  @assert round.(res[:, 2], 4)' == [0.0  0.0813  0.1815  0.3313  0.5794  1.0]
   #println()
   #res |> display
 end

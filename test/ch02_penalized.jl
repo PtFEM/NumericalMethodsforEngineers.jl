@@ -32,5 +32,5 @@ F = cholfact(a)
 y = F[:L] \ b
 c = F[:U] \ y
 
-@assert round(c, 4) == round(a \ b, 4)
-@assert round(c, 4) == round(d, 4)
+@assert round.(c, 4) == round.(a \ b, 4)
+@assert round.(c, 4) == round.(d, 4)

@@ -9,6 +9,6 @@ function f(x::Float64, y::Vector{Float64})
 end
 
 (iter, nsteps, converged, res) = shootingmethod(f, [0.0, 0.0, 1.0, 1.0], [0.0, 1.0], 5)
-@show round(res, 4)
+@show round.(res, 4)
 
 cd(old)

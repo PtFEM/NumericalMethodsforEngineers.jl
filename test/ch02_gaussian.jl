@@ -9,4 +9,4 @@ f = lufact(a);
 subfor!(lower, b)
 subbac!(upper, b)
 
-@assert round(b, 10) == round(c, 10)
+@assert round.(b, 10) == round.(c, 10)

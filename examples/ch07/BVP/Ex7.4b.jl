@@ -8,6 +8,6 @@ cd(ProjDir) do
   end
 
   res = shootingmethod(f, [0.0, 1.0, 1.0, 2.0], [1.0, 3.0], 10, 0.00001, 40)
-  #@show round(res, 4)
+  @show round.(res, 4)
 
 end

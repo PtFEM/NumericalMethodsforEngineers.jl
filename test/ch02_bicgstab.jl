@@ -10,5 +10,5 @@ b = a * x
 x0 = ones(N)
 (iters, converged, r2) = NMfE.bicgstab(a, b, x0; tol=tol, limit=limit)
 
-@assert round(a\b, 5) == round(r2, 5)
+@assert round.(a\b, 5) == round.(r2, 5)
 
