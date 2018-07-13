@@ -1,7 +1,6 @@
 using NMfE
 using Test
 
-PkgDir = Pkg.dir("NMfE", "examples", "ch07", "WRM")
 ProjDir = dirname(@__FILE__)
 cd(ProjDir) do
 
@@ -22,4 +21,5 @@ cd(ProjDir) do
       println("\n\t  * $(test) *\n")
       include(joinpath(PkgDir, test))
   end
+  
 end

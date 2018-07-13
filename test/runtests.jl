@@ -31,12 +31,10 @@ code_tests = [
 
 println("Running tests:")
 
-for my_test in code_tests
-    println("\n  * $(my_test) *")
-    include(my_test)
-end
+@testset "NMfE.jl" begin
+  for my_test in code_tests
+      println("\n  * $(my_test) *")
+      include(my_test)
+  end
 
-if VERSION <= v"0.6.0"
-  println("\n  * ch07_wrm.jl *")
-  include("ch07_wrm.jl")        # Symata Weighted Residual Method tests
-end  
+end

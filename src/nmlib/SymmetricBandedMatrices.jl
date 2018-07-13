@@ -57,7 +57,7 @@ bm = tosymmetricbandedmatrix{Tv}(am::AbstractMatrix{Tv})
 """
 function tosymmetricbandedmatrix(am::AbstractMatrix)
   m = copy(am)
-  typeof(m) <: SparseMatrixCSC && (m = full(m))
+  typeof(m) <: SparseMatrixCSC && (m = Matrix(m))
   (!issymmetric(m)) && throw(ArgumentError("Matrix not symmetric"))
   hbw = 0
   n = size(m, 1)

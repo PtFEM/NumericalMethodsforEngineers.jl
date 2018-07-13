@@ -28,9 +28,9 @@ b[2] = a[2, 2] * 5.0
 
 a = sparse(a)
 
-F = cholfact(a)
-y = F[:L] \ b
-c = F[:U] \ y
+F = cholesky(a)
+y = F.L \ b
+c = F.U \ y
 
-@assert round.(c, 4) == round.(a \ b, 4)
-@assert round.(c, 4) == round.(d, 4)
+@assert round.(c, digits=4) == round.(a \ b, digits=4)
+@assert round.(c, digits=4) == round.(d, digits=4)
