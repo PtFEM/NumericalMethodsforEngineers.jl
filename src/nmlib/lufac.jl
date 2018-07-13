@@ -2,7 +2,7 @@ function lufac(a::Matrix{Float64})
   upper = zeros(size(a))
   upper[1,:] = a[1,:]
   lower = eye(size(a, 1))
-  const n = size(a, 1)
+  n = size(a, 1)
   for k in 1:n-1
     if abs(upper[k,k] > 1e-10)
       for i in k+1:n

@@ -1,4 +1,4 @@
-julia 0.5
+julia 0.7-beta
 IterativeSolvers 0.2.2
 Documenter 0.7.0
 BandedMatrices 0.1.2
@@ -6,5 +6,5 @@ DataFrames 0.8.4
 Plots 0.9.4
 Symata 0.2.0
 QuadGK 0.1.2
-Compat 0.17
+Compat 0.70
 Calculus

@@ -1,4 +1,5 @@
-import Base: full, ==, copy, size, convert, sparse
+import Base: full, ==, copy, size, convert
+import SparseArrays: sparse
 
 """
 # SkylineMatrix type for symmetric matrices
@@ -34,7 +35,7 @@ sm = SkylineMatrix{Tv}(kdiag::Vector{Int}, sv::Vector{Tv})
                     : Convert kdiag,sv to full matrix.
 ```
 """
-type SkylineMatrix{Tv}
+mutable struct SkylineMatrix{Tv}
     kdiag::Vector{Int}        # Diagonal elements
     sv::Vector{Tv}         # Nonzero values
 end

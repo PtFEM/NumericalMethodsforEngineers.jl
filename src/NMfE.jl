@@ -2,39 +2,42 @@ module NMfE
 
 using Documenter
 using IterativeSolvers
-import Symata: @sym, setsymata, getsymata, symeval
+using Reexport
+@reexport using SparseArrays, LinearAlgebra
+
 #using BandedMatrices
 
 # package code goes here
 ### Imports ###
+import Symata: @sym, setsymata, getsymata, symeval
 
 ### Includes ###
 # Type definitions in nmlib
-include(Pkg.dir("NMfE", "src", "nmlib", "SkylineMatrices.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "SymmetricBandedMatrices.jl"))
+include("nmlib/SkylineMatrices.jl")
+include("nmlib/SymmetricBandedMatrices.jl")
 # Direct methods in nmlib
-include(Pkg.dir("NMfE", "src", "nmlib", "checkit.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "nmex.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "chobac.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "cholin.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "ldlfor.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "ldlt.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "lufac.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "sparin.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "spabac.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "subbac.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "subfor.jl"))
-include(Pkg.dir("NMfE", "src", "nmlib", "bicgstab.jl"))
+include("nmlib/checkit.jl")
+include("nmlib/nmex.jl")
+include("nmlib/chobac.jl")
+include("nmlib/cholin.jl")
+include("nmlib/ldlfor.jl")
+include("nmlib/ldlt.jl")
+include("nmlib/lufac.jl")
+include("nmlib/sparin.jl")
+include("nmlib/spabac.jl")
+include("nmlib/subbac.jl")
+include("nmlib/subfor.jl")
+include("nmlib/bicgstab.jl")
 # Iterative methods in ch02
-#include(Pkg.dir("NMfE", "src", "ch02", "bicgstabl.jl"))
+#include("ch02", "bicgstabl.jl"))
 # Initial Value methods
-include(Pkg.dir("NMfE", "src", "ch05", "lagrangianpolynomial.jl"))
+include("ch05/lagrangianpolynomial.jl")
 # Initial Value methods
-include(Pkg.dir("NMfE", "src", "ch07", "ivp.jl"))
+include("ch07/ivp.jl")
 # Boundary Value methods
-include(Pkg.dir("NMfE", "src", "ch07", "bvp.jl"))
+include("ch07/bvp.jl")
 # Symata functions
-include(Pkg.dir("NMfE", "src", "ch07", "sym_fcns.jl"))
+include("ch07/sym_fcns.jl")
 
 ### Exports ###
 
@@ -66,7 +69,12 @@ export
   mid_point_euler,
   runga_kutta_4,
   shootingmethod,
-  bigcstab
+  bigcstab,
+  # Symata
+  @sym, 
+  setsymata, 
+  getsymata, 
+  symeval
 
 ### Deprecated ###
   

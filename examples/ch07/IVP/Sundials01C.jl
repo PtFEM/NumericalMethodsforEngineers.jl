@@ -1,5 +1,5 @@
 using Sundials, Plots
-using Base.Test
+using Test
 
 pyplot(size=(700,700))
 

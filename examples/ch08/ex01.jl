@@ -1,5 +1,5 @@
 using NMfE
-using Base.Test
+using Test
 
 @sym begin
   ClearAll(x, y, sol)
