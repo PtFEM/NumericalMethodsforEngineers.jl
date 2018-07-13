@@ -63,7 +63,7 @@ res3 = res2
 @assert res3 === res2
 
 f=sprand(6, 6, 0.3)
-ff = full(f)
+ff = Matrix(f)
 ffs=ff.+ff'
 bm = tosymmetricbandedmatrix(ffs)
 @assert full(bm) == ffs

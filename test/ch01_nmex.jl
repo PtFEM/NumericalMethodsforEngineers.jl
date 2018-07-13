@@ -7,8 +7,9 @@ tol = 1.0e-5
 limit = 100
 
 (iters, eigval, eigvec) = nmex(b, x0; tol=tol, limit=100)
-eb = eig(b)
-eb2 = (eigen(b)...,)
+
+#eb = eig(b)
+ebvals, ebvecs = (eigen(b)...,)
 
 
-@assert round.(eigvec[:,1], digits=5) == round.(eb[2][:,1], digits=5)
+@assert round.(eigvec[:,1], digits=5) == round.(ebvecs[:,1], digits=5)
