@@ -46,5 +46,4 @@ println("Running tests:")
       println("\n  * $(my_test) *")
       include(my_test)
   end
-
 end
