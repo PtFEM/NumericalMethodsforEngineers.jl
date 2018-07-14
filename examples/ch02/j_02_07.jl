@@ -17,7 +17,7 @@ y = lower \ b
 c = upper \ y
 println("Solution Vector: \n $c")
 
-@assert c == a \ b
+@test c == a \ b
 
 a = [16. 4. 8.; 4. 5. -4.; 8. -4. 22.]
 b = [4., 2., 5.]
@@ -39,4 +39,4 @@ y = lower \ b
 c = upper \ y
 println("Solution Vector: \n $c")
 
-@assert c == a \ b
+@test c == a \ b

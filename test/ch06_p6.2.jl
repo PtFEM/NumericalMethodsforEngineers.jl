@@ -3,7 +3,7 @@ using Test: @test
 
 
 function psm(nip)
-  @assert nip >= 1
+  @test nip >= 1
   # Integrate to compute coefficient in rhs
   rhs(n, nip) = QuadGK.quadgk((x)-> x^nip, -n, n)[1]
   local hn
@@ -33,8 +33,8 @@ function psm(nip)
 end
 
 function nc(func, lb, ub, nip)
-  @assert ub > lb
-  @assert nip >= 1
+  @test ub > lb
+  @test nip >= 1
   if nip == 1
     h = ub - lb
     x = [lb]

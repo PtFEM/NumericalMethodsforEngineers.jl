@@ -25,4 +25,4 @@ lower |> display
 println("\nlower * upper:")
 lower * upper |> display
 
-@assert a == lower * upper
+@test a == lower * upper

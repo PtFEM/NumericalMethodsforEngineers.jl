@@ -1,4 +1,5 @@
 using NMfE
+using Test
 
 a = Float64[16 4 8;4 5 -4;8 -4 22]
 b = Float64[4, 2, 5]
@@ -29,4 +30,4 @@ end
 
 subbac!(a, b)
 
-@assert b == s
+@test b == s

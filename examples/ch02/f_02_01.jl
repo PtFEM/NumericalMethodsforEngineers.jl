@@ -46,5 +46,5 @@ b = [1., 2., 6.]
 c = A\b
 
 println()
-@assert round(c, 14) == d
-@assert round(A * c, 14) == b
+@test round(c, 14) == d
+@test round(A * c, 14) == b

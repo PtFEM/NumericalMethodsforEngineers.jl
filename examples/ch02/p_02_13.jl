@@ -17,4 +17,4 @@ println("\nSolution Vector: $x")
 println("Converged: $(iters < limit)")
 println("Number of iters: $(iters)")
 
-@assert round(x, 9) == round(c, 9)
+@test round(x, 9) == round(c, 9)

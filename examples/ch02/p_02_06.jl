@@ -17,4 +17,4 @@ y = lower \ b
 c = upper \ y
 println("Solution Vector: \n $c")
 
-@assert c == a \ b
+@test c == a \ b

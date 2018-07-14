@@ -1,4 +1,5 @@
 using NMfE
+using Test
 
 N = 8
 tol = 1.0e-10
@@ -10,5 +11,5 @@ b = a * x
 x0 = ones(N)
 (iters, converged, r2) = NMfE.bicgstab(a, b, x0; tol=tol, limit=limit)
 
-@assert round.(a\b, digits=5) == round.(r2, digits=5)
+@test round.(a\b, digits=5) == round.(r2, digits=5)
 
