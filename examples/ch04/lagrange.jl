@@ -7,7 +7,7 @@ cd(ProjDir) #do
   if !isdefined(Main, :lgt)
     function lgt(Q, nx, lb, ub)
       z = zglj(Q)
-      x = collect(linspace(lb, ub, nx))
+      x = collect(range(lb, stop=ub, length=nx))
       y = zeros(nx, Q)
       for k = 1:Q, i=1:nx
         y[i,k]=lagrange(k,x[i],z)

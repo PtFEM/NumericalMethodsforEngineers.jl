@@ -28,7 +28,7 @@ cd(ProjDir) do
   dfxi |> display
   println()
   
-  q3=parse(qs)
+  q3=Meta.parse(qs)
   @eval f(x) = $(q3)
 
   xint = 1:0.1:6

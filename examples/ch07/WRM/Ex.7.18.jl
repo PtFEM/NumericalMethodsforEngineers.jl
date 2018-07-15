@@ -36,10 +36,10 @@ println("using 1-point Galerkin Weighted Residual Method")
 @sym Println("C1 = $(Solve(Integrate(R(x)*Ψ(x), [x, 0, 1]), C1)[1][1][2])\n")
 @sym Println("ytilde_1pt_galerkin(x) = $(ytilde2)\n")
 println("( Example 7.18 gives: ytilde = 1/4*x*(5x - 1) )\n")
-@eval ytilde_1pt_galerkin(x) = $(parse(y))
-@eval rf_1pt_galerkin(x, C1) = $(parse(r))
+@eval ytilde_1pt_galerkin(x) = $(Meta.parse(y))
+@eval rf_1pt_galerkin(x, C1) = $(Meta.parse(r))
 
-C1 = parse(C1)
+C1 = Meta.parse(C1)
 rf_1pt_galerkin_1(x) = rf_1pt_galerkin(x, C1)
 println()
 

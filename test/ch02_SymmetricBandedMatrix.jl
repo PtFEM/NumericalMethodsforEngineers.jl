@@ -71,6 +71,6 @@ bm = tosymmetricbandedmatrix(ffs)
 ms = sprand(5, 5, 0.1)
 # Make sure it is symmetric
 sms = issymmetric(ms) ? ms : ms .+ ms'
-bms = issymmetric(sms) ? convert(SymmetricBandedMatrix, sms) : convert(SymmetricBandedMatrix, round(sms, 8))
+bms = issymmetric(sms) ? convert(SymmetricBandedMatrix, sms) : convert(SymmetricBandedMatrix, round(sms, digits=8))
 @test full(bms) == sms
 
