@@ -9,7 +9,7 @@ using Reexport
 
 # package code goes here
 ### Imports ###
-#import Symata: @sym, setsymata, getsymata, symeval
+import Symata: @sym, setsymata, getsymata, symeval
 
 ### Includes ###
 # Type definitions in nmlib
@@ -37,7 +37,7 @@ include("ch07/ivp.jl")
 # Boundary Value methods
 include("ch07/bvp.jl")
 # Symata functions
-#include("ch07/sym_fcns.jl")
+include("ch07/sym_fcns.jl")
 
 ### Exports ###
 
@@ -69,14 +69,12 @@ export
   mid_point_euler,
   runga_kutta_4,
   shootingmethod,
-  bigcstab
-  #=
+  bigcstab,
   # Symata
   @sym, 
   setsymata, 
   getsymata, 
   symeval
-  =#
 
 ### Deprecated ###
   
