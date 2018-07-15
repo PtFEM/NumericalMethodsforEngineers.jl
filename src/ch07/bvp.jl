@@ -1,5 +1,3 @@
-using Test
-
 "
 Function shootingmethod() for 2nd order BVP ODEs.
 
@@ -28,8 +26,8 @@ end
 function shootingmethod(f::Function, bvs::Vector{Float64}, initg::Vector{Float64}, 
   steps::Int64, tol::Float64=0.00001, limit::Int64=25)
   #println("\n--- Shooting method for Second Order ODEs ---\n")
-  @test size(bvs, 1) == 4
-  @test size(initg, 1) == 2
+  @assert size(bvs, 1) == 4
+  @assert size(initg, 1) == 2
   nsteps = steps + 1
   y0 = zeros(Float64, nsteps, 2)
   ystar = zeros(Float64, nsteps)

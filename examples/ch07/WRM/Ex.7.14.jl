@@ -27,5 +27,5 @@ println("Residual for Weighted Residual Method using 2 point Lagragian Polynomia
 println("( Example 7.14 gives: ytilde = 1/2*x^3*(27a-27b+9)-x^2*(45a-36b+9)+x*(18a-9b+2) )")
 @sym Println("\nR(x) = ", R(x), "\n")
 
-@test r == "-9.0 + (-45.0)*a + 36.0*b + 20.0*x + 45.0*a*x + (-63.0)*b*x + 18.0*x^2 + "*
+@assert r == "-9.0 + (-45.0)*a + 36.0*b + 20.0*x + 45.0*a*x + (-63.0)*b*x + 18.0*x^2 + "*
   "90.0*a*x^2 + (-72.0)*b*x^2 + (-18.0)*x^3 + 54.0*b*x^3 + (-54.0)*a*x^3"

@@ -43,7 +43,7 @@ C1 = parse(C1)
 rf_1pt_galerkin_1(x) = rf_1pt_galerkin(x, C1)
 println()
 
-@test r == "4.0 + 2.0*C1 + x + 4.0*C1*x + (-8.0)*x^2 + (-4.0)*C1*x^2"
-@test y == "x*(-0.25 + 1.25*x)"
-@test (quadgk(rf_1pt_galerkin_1, 0, 1))[1] < 5*eps()
+@assert r == "4.0 + 2.0*C1 + x + 4.0*C1*x + (-8.0)*x^2 + (-4.0)*C1*x^2"
+@assert y == "x*(-0.25 + 1.25*x)"
+@assert (quadgk(rf_1pt_galerkin_1, 0, 1))[1] < 5*eps()
 

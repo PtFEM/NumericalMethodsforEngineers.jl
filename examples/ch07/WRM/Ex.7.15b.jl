@@ -37,6 +37,6 @@ println()
 @eval ytilde_2pt_collocation(x) = $(parse(t))
 @eval (a, b) = $(parse(s))
 
-@test t == "x*(0.2965260545905706 + (-0.3126550868486353)*x + 1.016129032258065*x^2)"
-@test rf_2pt_collocation_2(1//3, a, b) < eps()
-@test rf_2pt_collocation_2(2//3, a, b) < eps()
+@assert t == "x*(0.2965260545905706 + (-0.3126550868486353)*x + 1.016129032258065*x^2)"
+@assert rf_2pt_collocation_2(1//3, a, b) < eps()
+@assert rf_2pt_collocation_2(2//3, a, b) < eps()

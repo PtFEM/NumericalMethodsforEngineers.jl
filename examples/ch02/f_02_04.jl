@@ -18,4 +18,4 @@ b = Float64[4, 2, 5]
 
 c = A \ b
 
-@test round(c, 14) == b
+@assert round(c, 14) == b

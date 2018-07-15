@@ -1,5 +1,4 @@
 using NMfE
-using Test
 
 ProjDir = dirname(@__FILE__)
 cd(ProjDir) do
@@ -15,7 +14,7 @@ cd(ProjDir) do
   elseif iters > 50
     println("Iter limit reached.")
   else
-    @test round.(res[:, 2], digits=4)' == [0.0  0.0813  0.1815  0.3313  0.5794  1.0]
+    @assert round.(res[:, 2], digits=4)' == [0.0  0.0813  0.1815  0.3313  0.5794  1.0]
     #println()
     #res |> display
   end

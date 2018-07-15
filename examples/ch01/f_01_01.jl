@@ -19,4 +19,4 @@ println("\nEigen values:                   $jeigval")
 println("Corresponding eigen vectors:")
 jeigvec |> display
 
-@test round(maximum(jeigval), 3) == round(eigval, 3)
+@assert round(maximum(jeigval), 3) == round(eigval, 3)

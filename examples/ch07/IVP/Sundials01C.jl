@@ -15,6 +15,6 @@ cd(ProjDir) do
   res |> display
   println()
 
-  @test round(res, 4) == round([0.786153, 0.618035], 4)
+  @assert round(res, 4) == round([0.786153, 0.618035], 4)
 
 end

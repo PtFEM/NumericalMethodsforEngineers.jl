@@ -1,5 +1,4 @@
 using NMfE
-using Test
 
 a = [16.; 4.; 5.; 8.; -4.; 22.]
 kdiag = [1; 3; 6]
@@ -33,5 +32,5 @@ F = cholesky(a)
 y = F.L \ b
 c = F.U \ y
 
-@test round.(c, digits=4) == round.(a \ b, digits=4)
-@test round.(c, digits=4) == round.(d, digits=4)
+@assert round.(c, digits=4) == round.(a \ b, digits=4)
+@assert round.(c, digits=4) == round.(d, digits=4)

@@ -1,5 +1,4 @@
 using NMfE
-using Test
 
 b = [16. -24. 18.; 3. -2. 0.; -9. 18. -17.]
 x0 = [1., 1., 1.]
@@ -13,4 +12,4 @@ limit = 100
 ebvals, ebvecs = (eigen(b)...,)
 
 
-@test round.(eigvec[:,1], digits=5) == round.(ebvecs[:,1], digits=5)
+@assert round.(eigvec[:,1], digits=5) == round.(ebvecs[:,1], digits=5)

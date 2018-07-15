@@ -12,65 +12,65 @@ ebif32 = SymmetricBandedMatrix(3, Complex{Float32}[0 0 0 16; 0 0 4+im 5; 0 8 -4 
 
 a = full(ab)
 res = tosymmetricbandedmatrix(2, a)
-@test res == ab
+@assert res == ab
 
 b = full(bb)
 res = tosymmetricbandedmatrix(3, b,)
-@test res == bb
+@assert res == bb
 
 c = full(cb)
 res = tosymmetricbandedmatrix(4, c)
-@test res == cb
+@assert res == cb
 
 d = full(db)
 res = tosymmetricbandedmatrix(2, d)
-@test res == db
+@assert res == db
 
 e = full(eb)
 res = tosymmetricbandedmatrix(3, e)
-@test res == eb
+@assert res == eb
 res2 = tosymmetricbandedmatrix(e)
-@test res2 == res
+@assert res2 == res
 
 ei = full(ebi)
 res = tosymmetricbandedmatrix(3, ei)
-@test res == ebi
+@assert res == ebi
 res2 = tosymmetricbandedmatrix(ei)
-@test res2 == res
+@assert res2 == res
 
 ef = full(ebf)
 res = tosymmetricbandedmatrix(3, ef)
-@test res == ebf
+@assert res == ebf
 
 eif = full(ebif)
 res = tosymmetricbandedmatrix(3, eif)
-@test res == ebif
+@assert res == ebif
 
 eif32 = full(ebif32)
 res = tosymmetricbandedmatrix(3, eif32)
-@test res == ebif32
+@assert res == ebif32
 
 res2 = copy(res)
-@test res == res2
-@test res !== res2
+@assert res == res2
+@assert res !== res2
 
 res2.bmat[4, 3] = 8.0+9im
-@test res != res2
-@test res !== res2
+@assert res != res2
+@assert res !== res2
 
 res3 = res2
-@test res3 == res2
-@test res3 === res2
+@assert res3 == res2
+@assert res3 === res2
 
 f=sprand(6, 6, 0.3)
 ff = Matrix(f)
 ffs=ff.+ff'
 bm = tosymmetricbandedmatrix(ffs)
-@test full(bm) == ffs
+@assert full(bm) == ffs
 
 ms = sprand(5, 5, 0.1)
 # Make sure it is symmetric
 sms = issymmetric(ms) ? ms : ms .+ ms'
 bms = issymmetric(sms) ? convert(SymmetricBandedMatrix, sms) : convert(SymmetricBandedMatrix, round(sms, 8))
-@test full(bms) == sms
+@assert full(bms) == sms
 
