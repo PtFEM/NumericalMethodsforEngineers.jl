@@ -1,5 +1,4 @@
-import Base: full, ==, copy, size, convert
-import SparseArrays: sparse
+import Base: full, ==, copy, size, convert, sparse
 
 #
 # bm:         SymmetricBandedMatrix
@@ -10,8 +9,40 @@ import SparseArrays: sparse
 # hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol)
 #
 
-mutable struct SymmetricBandedMatrix{Tv}
-    hbw::Int                          # Bandwidth bw = 1 + 2*hbw
+"""
+# SymmetricBandedMatrix type for symmetric matrices
+
+Type to hold banded matrices with element types Tv
+- am:         Subtype of AbstractMatrix.
+- hbw:        Half bandwidth, hbw = (bw - 1)÷2 (notice the \div symbol).
+- bmat:       Banded matrix (the field in a SymmetricBandedMatrix object), e.g.
+                bmat = [0 0 1; 0 2 3; 4 5 6]
+                (for a hbw of 2 and 1, 3, 6 as diagonal elements).
+- bm:         SymmetricBandedMatrix.
+### Constructor
+```julia
+bm = SymmetricBandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
+```
+### Arguments
+```julia
+* `hbw`             : Half bandwidth. 
+* `bmat`            : Banded matrix.
+```
+### Additional methods
+```julia
+* `size(bm)`        : Return size of full matrix => (n, n).
+* `==(bm1, bm2)`    : Compare 2 BandedMatrices for equality.
+* `copy(bm)`        : Create a copy.
+* `sparse(bm)`      : Convert to a SparseMatrixCSC.
+* `full(bm)`        : Convert to a full matrix.
+* `convert(::Type{NMfE.SymmetricBandedMatrix}, hbw::Int, bmat::AbstractMatrix)` (Default constructor)
+* `convert(::Type{NMfE.SymmetricBandedMatrix}, am::AbstractMatrix)`
+* `tosymmetricbandedmatrix(am::AbstractMatrix)`           : Convert to SymmetricBandedMatrix, compute hbw.
+* `tosymmetricbandedmatrix(hbw::Int, am::AbstractMatrix)` : Convert to SymmetricBandedMatrix.
+```
+"""
+type SymmetricBandedMatrix{Tv}
+    hbw::Int                    # Bandwidth bw = 1 + 2*hbw
     bmat::Matrix{Tv}            # Banded matrix
 end
 

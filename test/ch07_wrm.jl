@@ -1,5 +1,5 @@
 using NMfE
-using Test
+using Base.Test
 
 PkgDir = Pkg.dir("NMfE", "examples", "ch07", "WRM")
 ProjDir = dirname(@__FILE__)

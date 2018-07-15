@@ -1,5 +1,5 @@
 using NMfE
-using Test
+using Base.Test
 
 @sym begin
   CollocationWeightedResidualMethod(xi_, yi_, doprint_) := Module([Y, R],

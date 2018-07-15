@@ -1,5 +1,5 @@
 using NMfE
-using Test
+using Base.Test
 
 @sym begin
   ClearAll(xi, yi, Y, Ydot, Ydotdot, ytilde1, ytilde2, R)

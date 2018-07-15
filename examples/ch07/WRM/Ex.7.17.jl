@@ -1,7 +1,7 @@
 # Continuation of ex 7.13, Least Squares WRM
 
 using NMfE
-using Test
+using Base.Test
 
 @sym begin
   ClearAll(xi, yi, N1, Y, Ydotdot, C11, ytilde1, ytilde2)
