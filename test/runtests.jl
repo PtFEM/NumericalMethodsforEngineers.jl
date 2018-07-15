@@ -27,10 +27,10 @@ code_tests = [
   # Ch07 tests
   "ch07_ivp_ex7.3.jl",                            # Four direct methods
   "ch07_bvp_ex7.4a.jl",                         # Shooting method example 7.4a
-  "ch07_bvp_ex7.4b.jl"                         # Shooting method example 7.4b
+  "ch07_bvp_ex7.4b.jl"                          # Shooting method example 7.4b
   
   # Symata Weighted Residual Method tests
-  #"../examples/ch07/WRM/Ex.7.13.jl"   # 1 point LagrangePolynomial
+  #"../examples/ch07/WRM/Ex.7.13.jl",   # 1 point LagrangePolynomial
   #"../examples/ch07/WRM/Ex.7.14.jl",   # 2 point LagrangePolynomial
   #"../examples/ch07/WRM/Ex.7.15.jl",   # 1 point collocation  
   #"../examples/ch07/WRM/Ex.7.15b.jl",  # 2 point collocation  
