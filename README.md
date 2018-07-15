@@ -9,7 +9,7 @@
 
 More or less equivalent Julia versions of the Fortran programs described in "Numerical Methods for Engineers" by I M Smith and D V Griffiths to Julia.
 
-Currently being tested on Julia v0.5.
+Finale realease for Julia v0.6. Will be registered as v1.0.0. Julia 0.7 support is part of NMfE v2.0.0
 
 No timeline is set to complete this work.
 
