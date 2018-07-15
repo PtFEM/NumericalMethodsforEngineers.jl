@@ -10,6 +10,7 @@ cd(ProjDir) do
   x = 0.0
   y = [1.0, 0.0]
 
+
   r = Array{Float64,2}[]
   push!(r, euler(f1, x, y, steps, h))
   push!(r, modified_euler(f1, x, y, steps, h))
