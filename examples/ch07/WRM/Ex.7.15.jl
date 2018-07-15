@@ -32,9 +32,9 @@ println("by 1-point collocation Weighted Residual Method")
 println("( Example 7.15 gives: ytilde_collocation = 1/6 * x * (7x - 1) )", "\n")
 println()
 
-@eval rf_1pt_collocation(x, a) = $(parse(r))
-@eval a = $(parse(s))
-@eval ytilde_1pt_collocation(x) = $(parse(t))
+@eval rf_1pt_collocation(x, a) = $(Meta.parse(r))
+@eval a = $(Meta.parse(s))
+@eval ytilde_1pt_collocation(x) = $(Meta.parse(t))
 
 @test r == "4.0 + (-8.0)*a - 3x + 4x*(1.0 + (-2.0)*x + 4.0*a*(-1 + x))"
 @test t == "x*(-0.16666666666666663 + 1.1666666666666665*x)"

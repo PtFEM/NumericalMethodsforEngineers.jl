@@ -33,9 +33,9 @@ println("(a, b) = $(s)\n")
 @sym Println("ytilde_2pt_subdomain(x) = ", ytilde(x), "\n")
 println()
 
-@eval rf_2pt_subdomain(x, a, b) = $(parse(r))
-@eval (a, b) = $(parse(s))
-@eval ytilde_2pt_subdomain(x) = $(parse(t))
+@eval rf_2pt_subdomain(x, a, b) = $(Meta.parse(r))
+@eval (a, b) = $(Meta.parse(s))
+@eval ytilde_2pt_subdomain(x) = $(Meta.parse(t))
 
 rf_2pt_subdomain_1(x) = rf_2pt_subdomain(x, a, b)
 @test t == "x*(0.22596153846153857 + (-0.30288461538461586)*x + 1.0769230769230769*x^2)"

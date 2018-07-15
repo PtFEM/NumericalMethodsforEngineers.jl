@@ -33,9 +33,9 @@ println("(a, b) = $(s)\n")
 @sym Println("ytilde_2pt_collocation(x) = ", Simplify(ytilde(x)), "\n")
 println()
 
-@eval rf_2pt_collocation_2(x, a, b) = $(parse(r))
-@eval ytilde_2pt_collocation(x) = $(parse(t))
-@eval (a, b) = $(parse(s))
+@eval rf_2pt_collocation_2(x, a, b) = $(Meta.parse(r))
+@eval ytilde_2pt_collocation(x) = $(Meta.parse(t))
+@eval (a, b) = $(Meta.parse(s))
 
 @test t == "x*(0.2965260545905706 + (-0.3126550868486353)*x + 1.016129032258065*x^2)"
 @test rf_2pt_collocation_2(1//3, a, b) < eps()

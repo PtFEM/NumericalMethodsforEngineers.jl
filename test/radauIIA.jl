@@ -30,7 +30,7 @@ cd(ProjDir) do
   end
 
   nt = 5
-  const y0 = zeros(Float64, (2, 3*(nt-1)+1))
+  y0 = zeros(Float64, (2, 3*(nt-1)+1))
 
   for n=1:3*(nt-1)+1
     y0[:, n] = [0.0, 1.0]
@@ -44,7 +44,7 @@ cd(ProjDir) do
   yres = ytot[1,:]
   vres = ytot[2,:]
 
-  let t = linspace(0.0, π, 100)
+  let t = range(0.0, stop=π, length=100)
     
     global possol = sin.(t)
     global vsol = cos.(t)
@@ -55,7 +55,7 @@ cd(ProjDir) do
   end
 
   p1 = plot(
-  linspace(0.0, π, 100),
+  range(0.0, stop=π, length=100),
   possol,
   title = "Coordinate (n = $nt)",
   label = "Exact")
@@ -63,7 +63,7 @@ cd(ProjDir) do
 
 
   p2 = plot(
-  linspace(0.0, π, 100),
+  range(0.0, stop=π, length=100),
   vsol,
   title = "Velocity (n = $nt)",
   label = "Exact")

@@ -16,4 +16,4 @@ println("\nSolution Vector: $x")
 println("Converged: $(ch.isconverged)")
 println("Number of iters: $(ch.mvps)")
 
-@test round(x, 9) == round(c, 9)
+@test round(x, digits=9) == round(c, digits=9)
