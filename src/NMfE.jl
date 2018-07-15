@@ -3,7 +3,7 @@ module NMfE
 using Documenter
 using IterativeSolvers
 using Reexport
-@reexport using SparseArrays, LinearAlgebra, Compat
+@reexport using SparseArrays, LinearAlgebra
 
 #using BandedMatrices
 

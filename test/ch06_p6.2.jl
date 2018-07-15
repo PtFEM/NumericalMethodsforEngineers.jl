@@ -1,5 +1,4 @@
-using Compat, Calculus, QuadGK
-using Test: @test
+using Compat, Calculus, QuadGK, Test.@test
 
 
 function psm(nip)
@@ -14,10 +13,10 @@ function psm(nip)
   else
     if isodd(nip)
       n = floor(Int, nip/2)
-      hn = range(-n, stop=n, length=nip)
+      hn = linspace(-n, n, nip)
     else
       n = floor(Int, 2*(nip/2)-1)
-      hn = range(-n, stop=n, length=nip)
+      hn = linspace(-n, n, nip)
     end
     m = ones(nip, nip)
     for i in 0:nip-1
@@ -43,7 +42,7 @@ function nc(func, lb, ub, nip)
     x = [lb, ub]
   else
     h = (ub - lb)/(nip-1)
-    x = collect(range(lb, stop=ub, length=nip))
+    x = collect(linspace(lb, ub, nip))
   end
   w = psm(nip)
   res = h * w *func.(x)
