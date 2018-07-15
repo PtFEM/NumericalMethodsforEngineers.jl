@@ -15,7 +15,6 @@ julia:
 matrix:
   allow_failures:
     - os: osx
-    - nightly
     
 notifications:
   email: true
@@ -29,7 +28,7 @@ after_success:
   #
   # Documentation
   #
-  - julia -e 'using Pkg; Pkg.add("Documenter")'
+  - julia -e 'Pkg.add("Documenter")'
   - julia -e 'cd(Pkg.dir("NMfE")); include(joinpath("docs", "make.jl"))'
   #
   # Coverage
