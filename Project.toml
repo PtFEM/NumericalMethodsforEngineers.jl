@@ -1,7 +1,7 @@
-name = "NMfE"
+name = "NumericalMethodsforEngineers"
 uuid = "c93b350c-d8e2-5456-b35f-2d67254a4e74"
 authors = ["Rob J Goedman <goedman@mac.com>"]
-version = "0.1.0"
+version = "1.0.0"
 
 [deps]
 BandedMatrices = "aae01518-5342-5314-be14-df237901396f"
