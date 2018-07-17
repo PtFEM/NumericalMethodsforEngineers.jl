@@ -19,4 +19,4 @@ notifications:
 script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
   - julia -e 'ENV["PYTHON"]=""; Pkg.add("PyCall"); Pkg.build("PyCall")'
-  - julia -e 'Pkg.clone(pwd()); Pkg.build("NMfE"); Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
+  - julia -e 'Pkg.clone(pwd()); Pkg.build("NumericalMethodsforEngineers"); Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
