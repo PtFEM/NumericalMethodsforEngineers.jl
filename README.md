@@ -9,6 +9,6 @@
 
 More or less equivalent Julia versions of the Fortran programs described in "Numerical Methods for Engineers" by I M Smith and D V Griffiths to Julia.
 
-Finale realease for Julia v0.6. Will be registered as v0.5.0. Julia 0.7 support is part of NumericalMethodsforEngineers v0.0.6
+Finale realease for Julia v0.6. Will be registered as v0.5.0. Julia 0.7 support will be part of NumericalMethodsforEngineers v1.0.0, initially without support for Symata.
 
 No timeline is set to complete this work. This repository is part of the PtFEM organisation
