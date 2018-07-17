@@ -1,4 +1,4 @@
-module NMfE
+module NumericalMethodsforEngineers
 
 using Documenter
 using IterativeSolvers

@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 ProjDir = dirname(@__FILE__)
 cd(ProjDir) do

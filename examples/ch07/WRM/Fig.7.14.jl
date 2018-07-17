@@ -1,4 +1,4 @@
-using NMfE, Plots
+using NumericalMethodsforEngineers, Plots
 
 ProjDir = dirname(@(__FILE__))
 
@@ -6,7 +6,7 @@ ProjDir = dirname(@(__FILE__))
 # Compute all ytildes:
 #
 cd(ProjDir) do
-  include(joinpath(Pkg.dir("NMfE"), "test", "ch07_wrm.jl")) 
+  include(joinpath(Pkg.dir("NumericalMethodsforEngineers"), "test", "ch07_wrm.jl")) 
   
   y_exact(x) = 7/4*(exp(2x)-exp(-2x))/(exp(2)-exp(-2))-3/4*x
 

@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 using Test
 
 @sym begin

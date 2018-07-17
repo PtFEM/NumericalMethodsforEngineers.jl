@@ -1,7 +1,7 @@
-using NMfE, Gadfly
+using NumericalMethodsforEngineers, Gadfly
 
 old = pwd()
-ProjDir = Pkg.dir("NMfE", "examples", "NMfE", "Ch07", "IVP")
+ProjDir = Pkg.dir("NumericalMethodsforEngineers", "examples", "NumericalMethodsforEngineers", "Ch07", "IVP")
 cd(ProjDir)
 
 f(x::Float64, y::Vector{Float64}) = [y[2], 2.0*y[1]-3.0*y[2]+3.0*x^2]

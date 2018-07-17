@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 using Test
 
 b = [16. -24. 18.; 3. -2. 0.; -9. 18. -17.]

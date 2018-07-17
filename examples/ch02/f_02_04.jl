@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 A = Float64[0 0 16; 0 4 5; 8 -4 22]
 b = Float64[4, 2, 5]

@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 using Test
 
 ProjDir = dirname(@__FILE__)

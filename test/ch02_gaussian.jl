@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 using Test
 
 a = [10. 1. -5;-20. 3. 20.;5. 3. 5.]
