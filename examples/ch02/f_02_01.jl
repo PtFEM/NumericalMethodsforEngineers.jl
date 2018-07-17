@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 A = [10. 1. -5.; -20. 3. 20.; 5. 3. 5.]
 b = [1., 2., 6.]

@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 println("\n'Fortran' version:\n")
 a = [16.; 4.; 5.; 8.; -4.; 22.]

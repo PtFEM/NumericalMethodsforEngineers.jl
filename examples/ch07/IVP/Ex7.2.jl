@@ -1,4 +1,4 @@
-using DataFrames, Plots, NMfE
+using DataFrames, Plots, NumericalMethodsforEngineers
 pyplot()
 
 old = pwd()

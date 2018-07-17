@@ -1,7 +1,7 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 old = pwd()
-ProjDir = Pkg.dir("NMfE", "examples", "ch07", "IVP")
+ProjDir = Pkg.dir("NumericalMethodsforEngineers", "examples", "ch07", "IVP")
 cd(ProjDir)
 
 f1(x::Float64, y::Vector{Float64}) = [y[2], 2.0*y[1]-3.0*y[2]+3.0*x^2]

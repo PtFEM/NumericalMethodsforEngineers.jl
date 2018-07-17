@@ -1,7 +1,7 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 old = pwd()
-ProjDir = Pkg.dir("NMfE", "examples", "NMfE", "Ch07", "BVP")
+ProjDir = Pkg.dir("NumericalMethodsforEngineers", "examples", "NumericalMethodsforEngineers", "Ch07", "BVP")
 cd(ProjDir)
 
 function f(x::Float64, y::Vector{Float64})

@@ -1,4 +1,4 @@
-using NMfE, IterativeSolvers
+using NumericalMethodsforEngineers, IterativeSolvers
 
 a = [16. 4. 8.; 4. 5. -4.; 8. -4. 22.]
 b = [4., 2., 5.]

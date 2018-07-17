@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 a = [1. 2. -2.; 2. 5. -4.; -2. -4. 5.]
 

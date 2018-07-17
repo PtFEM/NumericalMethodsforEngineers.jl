@@ -1,4 +1,4 @@
-using NMfE, DataFrames, Plots
+using NumericalMethodsforEngineers, DataFrames, Plots
 pyplot(size=(700,700))
 
 ProjDir = dirname(@__FILE__)

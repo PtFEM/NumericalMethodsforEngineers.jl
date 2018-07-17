@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 a = [16.; 4.; 5.; 8.; -4.; 22.]
 kdiag = [1; 3; 6]

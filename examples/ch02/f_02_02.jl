@@ -1,13 +1,13 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 a = [2. -3. 1.; 1. -1. -2.; 3. 1. -1.]
 b = [7., -2., 0.]
 
 (lower, upper) = lufac(a)
-println("NMfE lufac(a) - lower:")
+println("NumericalMethodsforEngineers lufac(a) - lower:")
 println(lower)
 println()
-println("NMfE lufac(a) - upper:")
+println("NumericalMethodsforEngineers lufac(a) - upper:")
 println(upper)
 println()
 @show lower * upper

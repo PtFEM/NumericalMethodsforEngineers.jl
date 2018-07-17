@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 af = Float64[16, 4, 5, 8, -4, 22]
 ai = [16, 4, 5, 8, -4, 22]

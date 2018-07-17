@@ -1,7 +1,7 @@
-using NMfE
+using NumericalMethodsforEngineers
 using Base.Test
 
-PkgDir = Pkg.dir("NMfE", "examples", "ch07", "WRM")
+PkgDir = Pkg.dir("NumericalMethodsforEngineers", "examples", "ch07", "WRM")
 ProjDir = dirname(@__FILE__)
 cd(ProjDir) do
 

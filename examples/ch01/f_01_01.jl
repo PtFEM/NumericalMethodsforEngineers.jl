@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 a = [10. 5. 6.; 5. 20. 4.; 6. 4. 30.]
 x0 = [1., 1., 1.]

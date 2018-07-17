@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 a = [16. 4. 8.; 4. 5. -4.; 8. -4. 22.]
 b = [16., 18., -22.]

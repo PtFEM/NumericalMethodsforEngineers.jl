@@ -35,8 +35,8 @@ bm = SymmetricBandedMatrix{Tv}(hbw::Int, bmat::Matrix{Tv})
 * `copy(bm)`        : Create a copy.
 * `sparse(bm)`      : Convert to a SparseMatrixCSC.
 * `full(bm)`        : Convert to a full matrix.
-* `convert(::Type{NMfE.SymmetricBandedMatrix}, hbw::Int, bmat::AbstractMatrix)` (Default constructor)
-* `convert(::Type{NMfE.SymmetricBandedMatrix}, am::AbstractMatrix)`
+* `convert(::Type{NumericalMethodsforEngineers.SymmetricBandedMatrix}, hbw::Int, bmat::AbstractMatrix)` (Default constructor)
+* `convert(::Type{NumericalMethodsforEngineers.SymmetricBandedMatrix}, am::AbstractMatrix)`
 * `tosymmetricbandedmatrix(am::AbstractMatrix)`           : Convert to SymmetricBandedMatrix, compute hbw.
 * `tosymmetricbandedmatrix(hbw::Int, am::AbstractMatrix)` : Convert to SymmetricBandedMatrix.
 ```
@@ -56,13 +56,13 @@ function copy(bm::SymmetricBandedMatrix)
 end
 
 # Conversion routine similar to default constructor
-function convert(::Type{NMfE.SymmetricBandedMatrix}, hbw::Int, bmat::AbstractMatrix)
+function convert(::Type{NumericalMethodsforEngineers.SymmetricBandedMatrix}, hbw::Int, bmat::AbstractMatrix)
   Tv = eltype(a)
   SymmetricBandedMatrix{Tv}(hbw, a)
 end
 
 # Conversion routine to turn a symmetric matrix into a SymmetricBandedMatrix
-function convert(::Type{NMfE.SymmetricBandedMatrix}, am::AbstractMatrix)
+function convert(::Type{NumericalMethodsforEngineers.SymmetricBandedMatrix}, am::AbstractMatrix)
   tosymmetricbandedmatrix(am)
 end
 

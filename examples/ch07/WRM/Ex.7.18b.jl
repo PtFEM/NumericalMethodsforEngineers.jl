@@ -1,6 +1,6 @@
 # Continuation of ex 7.13, Least Squares WRM
 
-using NMfE
+using NumericalMethodsforEngineers
 using Base.Test
 
 @sym begin
