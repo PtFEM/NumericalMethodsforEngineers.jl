@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 using Test
 
 # write your own tests here
@@ -46,7 +46,7 @@ code_tests = [
 
 println("Running tests:")
 
-@testset "NMfE.jl" begin
+@testset "NumericalMethodsforEngineers.jl" begin
   for my_test in code_tests
       println("\n  * $(my_test) *")
       include("$(my_test)")

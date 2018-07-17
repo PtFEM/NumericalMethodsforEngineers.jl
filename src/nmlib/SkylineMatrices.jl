@@ -28,7 +28,7 @@ sm = SkylineMatrix{Tv}(kdiag::Vector{Int}, sv::Vector{Tv})
 * `sparse(sm)`      : Convert to a SparseMatrixCSC.
 * `full(sm)`        : Convert to a full matrix.
 
-* `convert(::Type{NMfE.SkylineMatrix}, kdiag::Vector{Int}, sv::Vector{Tv})`
+* `convert(::Type{NumericalMethodsforEngineers.SkylineMatrix}, kdiag::Vector{Int}, sv::Vector{Tv})`
                     : Default constructor
 
 * `fromskyline(kdiag::Vector{Int}, sv::Vector{Tv})`
@@ -49,7 +49,7 @@ function copy(sm::SkylineMatrix)
   SkylineMatrix{Tv}(copy(sm.kdiag), copy(sm.sv))
 end
 
-function convert(::Type{NMfE.SkylineMatrix}, kdiag::Vector{Int}, sv::Vector)
+function convert(::Type{NumericalMethodsforEngineers.SkylineMatrix}, kdiag::Vector{Int}, sv::Vector)
   Tv = eltype(sv)
   SkylineMatrix{Tv}(kdiag, sv)
 end

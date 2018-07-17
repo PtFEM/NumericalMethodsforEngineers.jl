@@ -1,4 +1,4 @@
-using NMfE, Plots
+using NumericalMethodsforEngineers, Plots
 
 old = pwd()
 ProjDir = dirname(@__FILE__)

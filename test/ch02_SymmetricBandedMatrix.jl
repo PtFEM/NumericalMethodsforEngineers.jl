@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 
 ab = SymmetricBandedMatrix(2, Float64[0 0 16; 0 4 5; 8 -4 22])
 bb = SymmetricBandedMatrix(3, Float64[0 0 0 16; 0 0 4 2; 0 8 -4 22; 13 5 9 1])

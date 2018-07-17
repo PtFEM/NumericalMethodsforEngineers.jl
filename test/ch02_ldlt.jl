@@ -1,4 +1,4 @@
-using NMfE
+using NumericalMethodsforEngineers
 using Test
 
 a = Float64[16 4 8;4 5 -4;8 -4 22]
