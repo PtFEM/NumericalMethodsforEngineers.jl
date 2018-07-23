@@ -13,4 +13,4 @@ Currently being tested on Julia v0.7-beta.
 
 No timeline is set to complete this work.
 
-Initial release (v1.0.0) does not contain the Symata examples and for the time being is using a forked version of Symata ( https://github.com/goedman/Symata.jl#master)
+Initial release (v1.0.0) does not contain the Symata examples.
