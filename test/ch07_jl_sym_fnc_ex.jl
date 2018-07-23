@@ -50,7 +50,7 @@ function wrm(x1,y1, doprint=true)
     setsymata(:xin, List(x1...))
     setsymata(:yin, List(y1...))
     setsymata(:doprint, doprint ? true : false)
-    #symtranseval(parse("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin,doprint)))"))
+    #symtranseval(Meta.parse("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin,doprint)))"))
     symparseeval("Compile(Evaluate(CollocationWeightedResidualMethod(xin,yin,doprint)))")
 end
 

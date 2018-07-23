@@ -32,9 +32,9 @@ println("by 1-point subdomain Weighted Residual Method")
 println("( Example 7.16 gives: ytilde = 1/16*x*(21x - 5) )")
 println()
 
-@eval rf_1pt_subdomain(x, a) = $(parse(r))
-@eval a = $(parse(s))
-@eval ytilde_1pt_subdomain(x) = $(parse(t))
+@eval rf_1pt_subdomain(x, a) = $(Meta.parse(r))
+@eval a = $(Meta.parse(s))
+@eval ytilde_1pt_subdomain(x) = $(Meta.parse(t))
 
 rf_1pt_subdomain_1(x) = rf_1pt_subdomain(x, a)
 @test r == "4.0 + (-8.0)*a - 3x + 4x*(1.0 + (-2.0)*x + 4.0*a*(-1 + x))"
