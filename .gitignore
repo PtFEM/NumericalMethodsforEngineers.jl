@@ -1,5 +1,5 @@
 Manifest.toml
-Project.toml
+#Project.toml
 *.jl.cov
 *.jl.*.cov
 *.jl.mem
