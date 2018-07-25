@@ -31,7 +31,7 @@ script:
   - julia -e 'using Pkg; Pkg.add("Symata", "master"); Pkg.build("Symata"); Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
   
 before_install:
-  -julia -e 'Pkg.add("Conda"); using Conda; Conda.add("mpmath")';fi
+  - julia -e 'using Pkg; Pkg.add("Conda"); using Conda; Conda.add("mpmath")'
   
 after_success:
   #
