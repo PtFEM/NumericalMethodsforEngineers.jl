@@ -125,10 +125,10 @@ uuid = "59287772-0a20-5a39-b81b-1366585eb4c0"
 version = "0.3.2"
 
 [[ForwardDiff]]
-deps = ["CommonSubexpressions", "Compat", "DiffResults", "DiffRules", "NaNMath", "SpecialFunctions", "StaticArrays"]
-git-tree-sha1 = "1c15726e82a01b42fc0f91e1220a99da6b8d7734"
+deps = ["CommonSubexpressions", "DiffResults", "DiffRules", "InteractiveUtils", "LinearAlgebra", "NaNMath", "Random", "SparseArrays", "SpecialFunctions", "StaticArrays", "Test"]
+git-tree-sha1 = "91bd8f3deb78e5d03b5c05c3613f135e5c300252"
 uuid = "f6369f11-7733-5829-9624-2563aa707210"
-version = "0.7.5"
+version = "0.8.0"
 
 [[Future]]
 uuid = "9fa8497b-333b-5362-9e8d-4d0656e87820"
@@ -296,11 +296,11 @@ version = "0.24.0"
 
 [[Symata]]
 deps = ["Combinatorics", "CommonSubexpressions", "Conda", "DataStructures", "Dates", "DiffResults", "DiffRules", "Formatting", "ForwardDiff", "InteractiveUtils", "IterTools", "MacroTools", "Markdown", "Memoize", "Polynomials", "Primes", "PyCall", "QuadGK", "REPL", "Roots", "SpecialFunctions", "Statistics", "VersionParsing"]
-git-tree-sha1 = "dbf68ac581f2f01c6afad8f565d792c16f9cb7a4"
+git-tree-sha1 = "0ab528184fbf25c162558bb64990e04b4b8303eb"
 repo-rev = "master"
 repo-url = "https://github.com/jlapeyre/Symata.jl.git"
 uuid = "a906b1d5-d016-55c4-aab3-8a20cba0db2a"
-version = "0.4.2-dev"
+version = "0.4.2"
 
 [[Test]]
 uuid = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
