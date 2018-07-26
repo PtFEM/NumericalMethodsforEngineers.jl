@@ -1,5 +1,6 @@
-using Symata, Plots
-pyplot(size=(700,700))
+using Symata
+#using Plots
+#pyplot(size=(700,700))
 
 println()
 @sym begin
@@ -20,7 +21,7 @@ println()
 #q = @sym ToString(Q(x));
 @eval f1(x) = $(Meta.parse(q))
 
-xint = 1:0.1:6 # FloatRange
-p = plot(xint, f1.(xint), line=(:path, 1), label="interpolated curve")
-gui()
+#xint = 1:0.1:6 # FloatRange
+#p = plot(xint, f1.(xint), line=(:path, 1), label="interpolated curve")
+#gui()
 

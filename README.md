@@ -12,5 +12,3 @@ More or less equivalent Julia versions of the Fortran programs described in "Num
 Currently being tested on Julia v0.7-beta.
 
 No timeline is set to complete this work.
-
-Initial release (v1.0.0) does not contain the Symata examples.

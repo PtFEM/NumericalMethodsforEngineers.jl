@@ -19,6 +19,10 @@ code_tests = [
   
   # Ch03 tests
   # Ch04 tests
+  
+  "ch04_symata.jl",
+  "ch04_vianello_symata.jl",
+  
   # Ch05 tests
   
   # Ch06 tests

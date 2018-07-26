@@ -17,13 +17,21 @@ matrix:
     - julia: nightly
     - os: osx
     
+#env:
+#    global:
+#    - PYTHON=conda
+#    matrix:
+#    - MPMATH=true
+    
 notifications:
   email: true
   
-# uncomment the following lines to override the default test script
 #script:
 #  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-#  - julia -e 'using Pkg; Pkg.instantiate(); Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
+#  - julia -e 'using Pkg; Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
+  
+#before_install:
+#  - julia -e 'using Pkg; Pkg.add("Conda"); using Conda; Conda.add("mpmath")'
   
 after_success:
   #
