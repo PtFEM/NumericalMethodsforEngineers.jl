@@ -31,7 +31,7 @@ notifications:
 #  - julia -e 'using Pkg; Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
   
 #before_install:
-#  - julia -e 'using Pkg; Pkg.add("Conda"); using Conda; Conda.add("mpmath")'
+  - julia -e 'using Pkg; Pkg.add("Symata", "master")'
   
 after_success:
   #
