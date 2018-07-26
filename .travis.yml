@@ -26,12 +26,12 @@ env:
 notifications:
   email: true
   
-#script:
-#  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-#  - julia -e 'using Pkg; Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
+script:
+  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+  - julia -e 'using Pkg; Pkg.build("PyCall"); Pkg.develop("Symata"); Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
   
-before_install:
-  - julia -e 'using Pkg; Pkg.build("PyCall"); Pkg.develop("Symata")'
+#before_install:
+#  - julia -e 'using Pkg; Pkg.build("PyCall"); Pkg.develop("Symata")'
   
 after_success:
   #
