@@ -31,7 +31,7 @@ notifications:
 #  - julia -e 'using Pkg; Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
   
 before_install:
-  - julia -e 'using Pkg; Pkg.build("PyCall"); Pkg.add("Symata", "master")'
+  - julia -e 'using Pkg; Pkg.build("PyCall"); Pkg.develop("Symata")'
   
 after_success:
   #
