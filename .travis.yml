@@ -30,7 +30,7 @@ notifications:
 #  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 #  - julia -e 'using Pkg; Pkg.test("NumericalMethodsforEngineers"; coverage=true)'
   
-#before_install:
+before_install:
   - julia -e 'using Pkg; Pkg.build("PyCall"); Pkg.add("Symata", "master")'
   
 after_success:
