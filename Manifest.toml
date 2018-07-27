@@ -295,10 +295,8 @@ uuid = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 version = "0.24.0"
 
 [[Symata]]
-deps = ["Combinatorics", "CommonSubexpressions", "Conda", "DataStructures", "Dates", "DiffResults", "DiffRules", "Formatting", "ForwardDiff", "InteractiveUtils", "IterTools", "MacroTools", "Markdown", "Memoize", "Polynomials", "Primes", "PyCall", "QuadGK", "REPL", "Roots", "SpecialFunctions", "Statistics", "VersionParsing"]
-git-tree-sha1 = "0ab528184fbf25c162558bb64990e04b4b8303eb"
-repo-rev = "master"
-repo-url = "https://github.com/jlapeyre/Symata.jl.git"
+deps = ["Base64", "Combinatorics", "Compat", "DataStructures", "Dates", "Formatting", "InteractiveUtils", "MacroTools", "Markdown", "Memoize", "Pkg", "Polynomials", "Primes", "PyCall", "QuadGK", "REPL", "Roots", "SpecialFunctions", "Statistics", "Test"]
+git-tree-sha1 = "cf291e1d05ee5f3fc49b92f437740a27de131427"
 uuid = "a906b1d5-d016-55c4-aab3-8a20cba0db2a"
 version = "0.4.2"
 
