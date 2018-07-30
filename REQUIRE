@@ -1,4 +1,4 @@
-julia 0.7-beta
+julia 0.7-beta2
 IterativeSolvers 0.2.2
 Documenter 0.7.0
 BandedMatrices 0.1.2
@@ -9,3 +9,4 @@ QuadGK 0.1.2
 Compat 0.70
 Calculus
 Reexport
+Test

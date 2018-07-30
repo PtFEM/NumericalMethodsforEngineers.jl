@@ -21,7 +21,6 @@ code_tests = [
   # Ch04 tests
   
   "ch04_symata.jl",
-  "ch04_vianello_symata.jl",
   
   # Ch05 tests
   
@@ -43,9 +42,13 @@ code_tests = [
   "../examples/ch07/WRM/Ex.7.17.jl",   # 1 point least-squares
   "../examples/ch07/WRM/Ex.7.17b.jl",  # 2 point least-squares
   "../examples/ch07/WRM/Ex.7.18.jl",   # 1 point galerkin
-  "../examples/ch07/WRM/Ex.7.18b.jl"   # 2 point galerkin
+  "../examples/ch07/WRM/Ex.7.18b.jl",   # 2 point galerkin
+  
   # Ch08 tests
   #"ch08_ex01.jl"
+  
+  # Extra tests
+  #"vianello_symata.jl"                   # Vianello procedure
 ]
 
 println("Running tests:")

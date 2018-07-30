@@ -41,11 +41,35 @@ using Symata
           Println("N[res[$i, 1]]: ", N(res[i,1], 4))
         end
       ),
+      Println(),
       Return(res)
     )
   )
-  r = f(8, y0(x))
-  Println(N(Transpose(r)[1], 4))
+  
   # Mathematica results (for 9 iterations): 
   # {0, 22.7027, 19.1105, 18.6691, 18.5891, 18.5730, 18.5696, 18.5689}
+  
+  # Since Julia-0.7 build >~ 180 it is failing abobe 6 iterations with a spurious PyCall error:
+  
+  #=
+  julia> include("/Users/rob/.julia/dev/NumericalMethodsforEngineers/test/vianello_symata.jl")
+  N[res[1, 1]]: 0.0
+  N[res[2, 1]]: 22.7027027027027
+  N[res[3, 1]]: 19.110473457675752
+  N[res[4, 1]]: 18.669080846404874
+  N[res[5, 1]]: 18.589113036311467
+  N[res[6, 1]]: 18.57300630567659
+  MethodError(Rational, (1, PyObject 93666727314800640000), 0x0000000000006bc8)
+  ERROR: LoadError: LoadError: MethodError: no method matching Rational(::Int64, ::PyCall.PyObject)
+  Closest candidates are:
+    Rational(::Integer) at rational.jl:20
+    Rational(::T<:Integer, ::T<:Integer) where T<:Integer at rational.jl:18
+    Rational(::Integer, ::Integer) at rational.jl:19
+    ...
+  Stacktrace:
+   [1] _pytosj(::PyCall.PyObject) at /Users/rob/.julia/dev/Symata/src/sympy.jl:419
+=#  
+  
+  r = f(6, y0(x))
+  Println(N(Transpose(r)[1], 4))
 end

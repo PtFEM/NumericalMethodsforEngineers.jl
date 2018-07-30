@@ -1,6 +1,4 @@
-using Symata
-#using Plots
-#pyplot(size=(700,700))
+using Symata, Test
 
 println()
 @sym begin
@@ -15,13 +13,20 @@ end
 
 @sym Print("Q(x) = ", Q(x))
 println()
-@sym Print("Q(4.5) = ", Q(4.5))
+@sym Println("Q(4.5) = ", Q(4.5))
 
 println()
-#q = @sym ToString(Q(x));
+q = @sym ToString(Q(x));
+q |> display
+println()
+
 @eval f1(x) = $(Meta.parse(q))
 
-#xint = 1:0.1:6 # FloatRange
-#p = plot(xint, f1.(xint), line=(:path, 1), label="interpolated curve")
-#gui()
+@test round(f1(5), digits=5) == 8.46667
 
+#=
+using GR
+
+xint = 1:0.1:6 # FloatRange
+p = plot(xint, f1.(xint), title="Interpolated curve")
+=#
