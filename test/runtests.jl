@@ -48,7 +48,7 @@ code_tests = [
   #"ch08_ex01.jl"
   
   # Extra tests
-  #"vianello_symata.jl"                   # Vianello procedure
+  "vianello_symata.jl"                   # Vianello procedure
 ]
 
 println("Running tests:")

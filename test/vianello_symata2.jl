@@ -37,6 +37,7 @@ using Symata
           res[i,3] = Simplify( tmpy3(x) ./ K22 )
           res[i,2] = Simplify( tmpy2(x) ./ K22 )
           tmp = Simplify( (((l^3)*w)/EI)*(res[i-1,3]/res[i, 3]) )
+          tmp2 = Simplify( (((l^3)*w)/EI)*(res[i-1,3]/res[i, 3]) )
           res[i,1] = N(Simplify(ReplaceAll(tmp, x => l)))
           Println("N[res[$i, 1]]: ", N(res[i,1], 4))
         end
@@ -49,7 +50,8 @@ using Symata
   # Mathematica results (for 9 iterations): 
   # {0, 22.7027, 19.1105, 18.6691, 18.5891, 18.5730, 18.5696, 18.5689}
   
-  # Since Julia-0.7 build >~ 180 it is failing abobe 6 iterations with below error:
+  # Since Julia-0.7 build >~ 180  (an other Pkg updates?) it is failing above 6 iterations
+  # with below PyCall.PyObject error:
   
   #=
   julia> include("/Users/rob/.julia/dev/NumericalMethodsforEngineers/test/vianello_symata.jl")
@@ -70,6 +72,14 @@ using Symata
    [1] _pytosj(::PyCall.PyObject) at /Users/rob/.julia/dev/Symata/src/sympy.jl:419
 =#  
   
-  r = f(6, y0(x))
+  r = f(8, y0(x))
   Println(N(Transpose(r)[1], 4))
+  SetJ(q, ToString(tmp2))
+  
 end
+
+@eval f(x, l) = $(Meta.parse(q))
+
+println(q)
+
+
