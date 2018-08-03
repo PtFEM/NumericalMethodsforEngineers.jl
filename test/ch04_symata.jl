@@ -22,11 +22,11 @@ println()
 
 @eval f1(x) = $(Meta.parse(q))
 
-@test round(f1(5), digits=5) == 8.46667
+@test round(f1(4.5), digits=5) == 7.65
 
 #=
 using GR
 
 xint = 1:0.1:6 # FloatRange
-p = plot(xint, f1.(xint), title="Interpolated curve")
+p = plot(xint, f1.(xint),"g", [4.5], [f1(4.5)], "o", title="Interpolated curve")
 =#

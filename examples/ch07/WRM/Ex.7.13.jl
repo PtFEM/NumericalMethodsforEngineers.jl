@@ -1,5 +1,5 @@
 using NumericalMethodsforEngineers
-using Test
+#using Test
 
 
 @sym begin
@@ -27,4 +27,8 @@ println("Residual for Weighted Residual Method using 1 point Lagragian Polynomia
 @sym Println("R(x) = ", R(x), "\n")
 println("( Example 7.13 gives: R = -4x^2*(2 + C1) + x*(1 + 4C1) + 2*(2 + C1) )", "\n")
 
-@test r == "4.0 + 2.0*C1 - 3x - 4x*(-1.0 + 2.0*x + C1*(-1 + x))"
+println(r)
+
+#@eval r(x, C1) = $(Meta.parse(r))
+
+#@test r(1, 2) == "4.0 + 2.0*C1 - 3x - 4x*(-1.0 + 2.0*x + C1*(-1 + x))"
