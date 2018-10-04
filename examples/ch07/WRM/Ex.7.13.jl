@@ -1,6 +1,4 @@
-using NumericalMethodsforEngineers
-#using Test
-
+using NumericalMethodsforEngineers, Test
 
 @sym begin
   ClearAll(xi, yi, Y, R, sol, ytilde)

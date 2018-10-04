@@ -3,7 +3,7 @@ module NumericalMethodsforEngineers
 using Documenter
 using IterativeSolvers
 using Reexport
-@reexport using SparseArrays, LinearAlgebra, Compat
+@reexport using Symata, SparseArrays, LinearAlgebra, Compat
 
 #using BandedMatrices
 

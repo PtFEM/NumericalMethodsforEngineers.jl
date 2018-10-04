@@ -1,4 +1,4 @@
-using NumericalMethodsforEngineers
+using Symata, NumericalMethodsforEngineers
 using Test
 
 @sym begin
