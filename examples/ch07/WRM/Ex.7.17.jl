@@ -4,6 +4,29 @@ using NumericalMethodsforEngineers
 using Test
 
 @sym begin
+  LagrangePolynomial(xi_, yi_) := Module([N, sum, num, den],
+    begin
+      N = Length(xi)
+      sum = 0
+      For( i=1, i <= N, Increment(i),
+        begin
+          num = 1
+          den = 1
+          For( j=1, j <= N, Increment(j),
+            begin
+              If(j != i, num *= (x-xi[j]))
+              If(j != i, den *= (xi[i]-xi[j]))
+            end
+          )
+          sum += yi[i] * num/den
+        end
+      ),
+      Return(Simplify(sum))
+    end
+  )
+end
+
+@sym begin
   ClearAll(xi, yi, N1, Y, Ydotdot, C11, ytilde1, ytilde2)
   xi = [0, 1//2, 1]
   yi = [0, a, 1]

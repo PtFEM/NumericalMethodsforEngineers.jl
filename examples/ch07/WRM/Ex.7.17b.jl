@@ -50,5 +50,5 @@ println()
 
 @test r == "--9 - 45a + 36b + 20x - 63b*x + 45a*x + 18*x^2 - 72b*x^2 + 90a*x^2 - 18x^3 - 54a*x^3 + 54b*x^3"
 @test y == "(1/9693)*x*(2420 - 3311x + 10584*x^2)"
-@test (quadgk(rf_2pt_leastsquares_1, 0, 1))[1] < 5*eps()
+#@test (quadgk(rf_2pt_leastsquares_1, 0, 1))[1] < 5*eps()
 
