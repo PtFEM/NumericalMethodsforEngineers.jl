@@ -37,6 +37,6 @@ println()
 @eval ytilde_1pt_subdomain(x) = $(Meta.parse(t))
 
 rf_1pt_subdomain_1(x) = rf_1pt_subdomain(x, a)
-@test r == "4.0 + (-8.0)*a - 3x + 4x*(1.0 + (-2.0)*x + 4.0*a*(-1 + x))"
-@test t == "x*(-0.3125 + 1.3125*x)"
+@test r == "4 - 8a - 3x + 4x*(1 - 2x + 4a*(-1 + x))"
+@test t == "(1/16)*x*(-5 + 21x)"
 @test (quadgk(rf_1pt_subdomain_1, 0, 1))[1] < eps()

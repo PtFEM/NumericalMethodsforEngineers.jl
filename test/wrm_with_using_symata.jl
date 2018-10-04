@@ -1,4 +1,4 @@
-using NumericalMethodsforEngineers, Test
+using Symata
 
 @sym begin
   LagrangePolynomial(xi_, yi_) := Module([N, sum, num, den],
@@ -21,39 +21,48 @@ using NumericalMethodsforEngineers, Test
       Return(Simplify(sum))
     end
   )
-  xi = [0, 1//2, 1]
-  yi = [0, a, 1]
-  Y(x_) := LagrangePolynomial(xi, yi)
-  Println(Y(x))
 end
+
+println("\n\n--------1------------\n")
 
 @sym begin
   ClearAll(xi, yi, Y, R, sol, ytilde)
   xi = [0, 1//2, 1]
   yi = [0, a, 1]
   Y(x_) := LagrangePolynomial(xi, yi)
-  #
-  # Can be formulated as ytile(x) = F(x) + C1(a) * Ψ(x)
-  #
-  # F(x_) := 2*x^2 - x
-  # C(a_) := -4a
-  # Ψ(x_) := x^2 - x
-  #
-  #Y(x_) := F(x) + C(a)*Ψ(x)
-  #
+  Println(Y(x))
+end
+
+println("\n---------2-----------\n")
+
+@sym begin
+  ClearAll(xi, yi, Y1, R, sol, ytilde)
+  Y1(x_) := x^3 -3x^2 +6x - 9
+  R(x_) = Simplify(D(Y1(x), x, 2))
+  Println(R(x))
+end
+
+println("\n----------3----------\n")
+
+@sym begin
+  ClearAll(xi, yi, Y, R, sol, ytilde)
+  xi = [0, 1//2, 1]
+  yi = [0, a, 1]
+  Y(x_) := LagrangePolynomial(xi, yi)
   R(x_) = Simplify(D(Y(x), x, 2) - 3*x - 4*Y(x))
   R(x_) = Simplify(R(x) ./ (a => -C1/4))
+  Println(R(x))
   SetJ(r, ToString(Simplify(R(x))))
 end
 
-println("\n\nExample 7.13: y'' = 3x + 4y, y(0)=0, y(1)=1")
-println("Residual for Weighted Residual Method using 1 point Lagragian Polynomial")
-@sym Println("\nY(x) = ", Y(x), "\n")
-@sym Println("R(x) = ", R(x), "\n")
-println("( Example 7.13 gives: R = -4x^2*(2 + C1) + x*(1 + 4C1) + 2*(2 + C1) )", "\n")
+println("\n----------4----------\n")
 
 println(r)
 
-@eval f713(x, C1) = $(Meta.parse(r))
+println("\n----------5----------\n")
 
-@test f713(1, 2) == 4.0 + 2.0*2 - 3 - 4*(-1.0 + 2.0*1 + 2*(-1 + 1))
+println("\n\nExample 7.14: y'' = 3x + 4y, y(0)=0, y(1)=1")
+println("Residual for Weighted Residual Method using 2 point Lagragian Polynomial")
+@sym Println("\nY(x): ", Expand(Y(x)), "\n")
+println("( Example 7.14 gives: ytilde = 1/2*x^3*(27a-27b+9)-x^2*(45a-36b+9)+x*(18a-9b+2) )")
+@sym Println("\nR(x) = ", R(x), "\n")

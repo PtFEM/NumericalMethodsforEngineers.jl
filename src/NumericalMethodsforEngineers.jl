@@ -9,7 +9,7 @@ using Reexport
 
 # package code goes here
 ### Imports ###
-import Symata: @sym, setsymata, getsymata, symeval
+#import Symata: @sym, setsymata, getsymata, symeval
 
 ### Includes ###
 # Type definitions in nmlib
