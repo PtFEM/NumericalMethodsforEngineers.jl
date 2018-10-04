@@ -1,8 +1,8 @@
 using DataFrames
 
 function lagrangianpolynomial(np::Int, x::Vector{Float64}, y::Vector{Float64}, xi::Vector{Float64})
-  local yi = Vector{Float64}(length(xi))
-  m = sort(hcat(x, y), 1)
+  local yi = Vector{Float64}(undef, length(xi))
+  m = sort(hcat(x, y), dims=1)
   for l in 1:length(xi)
     for i in 1:np
       term = 1.0

@@ -1,5 +1,5 @@
 using Jacobi, Plots
-pyplot(size=(700,700))
+gr(size=(700,700))
 
 ProjDir = dirname(@__FILE__)
 cd(ProjDir) #do

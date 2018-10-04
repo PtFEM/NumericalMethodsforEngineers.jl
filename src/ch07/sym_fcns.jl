@@ -1,6 +1,6 @@
 # My formulation
 
-
+#=
 @sym begin
   LagrangePolynomial(xi_, yi_) := Module([N, sum, num, den],
     begin
@@ -23,11 +23,11 @@
     end
   )
 end
-
+=#
 
 # John's better formulation, much better, need to update tests
 
-#=
+
 @sym begin
   LagrangePolynomial(xi_, yi_) := Module([N, sum, num, den],
     begin
@@ -50,4 +50,4 @@ end
     end
   )
 end
-=#
+

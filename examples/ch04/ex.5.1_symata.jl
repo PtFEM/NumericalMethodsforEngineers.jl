@@ -1,5 +1,5 @@
 using NumericalMethodsforEngineers, DataFrames, Plots
-pyplot(size=(700,700))
+gr(size=(700,700))
 
 println()
 @sym begin
