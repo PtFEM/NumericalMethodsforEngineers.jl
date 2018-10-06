@@ -1,5 +1,6 @@
 using Symata
 
+
 @sym begin
   LagrangePolynomial(xi_, yi_) := Module([N, sum, num, den],
     begin
@@ -22,6 +23,7 @@ using Symata
     end
   )
 end
+
 
 println("\n\n--------1------------\n")
 

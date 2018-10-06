@@ -53,8 +53,7 @@ println("by 1-point least squares Weighted Residual Method")
 @eval rf_1pt_leastsquares(x, C1) = $(Meta.parse(r))
 println()
 
-C1 = Meta.parse(C1)
-rf_1pt_leastsquares_1(x) = rf_1pt_leastsquares(x, C1)
+rf_1pt_leastsquares_1(x) = rf_1pt_leastsquares(x, Meta.parse(C1))
 println()
 
 @test r == "4 + 2C1 + x + 4C1*x - 8x^2 - 4C1*x^2"

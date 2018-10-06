@@ -1,5 +1,6 @@
 using NumericalMethodsforEngineers, Test
 
+#=
 @sym begin
   LagrangePolynomial(xi_, yi_) := Module([N, sum, num, den],
     begin
@@ -26,6 +27,7 @@ using NumericalMethodsforEngineers, Test
   Y(x_) := LagrangePolynomial(xi, yi)
   Println(Y(x))
 end
+=#
 
 @sym begin
   ClearAll(xi, yi, Y, R, sol, ytilde)
