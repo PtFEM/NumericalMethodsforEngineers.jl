@@ -1,6 +1,5 @@
 module NumericalMethodsforEngineers
 
-using Documenter
 using IterativeSolvers
 using Reexport
 @reexport using Symata, SparseArrays, LinearAlgebra, Compat
@@ -70,16 +69,16 @@ export
   runga_kutta_4,
   shootingmethod,
   bigcstab,
-  
+
   # Symata
-  @sym, 
-  setsymata, 
-  getsymata, 
+  @sym,
+  setsymata,
+  getsymata,
   symeval
-  
+
 
 ### Deprecated ###
-  
+
   include("deprecated.jl")
 
 end # module
