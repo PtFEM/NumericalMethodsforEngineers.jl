@@ -1,5 +1,3 @@
-Manifest.toml
-#Project.toml
 *.jl.cov
 *.jl.*.cov
 *.jl.mem
