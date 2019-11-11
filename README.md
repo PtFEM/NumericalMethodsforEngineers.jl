@@ -4,7 +4,6 @@
 
 [![Travis Build Status](https://travis-ci.org/PtFEM/NumericalMethodsforEngineers.jl.svg?branch=master)](https://travis-ci.org/PtFEM/NumericalMethodsforEngineers.jl)
 
-
 ## Julia versions of NumericalMethodsforEngineers programs
 
 More or less equivalent Julia versions of the Fortran programs described in "Numerical Methods for Engineers" by I M Smith and D V Griffiths.
