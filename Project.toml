@@ -1,7 +1,7 @@
 name = "NumericalMethodsforEngineers"
 uuid = "00e1d38a-71a9-5665-8612-32ae585a75a3"
 authors = ["Rob J Goedman <goedman@mac.com>"]
-version = "1.1.1"
+version = "1.2.0"
 
 [deps]
 BandedMatrices = "aae01518-5342-5314-be14-df237901396f"
@@ -29,5 +29,5 @@ GR = "^0.42, 0.43, 0.44"
 IterativeSolvers = "^0.8"
 QuadGK = "^2.1"
 Reexport = "^0.2"
-Symata = "^0.4"
-julia = "^1"
+Symata = "0.4"
+julia = "1"
