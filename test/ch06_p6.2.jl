@@ -1,4 +1,4 @@
-using Compat, Calculus, QuadGK
+using Calculus, QuadGK
 using Test: @test
 
 
