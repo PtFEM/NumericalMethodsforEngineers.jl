@@ -2,7 +2,7 @@ module NumericalMethodsforEngineers
 
 using IterativeSolvers
 using Reexport
-@reexport using Symata, SparseArrays, LinearAlgebra
+@reexport using SparseArrays, LinearAlgebra
 
 #using BandedMatrices
 
@@ -36,7 +36,7 @@ include("ch07/ivp.jl")
 # Boundary Value methods
 include("ch07/bvp.jl")
 # Symata functions
-include("ch07/sym_fcns.jl")
+#include("ch07/sym_fcns.jl")
 
 ### Exports ###
 
@@ -68,13 +68,13 @@ export
   mid_point_euler,
   runga_kutta_4,
   shootingmethod,
-  bigcstab,
+  bigcstab
 
   # Symata
-  @sym,
-  setsymata,
-  getsymata,
-  symeval
+  #@sym,
+  #setsymata,
+  #getsymata,
+  #symeval
 
 
 ### Deprecated ###
