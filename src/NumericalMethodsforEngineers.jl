@@ -2,7 +2,8 @@ module NumericalMethodsforEngineers
 
 using IterativeSolvers
 using Reexport
-@reexport using SparseArrays, LinearAlgebra
+@reexport using SparseArrays, LinearAlgebra, Markdown
+@reexport using Symbolics, SymbolicUtils, Latexify, LaTeXStrings, ModelingToolkit
 
 #using BandedMatrices
 
@@ -37,6 +38,7 @@ include("ch07/ivp.jl")
 include("ch07/bvp.jl")
 # Symata functions
 #include("ch07/sym_fcns.jl")
+include("pluto_helpers.jl")
 
 ### Exports ###
 

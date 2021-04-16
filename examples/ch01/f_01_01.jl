@@ -1,3 +1,4 @@
+using Pkg
 using NumericalMethodsforEngineers
 using Test
 
