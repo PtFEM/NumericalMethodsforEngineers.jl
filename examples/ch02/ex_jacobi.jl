@@ -6,53 +6,24 @@ A = Float64[
   8 -4 22;
 ]
 a = Float64[16; 18; -22]
-x = Float64[1; 1; 1]
-
-maxiters = 100
-println("\nJacobi:")
-for i in 1:100
-  res = jacobi!(x, A, a, tol=1.0e-8, maxiter=1)
-  if i < 5 || i in [1; 10:10:maxiters]
-    println([i x'])
-  end
-  if res[2].isconverged
-    println([i x'])
-    break
-  end
-end
-
-println("\nGauss-Seidel:")
-@show  A * x
+r = vcat(collect(1:6), collect(10:10:100))
 println()
 
-x = Float64[1; 1; 1]
-for i in 1:100
-  res = gauss_seidel!(x, A, a, tol=1.0e-8, maxiter=1)
-  if i < 5 || i in [1; 10:10:maxiters]
-    println([i x'])
-  end
-  if res[2].isconverged
-    println([i x'])
-    break
-  end
-end
-
-println("\nSequential Succesive Over-Relaxation:")
-@show A * x
+x_j = [(i=i, j=jacobi(A, a; maxiter=i)) for i in r]
+A * x_j[11].j |> display
 println()
 
-x = Float64[1; 1; 1]
+x_gs = [(i=i, gs=gauss_seidel(A, a; maxiter=i)) for i in r]
+A * x_gs[11].gs |> display
+println()
+
 ω = 1.0
-for i in 1:100
-  res = ssor!(x, A, a, ω, tol=1.0e-8, maxiter=1)
-  if i < 5 || i in [1; 10:10:maxiters]
-    println([i x'])
-  end
-  if res[2].isconverged
-    println([i x'])
-    break
-  end
-end
-
+x_sor = [(i=i, sor=sor(A, a, ω; maxiter=i)) for i in r]
+A * x_sor[11].sor |> display
 println()
-A * x
+
+x_ssor = [(i=i, ssor=ssor(A, a, ω; maxiter=i)) for i in r]
+x_ssor |> display
+println()
+A * x_ssor[11].ssor |> display
+println()

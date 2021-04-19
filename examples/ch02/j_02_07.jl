@@ -5,11 +5,11 @@ b = [4., 2., 5.]
 
 a = sparse(a)
 
-F = cholfact(a)
-upper = F[:U]
+F = cholesky(a)
+upper = F.U
 upper |> display
 
-lower = F[:L]
+lower = F.L
 lower |> display
 
 y = lower \ b
@@ -27,11 +27,11 @@ b[2] = a[2, 2] * 5.0
 
 a = sparse(a)
 
-F = cholfact(a)
-upper = F[:U]
+F = cholesky(a)
+upper = F.U
 upper |> display
 
-lower = F[:L]
+lower = F.L
 lower |> display
 
 y = lower \ b

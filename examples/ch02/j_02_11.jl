@@ -3,17 +3,19 @@ using NumericalMethodsforEngineers, IterativeSolvers
 a = [16. 4. 8.; 4. 5. -4.; 8. -4. 22.]
 b = [4., 2., 5.]
 
-upper = chol(a)
+upper = cholesky(a).U
 lower = upper'
+lower |> display
 y = lower \ b
 c = upper \ y
 
 tol = 1.0e-10
-iters = 20
-x,ch = cg(a, b;tol=tol,maxiter=iters);
+maxiters = 5
+x = [(i=i, cg=cg(a, b; maxiter=i)) for i in 1:maxiters]
+x|> display
 
-println("\nSolution Vector: $x")
-println("Converged: $(ch.isconverged)")
-println("Number of iters: $(ch.mvps)")
+println("\nSolution Vector:")
+x[3].cg |> display
+println()
 
-@test round(x, 6) == round(c, 6)
+@test round.(x[3].cg; digits=6) == round.(c; digits=6)

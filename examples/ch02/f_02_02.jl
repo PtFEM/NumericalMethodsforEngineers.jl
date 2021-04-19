@@ -25,14 +25,12 @@ println()
 
 c = a\b
 
-@show round(c, 14)
-@show round(a * c, 14) == b
+@show round.(c; digits=14)
+@show round.(a * c; digits=14) == b
 println()
 
-println("Julia lufact(a):")
-f = lufact(a);
-println(f[:L])
+println("Julia lu(a):")
+f = lu(a);
+f |> display
 println()
-println(f[:U])
-println()
-
+f.U |> display

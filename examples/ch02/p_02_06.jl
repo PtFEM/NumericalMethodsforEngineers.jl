@@ -5,16 +5,11 @@ b = [16., 18., -22.]
 
 a = sparse(a)
 
-F = cholfact(a)
-upper = F[:U]
-upper |> display
+f = cholesky(a)
+f |> display
 
-lower = F[:L]
-lower |> display
-
-y = lower \ b
-
-c = upper \ y
+y = f.L \ b
+c = f.U \ y
 println("Solution Vector: \n $c")
 
 @test c == a \ b
