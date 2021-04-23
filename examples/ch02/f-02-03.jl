@@ -23,17 +23,12 @@ println("\nDiagonal Terms: \n $d")
 at = deepcopy(a)
 bt = deepcopy(b)
 ldlfor!(at, bt)
-
-println("\nldlfor! results:")
-at |> display
-println()
-bt |> display
-
+println(at)
 for i in 1:n
   at[i, :] = at[i, :] / d[i]
 end
 
-println("\nScaled at:")
+println("\nScaled ldlfor! results:")
 at |> display
 println()
 bt |> display

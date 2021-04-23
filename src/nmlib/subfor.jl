@@ -11,3 +11,26 @@ function subfor!(l::Matrix{Float64}, b::Vector{Float64})
     b[i] = total / l[i, i]
   end
 end
+
+# Forward-substitution on a Lower Triangle
+function ldlfor(l::Matrix{Float64}, b_in::Vector{Float64})
+  b = deepcopy(b_in)
+  n = size(l, 1)
+  for i in 1:n
+    total = b[i]
+    if i > 1
+      for j in 1:i-1
+        total -= l[i, j] * b[j]
+      end
+    end
+    b[i] = total / l[i, i]
+  end
+  b
+end
+
+subfor = ldlfor
+
+export
+  subfor!,
+  ldlfor,
+  subfor

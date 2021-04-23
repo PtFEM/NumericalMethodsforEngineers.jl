@@ -10,3 +10,6 @@ function ldlfor!(a::Matrix{Float64}, b::Vector{Float64})
     b[i] = total / a[i, i]
   end
 end
+
+export
+  ldlfor!
