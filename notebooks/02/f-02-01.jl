@@ -1,11 +1,17 @@
 ### A Pluto.jl notebook ###
-# v0.14.2
+# v0.14.3
 
 using Markdown
 using InteractiveUtils
 
+# ╔═╡ 7a63ed47-abf4-4432-bdce-23b7375dc02c
+using Pkg, DrWatson
+
 # ╔═╡ fc142be9-b765-4930-8d70-00a9cfda6110
-using NumericalMethodsforEngineers, Test
+begin
+	@quickactivate "NumericalMethodsforEngineers"
+	using NumericalMethodsforEngineers, Test
+end
 
 # ╔═╡ 44feedf7-0c4a-4f17-9384-8cdb3d30f743
 begin
@@ -78,6 +84,7 @@ c = a\b
 @test round.(a * c; digits=14) == b
 
 # ╔═╡ Cell order:
+# ╠═7a63ed47-abf4-4432-bdce-23b7375dc02c
 # ╠═fc142be9-b765-4930-8d70-00a9cfda6110
 # ╠═44feedf7-0c4a-4f17-9384-8cdb3d30f743
 # ╠═7813d567-6e63-4056-95e3-0b0872a0d21a

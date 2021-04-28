@@ -1,14 +1,20 @@
 ### A Pluto.jl notebook ###
-# v0.14.2
+# v0.14.3
 
 using Markdown
 using InteractiveUtils
 
+# ╔═╡ cac25d95-5750-4060-8d4b-f61466a997c7
+using Pkg, DrWatson
+
 # ╔═╡ 81902a32-f906-450e-ad49-5f5258c82f81
-using NumericalMethodsforEngineers, Test
+begin
+	@quickactivate "NumericalMethodsforEngineers"
+	using NumericalMethodsforEngineers, Test
+end
 
 # ╔═╡ 9bc9f18d-5fdf-48e5-a04b-c921a74e5983
-md" ### `ex_02_04.jl`"
+md" ### `Ex_02_04.jl`"
 
 # ╔═╡ 5bcab1ab-a649-4c3f-b821-05dea48fb924
 a1 = [1. 2. -2.; 2. 5. -4.; -2. -4. 5.]
@@ -56,10 +62,11 @@ lower * upper
 @test a2 == lower * upper
 
 # ╔═╡ e068b790-c3b3-454c-ad26-d717cb3c6265
-md" ### End of `ex_02-04.jl`"
+md" ### End of ex-02-04.jl"
 
 # ╔═╡ Cell order:
 # ╟─9bc9f18d-5fdf-48e5-a04b-c921a74e5983
+# ╠═cac25d95-5750-4060-8d4b-f61466a997c7
 # ╠═81902a32-f906-450e-ad49-5f5258c82f81
 # ╠═5bcab1ab-a649-4c3f-b821-05dea48fb924
 # ╠═2797ae90-10e1-4ab0-b6f9-b90c14c0f894

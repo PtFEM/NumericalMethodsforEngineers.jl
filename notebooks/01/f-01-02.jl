@@ -1,11 +1,20 @@
 ### A Pluto.jl notebook ###
-# v0.14.2
+# v0.14.3
 
 using Markdown
 using InteractiveUtils
 
+# ╔═╡ b32bec97-359c-4a83-ba0b-2503e5c50122
+using Pkg, DrWatson
+
 # ╔═╡ 3a39a0db-54de-45ed-a8d5-e948e7c14f89
-using NumericalMethodsforEngineers
+begin
+	@quickactivate "NumericalMethodsforEngineers"
+	using NumericalMethodsforEngineers, Test
+end
+
+# ╔═╡ a68242b5-0995-428f-9b73-37cf943e9b87
+md" ### f-01-02.jl"
 
 # ╔═╡ 895bad2c-0a85-4584-9cb5-d1579385bfe3
 begin
@@ -88,7 +97,12 @@ c_nmfe = direct_solve(At, bt)
 # ╔═╡ f6fec610-96aa-40e2-8646-ff8fe3c2e804
 A * c_nmfe
 
+# ╔═╡ 585d3b15-949d-4aca-828d-2477a9c88599
+md" ### End of f-01-02.jl"
+
 # ╔═╡ Cell order:
+# ╟─a68242b5-0995-428f-9b73-37cf943e9b87
+# ╠═b32bec97-359c-4a83-ba0b-2503e5c50122
 # ╠═3a39a0db-54de-45ed-a8d5-e948e7c14f89
 # ╠═895bad2c-0a85-4584-9cb5-d1579385bfe3
 # ╟─e15153d7-bdee-459c-b236-6c037e701e29
@@ -104,3 +118,4 @@ A * c_nmfe
 # ╟─617129ac-1321-476d-93cb-c1696ddbd40c
 # ╠═119074dc-3372-4cc3-84cd-ab2abdd1a7b2
 # ╠═f6fec610-96aa-40e2-8646-ff8fe3c2e804
+# ╟─585d3b15-949d-4aca-828d-2477a9c88599

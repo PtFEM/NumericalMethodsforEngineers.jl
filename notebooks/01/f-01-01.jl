@@ -1,20 +1,21 @@
 ### A Pluto.jl notebook ###
-# v0.14.2
+# v0.14.3
 
 using Markdown
 using InteractiveUtils
 
 # ╔═╡ 7dfe963f-3601-4515-a636-4930816a4e6c
-using Pkg
+using Pkg, DrWatson
 
 # ╔═╡ 73d28c7f-8426-4c5a-b166-23dcac5c16ce
 begin
+	@quickactivate "NumericalMethodsforEngineers"
 	using NumericalMethodsforEngineers
 	using Test
 end
 
 # ╔═╡ ac233fe5-a00f-412f-ad4a-a1d39ee20517
-md" ### `f_01_01.jl`"
+md" ### f-01-01.jl"
 
 # ╔═╡ d82838e5-1591-41d9-b5e0-0c49f48d7814
 begin
@@ -35,7 +36,7 @@ jeigval, jeigvec = eigen(a)
 @test round(maximum(jeigval), digits=3) == round(eigval, digits=3)
 
 # ╔═╡ 47256683-e6b6-4fae-916c-f80ba57a232f
-md" ### End of `f_01_01.jl`"
+md" ### End of f-01-01.jl"
 
 # ╔═╡ Cell order:
 # ╟─ac233fe5-a00f-412f-ad4a-a1d39ee20517

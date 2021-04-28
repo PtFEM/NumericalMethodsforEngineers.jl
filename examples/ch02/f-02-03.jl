@@ -7,39 +7,20 @@ d = zeros(n)
 
 c = a \ b
 c |> display
+println()
 
-ldlt!(a, d)
-lower = zeros(3, 3)
+at, dt = ldlt(a, d)
+
+bt = ldlfor(at, b)
+bt |> display
+println()
+
 for i in 1:n
-  for j in 1:i
-    lower[i, j] = a[i, j] / d[j]
-  end
+  at[i, :] = at[i, :] / dt[i]
 end
 
-println("\nLower Triangular Factors:")
-lower |> display
-println("\nDiagonal Terms: \n $d")
-
-at = deepcopy(a)
-bt = deepcopy(b)
-ldlfor!(at, bt)
-println(at)
-for i in 1:n
-  at[i, :] = at[i, :] / d[i]
-end
-
-println("\nScaled ldlfor! results:")
-at |> display
+bt = subbac(at, bt)
+bt |> display
 println()
-bt |> display
-
-subbac!(at, bt)
-println("\nSolution Vector:")
-bt |> display
-
-println("\nsubbac! results:")
-at |> display
-println()
-bt |> display
 
 @test bt == c

@@ -12,8 +12,8 @@ function subfor!(l::Matrix{Float64}, b::Vector{Float64})
   end
 end
 
-# Forward-substitution on a Lower Triangle
-function ldlfor(l::Matrix{Float64}, b_in::Vector{Float64})
+# Forward-substitution
+function subfor(l::Matrix{Float64}, b_in::Vector{Float64})
   b = deepcopy(b_in)
   n = size(l, 1)
   for i in 1:n
@@ -28,9 +28,7 @@ function ldlfor(l::Matrix{Float64}, b_in::Vector{Float64})
   b
 end
 
-subfor = ldlfor
 
 export
   subfor!,
-  ldlfor,
   subfor

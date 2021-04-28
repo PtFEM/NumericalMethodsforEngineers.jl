@@ -12,8 +12,8 @@ function subbac!(u::Matrix{Float64}, b::Vector{Float64})
   end
 end
 
-# Back-substitution on an Upper Triangle
 function subbac(u::Matrix{Float64}, b::Vector{Float64})
+# Back-substitution on an Upper Triangle
   bt = deepcopy(b)
   n = size(u, 1)
   for i in n:-1:1

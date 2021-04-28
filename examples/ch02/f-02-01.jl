@@ -25,7 +25,7 @@ function to_upper(a::Matrix, b::Vector)
     md"Zero pivot found in row $k"
     end
   end
-  (a=at, b=bt)
+  (at, bt)
 end
 
 function direct_solve(a::Matrix, b::Vector)
@@ -55,10 +55,11 @@ println()
 println("Solution vector:")
 c_nmfe = direct_solve(at, bt)
 c_nmfe |> display
+println()
 
-c = A\b
+c = a \ [1., 2., 6.]
 c |> display
 
 println()
-@test round.(c; digits=14) == d
+@test ≈(c, c_nmfe, atol=1e-10)
 @test round.(a * c; digits=14) == b

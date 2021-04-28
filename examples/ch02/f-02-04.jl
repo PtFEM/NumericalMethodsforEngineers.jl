@@ -1,21 +1,32 @@
-using NumericalMethodsforEngineers
+using NumericalMethodsforEngineers, Test
 
-a = Float64[0 0 16; 0 4 5; 8 -4 22]
+a = Float64[16 4 8;4 5 -4;8 -4 22]
 b = Float64[4, 2, 5]
 
-println("\nCholesky factorization using banded storage\n")
-println("\nBanded Coefficient Matrix:\n$a\n")
-println("\nRight Hand side:\n$b\n")
+det(a[1,1])
+det(a[1:2,1:2])
+det(a)
 
-cholin!(a)
-println("\nL in Band Form:\n$a\n")
+isposdef(a) |> display
+println()
 
-chobac!(a, b)
-println("\nSolution Vector:\n$b")
-
-a = Float64[0 0 16; 0 4 5; 8 -4 22]
-b = Float64[4, 2, 5]
+cholesky(a) |> display
 
 c = a \ b
+c |> display
 
-@test round.(a * c; digits=14) == b
+println("\nCholesky factorization using banded storage\n")
+println("Banded Coefficient Matrix:")
+a |> display
+
+println("\nRight Hand side:")
+b |> display
+
+cholin!(a)
+println("\nL in Band Form:")
+a |> display
+
+chobac!(a, b)
+println("\nSolution Vector:")
+b |> display
+
