@@ -1,16 +1,7 @@
 using NumericalMethodsforEngineers, Test
 
-a = Float64[16 4 8;4 5 -4;8 -4 22]
+a = [0. 0. 16.; 0. 4. 5.; 8. -4. 22.]
 b = Float64[4, 2, 5]
-
-det(a[1,1])
-det(a[1:2,1:2])
-det(a)
-
-isposdef(a) |> display
-println()
-
-cholesky(a) |> display
 
 c = a \ b
 c |> display
@@ -29,4 +20,3 @@ a |> display
 chobac!(a, b)
 println("\nSolution Vector:")
 b |> display
-

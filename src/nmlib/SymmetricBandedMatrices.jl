@@ -1,4 +1,4 @@
-import Base: full, ==, copy, size, convert
+import Base: ==, copy, size, convert
 import SparseArrays: sparse
 
 #
@@ -98,3 +98,6 @@ function full(bm::SymmetricBandedMatrix)
   end
   b
 end
+
+export
+  full

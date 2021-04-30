@@ -1,5 +1,4 @@
 using NumericalMethodsforEngineers, DataFrames, Plots
-pyplot(size=(700,700))
 
 ProjDir = dirname(@__FILE__)
 cd(ProjDir) #do
@@ -21,12 +20,12 @@ cd(ProjDir) #do
   dfxint |> display
   println()
   
-  p = plot(dfxint[:xi], dfxint[:yi], line=(:path, 1), label="interpolated curve")
-  scatter!(p, dfin[:x], dfin[:y], marker=(:circle, 4), label="input points", color=:blue)
-  scatter!(p, dfxi[:xi], dfxi[:yi], marker=(:star, 8), color=:red, label="interpolated points")
+  plot(dfxint.xi, dfxint.yi, line=(:path, 1), label="interpolated curve", leg=:topleft)
+  scatter!(dfin.x, dfin.y, marker=(:circle, 4), label="input points", color=:blue)
+  scatter!(dfxi.xi, dfxi.yi, marker=(:star, 8), color=:red, label="interpolated points")
   
-  plot(p)
-  savefig("ex.5.1.png")
-  gui()
+  #plot(p)
+  #savefig("ex.5.1.png")
+  #gui()
   
 #end

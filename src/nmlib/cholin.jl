@@ -6,6 +6,7 @@ function cholin!(kb::Matrix{Float64})
     for j in 1:iw
       x += kb[i, j]^2.0
     end
+    println([i, iw, iw+1, x, kb[i, iw+1], kb[i, iw+1] - x])
     kb[i, iw+1] = sqrt(kb[i, iw+1] - x)
     for k in 1:iw
       x = 0.0

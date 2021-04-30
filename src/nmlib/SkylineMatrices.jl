@@ -1,4 +1,4 @@
-import Base: full, ==, copy, size, convert
+import Base: ==, copy, size, convert
 import SparseArrays: sparse
 
 """
@@ -88,3 +88,6 @@ function fromskyline(kdiag::Vector{Int64}, sv::Vector)
   end
 	km
 end
+
+export
+  full

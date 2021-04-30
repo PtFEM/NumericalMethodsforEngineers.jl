@@ -12,10 +12,10 @@ function psm(nip)
   else
     if isodd(nip)
       n = floor(Int, nip/2)
-      hn = linspace(-n, n, nip)
+      hn = range(-n, n, length=nip)
     else
       n = floor(Int, 2*(nip/2)-1)
-      hn = linspace(-n, n, nip)
+      hn = range(-n, n, length=nip)
     end
     m = ones(nip, nip)
     for i in 0:nip-1
@@ -41,7 +41,7 @@ function nc(func, lb, ub, nip)
     x = [lb, ub]
   else
     h = (ub - lb)/(nip-1)
-    x = collect(linspace(lb, ub, nip))
+    x = collect(range(start=lb, stop=ub, length=nip))
   end
   w = psm(nip)
   res = h * w *func.(x)
