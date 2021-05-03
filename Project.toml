@@ -30,7 +30,7 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
 BandedMatrices = "0.15, 0.16"
-BarycentrinInterpolations = "0.1"
+BarycentricInterpolation = "0.1"
 Calculus = "0.5"
 DataFrames = "0.22, 1.0"
 FillArrays = "0.10, 0.11"
