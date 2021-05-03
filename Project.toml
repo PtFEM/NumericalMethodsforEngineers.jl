@@ -5,6 +5,7 @@ version = "2.0.0"
 
 [deps]
 BandedMatrices = "aae01518-5342-5314-be14-df237901396f"
+BarycentricInterpolation = "9eb6a62d-0ffa-5353-839e-400c605afeda"
 Calculus = "49dc2e85-a5d0-5ad3-a950-438e2897f1b9"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 FillArrays = "1a297f60-69ca-5386-bcde-b61e274b549b"
@@ -29,6 +30,7 @@ Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
 BandedMatrices = "0.15, 0.16"
+BarycentrinInterpolations = "0.1"
 Calculus = "0.5"
 DataFrames = "0.22, 1.0"
 FillArrays = "0.10, 0.11"
