@@ -1,5 +1,4 @@
 using NumericalMethodsforEngineers, DataFrames, Plots
-gr(size=(700,700))
 
 @sym begin
   LagrangePolynomial(xi_, yi_) := Module([N, sum, num, den],
