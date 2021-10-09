@@ -1,6 +1,9 @@
 # NumericalMethodsforEngineers
 
 [![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
+
+![][CI-build]
+
 [CI-build](https://github.com/PtFEM/NumericalMethodsforEngineers.jl/workflows/CI/badge.svg?branch=master)
 
 ## Julia versions of NumericalMethodsforEngineers programs
