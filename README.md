@@ -1,8 +1,8 @@
 # NumericalMethodsforEngineers
 
-| **Project Status**          |  **Build Status** |  **Doce stable** |  **Doce dev** |
-|:---------------------------:|:-----------------:|:----------------:|:-------------:|
-|![][project-status-img] | ![][CI-build] | ![][docs-stable-url] | ![][docs-dev-url] |
+| **Project Status**          |  **Build Status** |     nnnn**Docs **        |
+|:---------------------------:|:-----------------:|:------------------------:|
+|![][project-status-img] | ![][CI-build] | ![][docs-stable-img][docs-dev-img] |
 
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://stanjulia.github.io/NumericalmethodsForEngineers.jl/latest
