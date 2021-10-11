@@ -10,7 +10,7 @@
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
 [docs-stable-url]: https://stanjulia.github.io/StanSample.jl/stable
 
-[CI-build]: https://github.com/ptfem/NumericalMethodsForEngineers.jl/workflows/CI/badge.svg?branch=master)
+[CI-build]: https://github.com/ptfem/NumericalMethodsForEngineers.jl/workflows/CI/badge.svg?branch=master
 
 [project-status-img]: https://img.shields.io/badge/lifecycle-wip-orange.svg
 
