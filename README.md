@@ -1,10 +1,18 @@
 # NumericalMethodsforEngineers
 
-[![Project Status: WIP - Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
+| **Project Status**          |  **Build Status** |  **Doce stable** |  **Doce dev** |
+|:---------------------------:|:-----------------:|:----------------:|:-------------:|
+|![][project-status-img] | ![][CI-build] |
 
-[![][CI-build]]
+[docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
+[docs-dev-url]: https://stanjulia.github.io/NumericalmethodsForEngineers.jl/latest
 
-[CI-build](https://github.com/PtFEM/NumericalMethodsforEngineers.jl/workflows/CI/badge.svg?branch=master)
+[docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
+[docs-stable-url]: https://stanjulia.github.io/StanSample.jl/stable
+
+[CI-build](https://github.com/ptfem/NumericalMethodsForEngineers.jl/workflows/CI/badge.svg?branch=master)
+
+[project-status-img]: https://img.shields.io/badge/lifecycle-wip-orange.svg
 
 ## Julia versions of NumericalMethodsforEngineers programs
 
