@@ -24,6 +24,8 @@ No timeline is set to complete this work.
 
 ### Vesion 2.0.0
 
+Last updated 10/11/2021, README page
+
 As Symata no longer works for several of the examples, I've decided to switch to Symbolics.jl. At the same time I'll flip the focus by presenting the NMFE functions after showing the same using Julia equivalents. Finally, I'll switch to using Pluto notebooks as the primary REPL/display environment. Use of PyCall (for Symata) will be discontinued in this package.
 
 ### Version 1.2
