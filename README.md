@@ -1,7 +1,7 @@
 # NumericalMethodsforEngineers
 
-| **Project Status**          |  **Build Status** |         **Docs **        |
-|:---------------------------:|:-----------------:|:------------------------:|
+| **Project Status** |  **Build Status** |  **Docs** |
+|:------------------:|:-----------------:|:---------:|
 |![][project-status-img] | ![][CI-build] |  [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] |
 
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
